@@ -1,6 +1,6 @@
 import {Client} from 'eris';
 import {Config, loadConfig} from './config';
-import {EventRegistry} from './event';
+import {EventRegistry} from './events';
 
 /**
  * The core Blueprint client class to manage everything
