@@ -1,2 +1,2 @@
-export {Blueprint} from './lib/client';
-export {Permissions} from './lib/permissions';
+export {Blueprint} from './lib/class/client';
+export {Permissions} from './lib/util/permissions';

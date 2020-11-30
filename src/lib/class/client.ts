@@ -1,5 +1,5 @@
 import {Client} from 'eris';
-import {Config, loadConfig} from './config';
+import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from './events';
 import {GroupRegistry} from './groups';
 
