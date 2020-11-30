@@ -35,3 +35,7 @@ export enum Permissions {
   allText = 805829714,
   allVoice = 871367441,
 }
+
+export function convertPermission(key: string) {
+  return Permissions[key as keyof typeof Permissions];
+}
