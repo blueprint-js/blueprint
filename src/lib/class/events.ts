@@ -1,5 +1,5 @@
 import {Client} from 'eris';
-import {Registry} from './registry';
+import {Registry} from '@class/registry';
 
 type Callback = (...args: Array<unknown>) => unknown;
 
