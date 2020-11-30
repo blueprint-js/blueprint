@@ -5,5 +5,19 @@
   "main": "build/src/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
   "author": "xpyxel <xpyxel@gmail.com>",
-  "license": "MPL-2.0"
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "@types/node": "^14.11.2",
+    "gts": "^3.0.2",
+    "typescript": "^4.0.3"
+  },
+  "scripts": {
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  }
 }
