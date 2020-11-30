@@ -8,6 +8,7 @@
   "license": "MPL-2.0",
   "devDependencies": {
     "@types/node": "^14.11.2",
+    "@types/yaml": "^1.9.7",
     "gts": "^3.0.2",
     "typescript": "^4.0.3"
   },
@@ -19,5 +20,8 @@
     "prepare": "npm run compile",
     "pretest": "npm run compile",
     "posttest": "npm run lint"
+  },
+  "dependencies": {
+    "yaml": "^1.10.0"
   }
 }
