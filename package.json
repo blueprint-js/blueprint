@@ -25,5 +25,9 @@
   "dependencies": {
     "eris": "^0.14.0",
     "yaml": "^1.10.0"
+  },
+  "_moduleAliases": {
+    "@util": "build/src/util",
+    "@class": "build/src/class"
   }
 }
