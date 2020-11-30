@@ -24,12 +24,25 @@ function hasOverrides(
 }
 
 export class GroupRegistry extends Registry<Group> {
+  /**
+   * Registers a new permission group
+   * @param key The name of the permission group
+   * @param value The group definition
+   */
   register(key: string, value: Group): void {
     this.items.set(key, value);
   }
+  /**
+   * Unregisters an existing permission group
+   * @param key The name of the permission group
+   */
   unregister(key: string): void {
     if (this.items.has(key)) this.items.delete(key);
   }
+  /**
+   * Returns the groups a user belongs to
+   * @param user The user to check groups of
+   */
   check(user: User | Member): Array<string> {
     const groups = [];
     if (user instanceof User) return [];
