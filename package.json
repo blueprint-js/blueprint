@@ -27,7 +27,7 @@
     "yaml": "^1.10.0"
   },
   "_moduleAliases": {
-    "@util": "build/src/util",
-    "@class": "build/src/class"
+    "@util": "build/src/lib/util",
+    "@class": "build/src/lib/class"
   }
 }
