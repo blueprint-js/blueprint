@@ -22,6 +22,7 @@
     "posttest": "npm run lint"
   },
   "dependencies": {
+    "eris": "^0.14.0",
     "yaml": "^1.10.0"
   }
 }
