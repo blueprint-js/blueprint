@@ -8,32 +8,11 @@
 ![GitHub](https://img.shields.io/github/license/xpyxel/blueprint?style=flat-square)  
 A modern, powerful, experimental, and modular Discord bot framework
 
-## Example
+## Installation
 
-```ts
-import {Blueprint, Permissions, Command, Plugin} from '@xpyxel/blueprint';
-const bp = new Blueprint('config.yml');
+To install Blueprint you first need to configure NPM to use the GitHub package registry,
+to do this first create a `.npmrc` file with the following contents, afterwords you can install the library using `npm i @xpyxel/blueprint`.
 
-const ping = new Command(
-  {
-    groups: ['admin'],
-    aliases: ['ping', 'pong', 'test'],
-    description: 'Returns "pong!"',
-  },
-  async ctx => {
-    await ctx.channel.createMessage('pong!');
-  }
-);
-
-const adminPlugin = new Plugin();
-adminPlugin.register('ping', ping);
-bp.plugins.register('admin', adminPlugin);
-bp.groups.register('admin', {
-  permissions: [Permissions.administrator, Permissions.manageGuild],
-});
-bp.events.register('ready', () => {
-  console.log('Connected to Discord');
-});
-
-blueprint.start();
+```npmrc
+@xpyxel:registry=https://npm.pkg.github.com
 ```
