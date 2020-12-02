@@ -8,6 +8,20 @@ export class EventRegistry extends Registry<Callback> {
   constructor(ref: Blueprint) {
     super();
     this.ref = ref;
+    this.ref.core.client.on('messageCreate', msg => {
+      if (msg.author.bot) return;
+      if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
+      if (this.items.has('messageCreate'))
+        (this.items.get('messageCreate') as Callback)(msg);
+      this.ref.plugins.execute(
+        msg.content
+          .replace(this.ref.core.config.bot.prefix, '')
+          .split(' ')
+          .shift() as string,
+        msg.member ?? msg.author,
+        msg
+      );
+    });
   }
   /**
    * Registers a new event handler
