@@ -28,6 +28,7 @@
   },
   "_moduleAliases": {
     "@util": "build/src/lib/util",
-    "@class": "build/src/lib/class"
+    "@class": "build/src/lib/class",
+    "@registry": "build/src/lib/registry"
   }
 }
