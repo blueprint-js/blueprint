@@ -2,6 +2,7 @@ import {Client} from 'eris';
 import {Config, loadConfig} from '@util/config';
 import {EventRegistry} from '@registry/events';
 import {GroupRegistry} from '@registry/groups';
+import {PluginRegistry} from '@registry/plugins';
 
 interface Internals {
   config: Config;
@@ -16,6 +17,7 @@ export class Blueprint {
   private client: Client;
   public events: EventRegistry;
   public groups: GroupRegistry;
+  public plugins: PluginRegistry;
   /**
    * Creates a new Blueprint instance
    * @param config A path to a Blueprint configuration file
@@ -24,6 +26,7 @@ export class Blueprint {
     this.config = loadConfig(config);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.events = new EventRegistry(this.client);
+    this.plugins = new PluginRegistry(this);
     this.groups = new GroupRegistry();
   }
   /**
