@@ -1,13 +1,13 @@
-import {Client} from 'eris';
 import {Registry} from '@class/registry';
+import {Blueprint} from '@class/client';
 
 type Callback = (...args: Array<unknown>) => unknown;
 
 export class EventRegistry extends Registry<Callback> {
-  private client: Client;
-  constructor(client: Client) {
+  private ref: Blueprint;
+  constructor(ref: Blueprint) {
     super();
-    this.client = client;
+    this.ref = ref;
   }
   /**
    * Registers a new event handler
@@ -15,8 +15,10 @@ export class EventRegistry extends Registry<Callback> {
    * @param value The callback to execute when the event is called
    */
   register(key: string, value: Callback): void {
-    this.client.on(key, value);
-    this.items.set(key, value);
+    if (key !== 'messageCreate') {
+      this.ref.core.client.on(key, value);
+      this.items.set(key, value);
+    } else this.items.set(key, value);
   }
   /**
    * Unregisters an existing event handler
@@ -24,7 +26,9 @@ export class EventRegistry extends Registry<Callback> {
    */
   unregister(key: string): void {
     if (!this.items.has(key)) return;
-    this.client.off(key, this.items.get(key) as Callback);
-    this.items.delete(key);
+    if (key !== 'messageCreate') {
+      this.ref.core.client.off(key, this.items.get(key) as Callback);
+      this.items.delete(key);
+    } else this.items.delete(key);
   }
 }
