@@ -3,6 +3,11 @@ import {Config, loadConfig} from '@util/config';
 import {EventRegistry} from '@class/events';
 import {GroupRegistry} from '@class/groups';
 
+interface Internals {
+  config: Config;
+  client: Client;
+}
+
 /**
  * The core Blueprint client class to manage everything
  */
@@ -20,6 +25,12 @@ export class Blueprint {
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.events = new EventRegistry(this.client);
     this.groups = new GroupRegistry();
+  }
+  /**
+   * Returns the internals of the Blueprint instance
+   */
+  get core(): Internals {
+    return {config: this.config, client: this.client};
   }
   /**
    * Initializes everything and connects to Discord
