@@ -11,10 +11,27 @@ A modern, powerful, experimental, and modular Discord bot framework
 ## Example
 
 ```ts
-import {Blueprint} from '@xpyxel/blueprint';
-const blueprint = new Blueprint('config.yml');
+import {Blueprint, Permissions, Command, Plugin} from '@xpyxel/blueprint';
+const bp = new Blueprint('config.yml');
 
-blueprint.events.register('ready', () => {
+const ping = new Command(
+  {
+    groups: ['admin'],
+    aliases: ['ping', 'pong', 'test'],
+    description: 'Returns "pong!"',
+  },
+  async ctx => {
+    await ctx.channel.createMessage('pong!');
+  }
+);
+
+const adminPlugin = new Plugin();
+adminPlugin.register('ping', ping);
+bp.plugins.register('admin', adminPlugin);
+bp.groups.register('admin', {
+  permissions: [Permissions.administrator, Permissions.manageGuild],
+});
+bp.events.register('ready', () => {
   console.log('Connected to Discord');
 });
 
