@@ -9,6 +9,9 @@ interface CommandMeta {
 
 type Executor = (ctx: Message, ref: Blueprint) => void;
 
+/**
+ * The class used to create Blueprint commands
+ */
 export class Command {
   public callback: Executor;
   public readonly meta: CommandMeta;
