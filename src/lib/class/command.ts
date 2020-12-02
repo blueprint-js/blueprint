@@ -1,5 +1,5 @@
 import {Message} from 'eris';
-import {Blueprint} from './client';
+import {Blueprint} from '@class/client';
 
 interface CommandMeta {
   aliases: Array<string>;

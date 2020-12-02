@@ -1,7 +1,7 @@
 import {Client} from 'eris';
 import {Config, loadConfig} from '@util/config';
-import {EventRegistry} from '@class/events';
-import {GroupRegistry} from '@class/groups';
+import {EventRegistry} from '@registry/events';
+import {GroupRegistry} from '@registry/groups';
 
 interface Internals {
   config: Config;
