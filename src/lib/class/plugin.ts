@@ -3,6 +3,9 @@ import {Registry} from '@class/registry';
 import {Member, Message, User} from 'eris';
 import {Blueprint} from '@class/client';
 
+/**
+ * Groups commands together
+ */
 export class Plugin extends Registry<Command> {
   /**
    * Registers a new command
