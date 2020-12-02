@@ -23,6 +23,16 @@ export class Plugin extends Registry<Command> {
     if (this.items.has(key)) this.items.delete(key);
   }
   /**
+   * Checks if the plugin has the command
+   * @param key The name of the command
+   */
+  has(cmd: string): boolean {
+    for (const [key, {meta}] of this.items) {
+      if (key === cmd || meta.aliases.includes(cmd)) return true;
+    }
+    return false;
+  }
+  /**
    * Executes a command if the user has permissions to
    * @param cmd The name of the command
    * @param msg The message context
