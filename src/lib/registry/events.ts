@@ -1,7 +1,7 @@
 import {Registry} from '@class/registry';
 import {Blueprint} from '@class/client';
 
-type Callback = (...args: Array<unknown>) => unknown;
+type Callback = (ref: Blueprint, ...args: Array<unknown>) => unknown;
 
 export class EventRegistry extends Registry<Callback> {
   private ref: Blueprint;
@@ -12,7 +12,7 @@ export class EventRegistry extends Registry<Callback> {
       if (msg.author.bot) return;
       if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
       if (this.items.has('messageCreate'))
-        (this.items.get('messageCreate') as Callback)(msg);
+        (this.items.get('messageCreate') as Callback)(this.ref, msg);
       this.ref.plugins.execute(
         msg.content
           .replace(this.ref.core.config.bot.prefix, '')
