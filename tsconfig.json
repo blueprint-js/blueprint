@@ -1,0 +1,14 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "baseUrl": "src",
+    "outDir": "build",
+    "paths": {
+      "@class/*": ["lib/class/*"],
+      "@util/*": ["lib/util/*"],
+      "@registry/*": ["lib/registry/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"]
+}
