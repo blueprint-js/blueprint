@@ -1,5 +1,5 @@
 {
-  "name": "blueprint",
+  "name": "@xpyxel/blueprint",
   "version": "1.0.0",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
   "main": "build/src/index.js",
@@ -30,5 +30,8 @@
     "@util": "build/src/lib/util",
     "@class": "build/src/lib/class",
     "@registry": "build/src/lib/registry"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
