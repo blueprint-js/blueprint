@@ -32,6 +32,6 @@
     "@registry": "build/src/lib/registry"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/xpyxel"
+    "registry": "https://npm.pkg.github.com"
   }
 }
