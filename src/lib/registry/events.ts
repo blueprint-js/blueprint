@@ -1,5 +1,5 @@
-import {Registry} from '@class/registry';
-import {Blueprint} from '@class/client';
+import {Registry} from '../class/registry';
+import {Blueprint} from '../class/client';
 
 type Callback = (ref: Blueprint, ...args: Array<unknown>) => unknown;
 
