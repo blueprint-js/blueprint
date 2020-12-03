@@ -1,7 +1,7 @@
-import {Command} from '@class/command';
-import {Registry} from '@class/registry';
+import {Command} from '../class/command';
+import {Registry} from '../class/registry';
 import {Member, Message, User} from 'eris';
-import {Blueprint} from '@class/client';
+import {Blueprint} from '../class/client';
 
 /**
  * Groups commands together
@@ -43,7 +43,8 @@ export class Plugin extends Registry<Command> {
     for (const [key, {meta, callback}] of this.items) {
       if (meta.aliases.includes(key) || cmd === key) {
         const ugroups = ref.groups.check(user);
-        if (ugroups.some(g => meta.groups.includes(g))) callback(msg, ref);
+        if (ugroups.some((g: string) => meta.groups.includes(g)))
+          callback(msg, ref);
         break;
       }
     }

@@ -1,5 +1,5 @@
-import {Registry} from '@class/registry';
-import {Permissions, convertPermission} from '@util/permissions';
+import {Registry} from '../class/registry';
+import {Permissions, convertPermission} from '../util/permissions';
 import {Member, User} from 'eris';
 
 interface Override {

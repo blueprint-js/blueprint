@@ -1,8 +1,8 @@
 import {Client} from 'eris';
-import {Config, loadConfig} from '@util/config';
-import {EventRegistry} from '@registry/events';
-import {GroupRegistry} from '@registry/groups';
-import {PluginRegistry} from '@registry/plugins';
+import {Config, loadConfig} from '../util/config';
+import {EventRegistry} from '../registry/events';
+import {GroupRegistry} from '../registry/groups';
+import {PluginRegistry} from '../registry/plugins';
 
 interface Internals {
   config: Config;
