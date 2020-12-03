@@ -30,7 +30,9 @@ export class EventRegistry extends Registry<Callback> {
    */
   register(key: string, value: Callback): void {
     if (key !== 'messageCreate') {
-      this.ref.core.client.on(key, value);
+      this.ref.core.client.on(key, (...args: Array<unknown>) =>
+        value(this.ref, args)
+      );
       this.items.set(key, value);
     } else this.items.set(key, value);
   }
@@ -41,7 +43,9 @@ export class EventRegistry extends Registry<Callback> {
   unregister(key: string): void {
     if (!this.items.has(key)) return;
     if (key !== 'messageCreate') {
-      this.ref.core.client.off(key, this.items.get(key) as Callback);
+      this.ref.core.client.off(key, (...args: Array<unknown>) =>
+        (this.items.get(key) as Callback)(this.ref, args)
+      );
       this.items.delete(key);
     } else this.items.delete(key);
   }
