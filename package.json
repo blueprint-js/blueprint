@@ -30,8 +30,5 @@
     "@util": "build/src/lib/util",
     "@class": "build/src/lib/class",
     "@registry": "build/src/lib/registry"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
   }
 }
