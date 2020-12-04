@@ -1,7 +1,9 @@
 import {Registry} from '../class/registry';
 import {Blueprint} from '../class/client';
+import {Message, Guild, User, Member} from 'eris';
 
-type Callback = (ref: Blueprint, ...args: Array<unknown>) => unknown;
+type CallbackArgs = Message | Guild | User | Member | unknown;
+type Callback = (ref: Blueprint, ...args: Array<CallbackArgs>) => unknown;
 
 export class EventRegistry extends Registry<Callback> {
   private ref: Blueprint;
