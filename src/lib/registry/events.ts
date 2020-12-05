@@ -29,7 +29,7 @@ export class EventRegistry extends Registry<Callback> {
    * @param value The callback to execute when the event is called
    */
   register: ClientEvents<void> = (key: string, value: Function) => {
-    const callback = (...args: Array<unknown>) => value(this.ref, args);
+    const callback = (...args: Array<unknown>) => value(this.ref, ...args);
     this.ref.core.client.on(key, callback);
     this.items.set(key, callback);
   };
