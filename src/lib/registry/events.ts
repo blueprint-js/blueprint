@@ -29,12 +29,11 @@ export class EventRegistry extends Registry<Function> {
    * @param value The callback to execute when the event is called
    */
   register: ClientEvents<void> = (key: string, value: Function) => {
+    const callback = (...args: Array<unknown>) => value(this.ref, args);
     if (key !== 'messageCreate') {
-      this.ref.core.client.on(key, (...args: Array<unknown>) =>
-        value(this.ref, args)
-      );
-      this.items.set(key, value);
-    } else this.items.set(key, value);
+      this.ref.core.client.on(key, callback);
+      this.items.set(key, callback);
+    } else this.items.set(key, callback);
   };
   /**
    * Unregisters an existing event handler
@@ -42,10 +41,10 @@ export class EventRegistry extends Registry<Function> {
    */
   unregister(key: string): void {
     if (!this.items.has(key)) return;
+    const callback = (...args: Array<unknown>) =>
+      (this.items.get(key) as Function)(this.ref, args);
     if (key !== 'messageCreate') {
-      this.ref.core.client.off(key, (...args: Array<unknown>) =>
-        (this.items.get(key) as Function)(this.ref, args)
-      );
+      this.ref.core.client.off(key, callback);
       this.items.delete(key);
     } else this.items.delete(key);
   }
