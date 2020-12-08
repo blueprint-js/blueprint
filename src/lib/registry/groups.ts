@@ -37,6 +37,7 @@ export class GroupRegistry extends Registry<Group> {
    * @param value The group definition
    */
   register(key: string, value: Group): void {
+    if (key === 'developer') return;
     this.items.set(key, value);
   }
   /**
