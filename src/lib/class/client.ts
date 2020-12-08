@@ -25,9 +25,9 @@ export class Blueprint {
   constructor(config: string) {
     this.config = loadConfig(config);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
-    this.events = new EventRegistry(this);
+    this.groups = new GroupRegistry(this.config.developers);
     this.plugins = new PluginRegistry(this);
-    this.groups = new GroupRegistry();
+    this.events = new EventRegistry(this);
   }
   /**
    * Returns the internals of the Blueprint instance

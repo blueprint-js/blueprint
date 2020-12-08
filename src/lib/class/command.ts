@@ -4,7 +4,6 @@ import {Blueprint} from '../class/client';
 interface CommandMeta {
   aliases: Array<string>;
   groups: Array<string>;
-  description: string;
 }
 
 type Executor = (ctx: Message, ref: Blueprint) => void;
