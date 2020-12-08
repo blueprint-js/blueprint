@@ -7,6 +7,7 @@ import {ClientOptions} from 'eris';
  */
 export interface Config {
   bot: {token: string; prefix: string; options?: ClientOptions};
+  developers: Array<string>;
 }
 
 /**
