@@ -8,7 +8,7 @@ interface Override {
 }
 
 interface Group {
-  permissions: Array<Permissions>;
+  permissions: Array<Permissions> | null;
   overrides?: Array<Override>;
 }
 
@@ -24,6 +24,13 @@ function hasOverrides(
 }
 
 export class GroupRegistry extends Registry<Group> {
+  constructor(developers: Array<string>) {
+    super();
+    this.items.set('developer', {
+      permissions: null,
+      overrides: developers.map(id => ({type: 'user', id})),
+    });
+  }
   /**
    * Registers a new permission group
    * @param key The name of the permission group
@@ -37,6 +44,7 @@ export class GroupRegistry extends Registry<Group> {
    * @param key The name of the permission group
    */
   unregister(key: string): void {
+    if (key === 'developer') return;
     if (this.items.has(key)) this.items.delete(key);
   }
   /**
@@ -51,7 +59,8 @@ export class GroupRegistry extends Registry<Group> {
       .map(p => convertPermission(p[0]));
     for (const [key, {permissions, overrides}] of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
-      else if (permissions.every(p => uperms.includes(p))) groups.push(key);
+      else if (permissions?.every(p => uperms.includes(p)) ?? false)
+        groups.push(key);
     }
     return groups;
   }
