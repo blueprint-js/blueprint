@@ -1,6 +1,6 @@
 # Blueprint
 
-![logo](https://siasky.net/CAC_253ClVEp9KkmODOFmsMSWj7NARg2nnV9LRKySRbDrw)  
+![logo](https://siasky.net/EADUGZcJXc9js3hyu-LEhw0sOjsn9YgmvzHta_TtElttPQ)  
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/xpyxel/blueprint?style=flat-square)
 ![GitHub forks](https://img.shields.io/github/forks/xpyxel/blueprint?style=flat-square)
 ![GitHub Repo stars](https://img.shields.io/github/stars/xpyxel/blueprint?style=flat-square)
