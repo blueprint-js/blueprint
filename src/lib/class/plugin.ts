@@ -1,7 +1,7 @@
-import {Command} from '../class/command';
-import {Registry} from '../class/registry';
+import {Command} from './command';
+import {Registry} from './registry';
 import {Member, Message, User} from 'eris';
-import {Blueprint} from '../class/client';
+import {Blueprint} from './client';
 
 /**
  * Groups commands together
@@ -22,9 +22,10 @@ export class Plugin extends Registry<Command> {
   unregister(key: string): void {
     if (this.items.has(key)) this.items.delete(key);
   }
+
   /**
    * Checks if the plugin has the command
-   * @param key The name of the command
+   * @param cmd The name of the command
    */
   has(cmd: string): boolean {
     for (const [key, {meta}] of this.items) {
@@ -42,8 +43,8 @@ export class Plugin extends Registry<Command> {
   execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
     for (const [key, {meta, callback}] of this.items) {
       if (meta.aliases.includes(key) || cmd === key) {
-        const ugroups = ref.groups.check(user);
-        if (ugroups.some((g: string) => meta.groups.includes(g)))
+        const userGroups = ref.groups.check(user);
+        if (userGroups.some((g: string) => meta.groups.includes(g)))
           callback(msg, ref);
         break;
       }

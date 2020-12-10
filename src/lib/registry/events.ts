@@ -5,7 +5,7 @@ import {ClientEvents} from '../util/types';
 type Callback = (...args: Array<unknown>) => void;
 
 export class EventRegistry extends Registry<Callback> {
-  private ref: Blueprint;
+  private readonly ref: Blueprint;
   constructor(ref: Blueprint) {
     super();
     this.ref = ref;

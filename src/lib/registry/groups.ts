@@ -1,5 +1,5 @@
 import {Registry} from '../class/registry';
-import {Permissions, convertPermission} from '../util/permissions';
+import {convertPermission, Permissions} from '../util/permissions';
 import {Member, User} from 'eris';
 
 interface Override {
@@ -8,7 +8,7 @@ interface Override {
 }
 
 interface Group {
-  permissions: Array<Permissions> | null;
+  permissions: Array<Permissions>;
   overrides?: Array<Override>;
 }
 
@@ -18,16 +18,17 @@ function hasOverrides(
 ): boolean {
   if (!overrides) return false;
   if (overrides.find(o => o.type === 'user' && o.id === user.id)) return true;
-  else if (overrides.find(o => o.type === 'role' && user.roles.includes(o.id)))
-    return true;
-  else return false;
+  else
+    return !!overrides.find(
+        o => o.type === 'role' && user.roles.includes(o.id)
+    );
 }
 
 export class GroupRegistry extends Registry<Group> {
   constructor(developers: Array<string>) {
     super();
     this.items.set('developer', {
-      permissions: null,
+      permissions: [],
       overrides: developers.map(id => ({type: 'user', id})),
     });
   }
@@ -55,12 +56,12 @@ export class GroupRegistry extends Registry<Group> {
   check(user: User | Member): Array<string> {
     const groups = [];
     if (user instanceof User) return [];
-    const uperms = Object.entries((user as Member).permissions.json)
-      .filter(p => p[1] === true)
-      .map(p => convertPermission(p[0]));
+    const userPermissions = Object.entries((user as Member).permissions.json)
+        .filter(p => p[1])
+        .map(p => convertPermission(p[0]));
     for (const [key, {permissions, overrides}] of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
-      else if (permissions?.every(p => uperms.includes(p)) ?? false)
+      else if (permissions.every(p => userPermissions.includes(p)))
         groups.push(key);
     }
     return groups;

@@ -13,11 +13,12 @@ interface Internals {
  * The core Blueprint client class to manage everything
  */
 export class Blueprint {
-  private config: Config;
-  private client: Client;
   public events: EventRegistry;
   public groups: GroupRegistry;
   public plugins: PluginRegistry;
+  private readonly config: Config;
+  private readonly client: Client;
+
   /**
    * Creates a new Blueprint instance
    * @param config A path to a Blueprint configuration file
