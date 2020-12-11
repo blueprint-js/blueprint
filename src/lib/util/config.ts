@@ -4,7 +4,6 @@ import {ClientOptions} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
 
 interface BotOptions {
-  name: string;
   token: string;
   prefix: string;
   options?: ClientOptions;
@@ -14,6 +13,7 @@ interface BotOptions {
  * The type interface for the bot configuration
  */
 export interface Config {
+  name: string;
   bot: BotOptions;
   developers: Array<string>;
   logging: LoggerOptions;
