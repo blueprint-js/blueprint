@@ -4,7 +4,7 @@ import {Blueprint} from '../class/client';
 import {Member, Message, User} from 'eris';
 
 export class PluginRegistry extends Registry<Plugin> {
-  private blueprint: Blueprint;
+  private readonly blueprint: Blueprint;
   constructor(client: Blueprint) {
     super();
     this.blueprint = client;

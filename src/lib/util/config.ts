@@ -1,13 +1,22 @@
 import {parse} from 'yaml';
 import {readFileSync} from 'fs';
 import {ClientOptions} from 'eris';
+import {Configuration as LoggerOptions} from 'log4js';
+
+interface BotOptions {
+  token: string;
+  prefix: string;
+  options?: ClientOptions;
+}
 
 /**
  * The type interface for the bot configuration
  */
 export interface Config {
-  bot: {token: string; prefix: string; options?: ClientOptions};
+  name: string;
+  bot: BotOptions;
   developers: Array<string>;
+  logging: LoggerOptions;
 }
 
 /**
