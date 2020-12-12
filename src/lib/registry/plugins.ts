@@ -5,10 +5,12 @@ import {Member, Message, User} from 'eris';
 
 export class PluginRegistry extends Registry<Plugin> {
   private readonly blueprint: Blueprint;
+
   constructor(client: Blueprint) {
     super();
     this.blueprint = client;
   }
+
   /**
    * Registers a new plugin
    * @param key The name of the plugin
@@ -17,6 +19,7 @@ export class PluginRegistry extends Registry<Plugin> {
   register(key: string, value: Plugin): void {
     this.items.set(key, value);
   }
+
   /**
    * Unregisters an existing plugin
    * @param key The name of the plugin
@@ -24,6 +27,7 @@ export class PluginRegistry extends Registry<Plugin> {
   unregister(key: string): void {
     if (this.items.has(key)) this.items.delete(key);
   }
+
   /**
    * Attempts to execute a command
    * @param cmd The command to execute

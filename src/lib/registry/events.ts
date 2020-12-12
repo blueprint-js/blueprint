@@ -6,6 +6,7 @@ type Callback = (...args: Array<unknown>) => void;
 
 export class EventRegistry extends Registry<Callback> {
   private readonly ref: Blueprint;
+
   constructor(ref: Blueprint) {
     super();
     this.ref = ref;
@@ -25,6 +26,7 @@ export class EventRegistry extends Registry<Callback> {
       );
     });
   }
+
   /**
    * Registers a new event handler
    * @param key The name of the event to listen to
@@ -37,6 +39,7 @@ export class EventRegistry extends Registry<Callback> {
       this.items.set(key, callback);
     } else this.items.set(key, value as Callback);
   };
+
   /**
    * Unregisters an existing event handler
    * @param key The name of the event

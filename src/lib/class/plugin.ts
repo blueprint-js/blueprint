@@ -15,6 +15,7 @@ export class Plugin extends Registry<Command> {
   register(key: string, value: Command): void {
     this.items.set(key, value);
   }
+
   /**
    * Unregisters an existing command
    * @param key The name of the command
@@ -33,6 +34,7 @@ export class Plugin extends Registry<Command> {
     }
     return false;
   }
+
   /**
    * Executes a command if the user has permissions to
    * @param cmd The name of the command
