@@ -34,6 +34,7 @@ export class Blueprint {
     this.plugins = new PluginRegistry(this);
     this.events = new EventRegistry(this);
   }
+
   /**
    * Returns the internals of the Blueprint instance
    */
@@ -44,6 +45,7 @@ export class Blueprint {
       logger: this.logger,
     };
   }
+
   /**
    * Initializes everything and connects to Discord
    */
