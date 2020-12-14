@@ -2,6 +2,7 @@ import {parse} from 'yaml';
 import {readFileSync} from 'fs';
 import {ClientOptions} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
+import {ConnectionOptions} from 'typeorm';
 
 interface BotOptions {
   token: string;
@@ -17,6 +18,7 @@ export interface Config {
   bot: BotOptions;
   developers: Array<string>;
   logging: LoggerOptions;
+  database: ConnectionOptions;
 }
 
 /**
