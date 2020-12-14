@@ -4,11 +4,13 @@ import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {PluginRegistry} from '../registry/plugins';
+import {Connection, createConnection} from 'typeorm';
 
 interface Internals {
   config: Config;
   client: Client;
   logger: Logger;
+  database: Connection;
 }
 
 /**
@@ -21,6 +23,7 @@ export class Blueprint {
   private readonly config: Config;
   private readonly client: Client;
   private readonly logger: Logger;
+  private database!: Connection;
 
   /**
    * Creates a new Blueprint instance
@@ -43,6 +46,7 @@ export class Blueprint {
       config: this.config,
       client: this.client,
       logger: this.logger,
+      database: this.database,
     };
   }
 
@@ -50,6 +54,7 @@ export class Blueprint {
    * Initializes everything and connects to Discord
    */
   async start() {
+    this.database = await createConnection(this.config.database);
     await this.client.connect();
   }
 }
