@@ -22,7 +22,7 @@ to do this first create a `.npmrc` file with the following contents, afterwords 
 Blueprint uses [TypeORM](https://typeorm.io/#/) for database management and support, however to actually
 use the library with your database of choice you will need to install the driver for said database. An
 example of a driver is the [MongoDB](https://www.npmjs.com/package/mongodb) driver. For more information on
-this read part 4 of the Installation section on TypeORM's website.
+this read the ["Connection Options"](https://typeorm.io/#/connection-options) section on TypeORM's website.
 
 ## Logging Support
 
