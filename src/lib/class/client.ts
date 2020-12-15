@@ -9,8 +9,8 @@ import {Connection, createConnection} from 'typeorm';
 interface Internals {
   config: Config;
   client: Client;
-  logger: Logger;
-  database: Connection;
+  logger?: Logger;
+  database?: Connection;
 }
 
 /**
@@ -22,8 +22,8 @@ export class Blueprint {
   public plugins: PluginRegistry;
   private readonly config: Config;
   private readonly client: Client;
-  private readonly logger: Logger;
-  private database!: Connection;
+  private readonly logger?: Logger;
+  private database?: Connection;
 
   /**
    * Creates a new Blueprint instance
@@ -31,7 +31,8 @@ export class Blueprint {
    */
   constructor(config: string) {
     this.config = loadConfig(config);
-    this.logger = configure(this.config.logging).getLogger(this.config.name);
+    if (this.config.logging)
+      this.logger = configure(this.config.logging).getLogger(this.config.name);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
     this.plugins = new PluginRegistry(this);
@@ -54,7 +55,8 @@ export class Blueprint {
    * Initializes everything and connects to Discord
    */
   async start() {
-    this.database = await createConnection(this.config.database);
+    if (this.config.database)
+      this.database = await createConnection(this.config.database);
     await this.client.connect();
   }
 }
