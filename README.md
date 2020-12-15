@@ -10,10 +10,10 @@ A modern, powerful, experimental, and modular Discord bot framework
 
 ## Installation
 
+**Note:** You must be logged into the GitHub package registry before this will work.
+
 To install Blueprint you first need to configure NPM to use the GitHub package registry,
 to do this first create a `.npmrc` file with the following contents, afterwords you can install the library using `npm i @xpyxel/blueprint`.
-
-**Note:** You must be logged into the GitHub package registry before this will work.
 
 ```npmrc
 @xpyxel:registry=https://npm.pkg.github.com
