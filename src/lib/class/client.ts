@@ -1,5 +1,5 @@
 import {Client} from 'eris';
-import {configure, Logger} from 'log4js';
+import {configure, Log4js} from 'log4js';
 import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
@@ -9,7 +9,7 @@ import {Connection, createConnection} from 'typeorm';
 interface Internals {
   config: Config;
   client: Client;
-  logger?: Logger;
+  logger?: Log4js;
   database?: Connection;
 }
 
@@ -22,8 +22,8 @@ export class Blueprint {
   public plugins: PluginRegistry;
   private readonly config: Config;
   private readonly client: Client;
+  private readonly logger?: Log4js;
   private database?: Connection;
-  private logger?: Logger;
 
   /**
    * Creates a new Blueprint instance
@@ -31,6 +31,7 @@ export class Blueprint {
    */
   constructor(config: string) {
     this.config = loadConfig(config);
+    if (this.config.logging) this.logger = configure(this.config.logging);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
     this.plugins = new PluginRegistry(this);
@@ -56,9 +57,5 @@ export class Blueprint {
     if (this.config.database)
       this.database = await createConnection(this.config.database);
     await this.client.connect();
-    if (this.config.logging)
-      this.logger = configure(this.config.logging).getLogger(
-        this.client.user.username
-      );
   }
 }
