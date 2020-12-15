@@ -1,6 +1,6 @@
 {
   "name": "@xpyxel/blueprint",
-  "version": "1.0.0-alpha.14",
+  "version": "1.0.0-alpha.15",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
   "main": "build/src/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
