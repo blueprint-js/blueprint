@@ -17,8 +17,8 @@ export interface Config {
   name: string;
   bot: BotOptions;
   developers: Array<string>;
-  logging: LoggerOptions;
-  database: ConnectionOptions;
+  logging?: LoggerOptions;
+  database?: ConnectionOptions;
 }
 
 /**
