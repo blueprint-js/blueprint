@@ -14,7 +14,6 @@ interface BotOptions {
  * The type interface for the bot configuration
  */
 export interface Config {
-  name: string;
   bot: BotOptions;
   developers: Array<string>;
   logging?: LoggerOptions;

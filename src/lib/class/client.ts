@@ -22,8 +22,8 @@ export class Blueprint {
   public plugins: PluginRegistry;
   private readonly config: Config;
   private readonly client: Client;
-  private readonly logger?: Logger;
   private database?: Connection;
+  private logger?: Logger;
 
   /**
    * Creates a new Blueprint instance
@@ -31,8 +31,6 @@ export class Blueprint {
    */
   constructor(config: string) {
     this.config = loadConfig(config);
-    if (this.config.logging)
-      this.logger = configure(this.config.logging).getLogger(this.config.name);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
     this.plugins = new PluginRegistry(this);
@@ -58,5 +56,9 @@ export class Blueprint {
     if (this.config.database)
       this.database = await createConnection(this.config.database);
     await this.client.connect();
+    if (this.config.logging)
+      this.logger = configure(this.config.logging).getLogger(
+        this.client.user.username
+      );
   }
 }
