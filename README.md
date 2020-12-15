@@ -10,6 +10,8 @@ A modern, powerful, experimental, and modular Discord bot framework
 
 ## Installation
 
+**Note:** You must be logged into the GitHub package registry before this will work.
+
 To install Blueprint you first need to configure NPM to use the GitHub package registry,
 to do this first create a `.npmrc` file with the following contents, afterwords you can install the library using `npm i @xpyxel/blueprint`.
 
@@ -22,7 +24,7 @@ to do this first create a `.npmrc` file with the following contents, afterwords 
 Blueprint uses [TypeORM](https://typeorm.io/#/) for database management and support, however to actually
 use the library with your database of choice you will need to install the driver for said database. An
 example of a driver is the [MongoDB](https://www.npmjs.com/package/mongodb) driver. For more information on
-this read part 4 of the Installation section on TypeORM's website.
+this read the ["Connection Options"](https://typeorm.io/#/connection-options) section on TypeORM's website.
 
 ## Logging Support
 
