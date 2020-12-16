@@ -12,8 +12,8 @@ interface CommandMeta {
  * @constructor
  */
 export function Command(meta: CommandMeta) {
-  return function (target: Symbol | object) {
-    Reflect.defineMetadata('meta', meta, target);
+  return function (target: Function) {
+    Reflect.defineMetadata('meta', meta, target.prototype);
   };
 }
 
