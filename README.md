@@ -31,3 +31,9 @@ this read the ["Connection Options"](https://typeorm.io/#/connection-options) se
 For logging Blueprint uses [Log4JS](https://www.npmjs.com/package/log4js), it is a very complex and powerful logging system
 that was originally made for java known as Log4J, the configuration is very powerful, for more information on how to configure 
 logging with Log4JS, and Blueprint, you can read up on it on their website [here](https://log4js-node.github.io/log4js-node/).
+
+## Official Support
+
+If you need help with contributing to the library or using it, you can join our official [Discord server](https://discord.gg/BEV79hWmkA).
+You will be able to chat with other people that use or contribute to the library, as well talk to the maintainers directly. Do note that
+we (the maintainers) do not provide 1-on-1 support for the library.
