@@ -64,8 +64,9 @@ export class GroupRegistry extends Registry<Group> {
       .map(p => convertPermission(p[0]));
     for (const [key, {permissions, overrides}] of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
-      else if (permissions.every(p => userPermissions.includes(p)))
-        groups.push(key);
+      else if (permissions.length > 0)
+        if (permissions.every(p => userPermissions.includes(p)))
+          groups.push(key);
     }
     return groups;
   }
