@@ -6,3 +6,4 @@ export {Permissions} from './lib/util/permissions';
 export {Command, Executor} from './lib/class/command';
 export {Plugin} from './lib/class/plugin';
 export * as TypeORM from 'typeorm';
+export {Message} from 'eris';
