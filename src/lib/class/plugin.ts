@@ -1,4 +1,4 @@
-import {Command} from './command';
+import {Executor} from './command';
 import {Registry} from './registry';
 import {Member, Message, User} from 'eris';
 import {Blueprint} from './client';
@@ -6,13 +6,13 @@ import {Blueprint} from './client';
 /**
  * Groups commands together
  */
-export class Plugin extends Registry<Command> {
+export class Plugin extends Registry<Executor> {
   /**
    * Registers a new command
    * @param key The name of the command
    * @param value The command class to register
    */
-  register(key: string, value: Command): void {
+  register(key: string, value: Executor): void {
     this.items.set(key, value);
   }
 
@@ -29,7 +29,8 @@ export class Plugin extends Registry<Command> {
    * @param cmd The name of the command
    */
   get(cmd: string): string | null {
-    for (const [key, {meta}] of this.items) {
+    for (const [key, executor] of this.items.entries()) {
+      const meta = Reflect.getMetadata('meta', executor);
       if (key === cmd || meta.aliases.includes(cmd)) return key;
     }
     return null;
@@ -43,11 +44,12 @@ export class Plugin extends Registry<Command> {
    * @param ref The blueprint instance
    */
   execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
-    for (const [key, {meta, callback}] of this.items) {
+    for (const [key, executor] of this.items.entries()) {
+      const meta = Reflect.getMetadata('meta', executor);
       if (meta.aliases.includes(key) || cmd === key) {
         const userGroups = ref.groups.check(user);
         if (userGroups.some((g: string) => meta.groups.includes(g)))
-          callback(msg, ref);
+          executor.callback(msg, ref);
         break;
       }
     }
