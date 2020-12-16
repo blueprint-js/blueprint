@@ -9,6 +9,7 @@
   "devDependencies": {
     "@types/log4js": "^2.3.5",
     "@types/node": "^14.11.2",
+    "@types/reflect-metadata": "^0.1.0",
     "@types/yaml": "^1.9.7",
     "gts": "^3.0.2",
     "reflect-metadata": "^0.1.13",

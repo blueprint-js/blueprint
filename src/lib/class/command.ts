@@ -6,17 +6,20 @@ interface CommandMeta {
   groups: Array<string>;
 }
 
-type Executor = (ctx: Message, ref: Blueprint) => void;
+/**
+ * Decorator used to define the properties of a command
+ * @param meta The metadata to use for the command
+ * @constructor
+ */
+export function Command(meta: CommandMeta) {
+  return function (target: Symbol | object) {
+    Reflect.defineMetadata('meta', meta, target);
+  };
+}
 
 /**
- * The class used to create Blueprint commands
+ * Abstract class used to enforce the callback signature of a command
  */
-export class Command {
-  public callback: Executor;
-  public readonly meta: CommandMeta;
-
-  constructor(meta: CommandMeta, callback: Executor) {
-    this.meta = meta;
-    this.callback = callback;
-  }
+export abstract class Executor {
+  abstract callback(ctx: Message, ref: Blueprint): void;
 }

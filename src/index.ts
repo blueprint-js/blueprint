@@ -1,3 +1,6 @@
+// eslint-disable-next-line node/no-unpublished-import
+import 'reflect-metadata';
+
 export {Blueprint} from './lib/class/client';
 export {Permissions} from './lib/util/permissions';
 export {Command} from './lib/class/command';
