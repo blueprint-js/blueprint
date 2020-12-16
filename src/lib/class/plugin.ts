@@ -28,11 +28,11 @@ export class Plugin extends Registry<Command> {
    * Checks if the plugin has the command
    * @param cmd The name of the command
    */
-  has(cmd: string): boolean {
+  get(cmd: string): string | null {
     for (const [key, {meta}] of this.items) {
-      if (key === cmd || meta.aliases.includes(cmd)) return true;
+      if (key === cmd || meta.aliases.includes(cmd)) return key;
     }
-    return false;
+    return null;
   }
 
   /**

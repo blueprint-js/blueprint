@@ -36,7 +36,8 @@ export class PluginRegistry extends Registry<Plugin> {
    */
   execute(cmd: string, user: User | Member, msg: Message) {
     for (const plugin of this.items.values()) {
-      if (plugin.has(cmd)) plugin.execute(cmd, msg, user, this.blueprint);
+      const command = plugin.get(cmd);
+      if (command) plugin.execute(command, msg, user, this.blueprint);
     }
   }
 }
