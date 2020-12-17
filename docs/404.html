@@ -10,24 +10,22 @@
       
       
       
-        <link rel="canonical" href="https://xpyxel.github.io/blueprint/commands/">
-      
       
         <meta name="author" content="xpyxel">
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <link rel="shortcut icon" href="/blueprint/assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
     
     
       
-        <title>Commands - Blueprint</title>
+        <title>Blueprint</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      <link rel="stylesheet" href="/blueprint/assets/stylesheets/main.19753c6b.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
+        <link rel="stylesheet" href="/blueprint/assets/stylesheets/palette.196e0c26.min.css">
         
           
           
@@ -66,11 +64,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#commands" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -97,7 +90,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Commands
+              
             
           </span>
         </div>
@@ -171,7 +164,7 @@
 
 
   <li class="md-nav__item">
-    <a href=".." class="md-nav__link">
+    <a href="/blueprint/." class="md-nav__link">
       Home
     </a>
   </li>
@@ -181,63 +174,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Commands
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="./" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="/blueprint/commands/" class="md-nav__link">
       Commands
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-command-decorator" class="md-nav__link">
-    The Command Decorator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-executor-class" class="md-nav__link">
-    The Executor Class
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#command-example" class="md-nav__link">
-    Command Example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -247,7 +188,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../configuration/" class="md-nav__link">
+    <a href="/blueprint/configuration/" class="md-nav__link">
       Configuration
     </a>
   </li>
@@ -259,7 +200,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../entities/" class="md-nav__link">
+    <a href="/blueprint/entities/" class="md-nav__link">
       Entities
     </a>
   </li>
@@ -271,7 +212,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../plugins/" class="md-nav__link">
+    <a href="/blueprint/plugins/" class="md-nav__link">
       Plugins
     </a>
   </li>
@@ -283,7 +224,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../registries/" class="md-nav__link">
+    <a href="/blueprint/registries/" class="md-nav__link">
       Registries
     </a>
   </li>
@@ -296,90 +237,12 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-command-decorator" class="md-nav__link">
-    The Command Decorator
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-executor-class" class="md-nav__link">
-    The Executor Class
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#command-example" class="md-nav__link">
-    Command Example
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
-                
-                
-                <h1 id="commands">Commands</h1>
-<p>For commands Blueprint uses a decorator and a abstract class, the two combined make
-a sleek, readable, and modern format for definining commands using the framework. Commands
-are also grouped together using a very basic "plugin" system. This allows groups of commands
-to be disabled and enabled en masse, this is useful if you have developer commands that you only
-want to be enabled in a development environment, as you can disable the entire group in production.</p>
-<h2 id="the-command-decorator">The <code>Command</code> Decorator</h2>
-<p>The <code>@Command()</code> decorator is used to apply command metadata to a class, this is usually coupled with
-the <code>Executor</code> abstract class that will be discussed later on this part of the documentation. The decorator
-takes an object containing two properties, a <code>groups</code> array, containing a list of names of groups that you
-have specified earlier using the <a href="../registries/#group-registry">group registry</a>, and an <code>aliases</code> array
-which contains a list of alternative names for the command.</p>
-<h2 id="the-executor-class">The <code>Executor</code> Class</h2>
-<p>The <code>Executor</code> class enforces the function or method signature for the <code>callback</code> method of a command's class.
-This is used to ensure that when creating a command definition, that all commands follow a specific signature and
-therefor ensuring everything runs smoothly when passing arguments to the command's callback.</p>
-<h2 id="command-example">Command Example</h2>
-<p>As an example of what a command in blueprint would look like, here is a basic example of a <code>ping</code> command that returns
-the message lantecy calculated by the time taken to send a message in a text channel. This only shows a very small
-capability of what the command system is capable of.</p>
-<div class="highlight"><pre><span></span><code><span class="kd">@Command</span><span class="p">({</span>
-  <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span>
-  <span class="nx">aliases</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;latency&#39;</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">],</span>
-<span class="p">})</span>
-<span class="kr">export</span> <span class="kr">class</span> <span class="nx">PingCommand</span> <span class="kr">extends</span> <span class="nx">Executor</span> <span class="p">{</span>
-  <span class="nx">async</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">ctx</span>: <span class="kt">Message</span><span class="p">,</span> <span class="nx">ref</span>: <span class="kt">Blueprint</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kr">const</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
-    <span class="kr">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="nx">await</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">channel</span><span class="p">.</span><span class="nx">createMessage</span><span class="p">(</span><span class="s1">&#39;Getting response time&#39;</span><span class="p">);</span>
-    <span class="nx">msg</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="sb">`Response time is \`</span><span class="si">${</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="si">}</span><span class="sb">\``</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div>
-                
-              
+  <h1>404 - Not found</h1>
+
               
                 
 
@@ -392,41 +255,6 @@ capability of what the command system is capable of.</p>
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Home
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="../configuration/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Configuration
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -470,15 +298,15 @@ capability of what the command system is capable of.</p>
       
     </div>
     
-      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
-      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="/blueprint/assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="/blueprint/assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
-          base: "..",
+          base: "/blueprint",
           features: [],
           search: Object.assign({
-            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+            worker: "/blueprint/assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
