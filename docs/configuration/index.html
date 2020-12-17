@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Documentation for the Blueprint bot framework">
+    <meta name="author" content="xpyxel">
+    <link rel="canonical" href="https://xpyxel.github.io/blueprint/configuration/">
+    <link rel="shortcut icon" href="../img/favicon.ico">
+
+    
+    <title>Configuration - Blueprint</title>
+    
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
+    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
+    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+    <link href="../css/base.min.css" rel="stylesheet">
+    <link href="../css/cinder.min.css" rel="stylesheet">
+
+    
+        
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/github-gist.min.css">
+        
+    
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+        <![endif]-->
+
+    
+
+     
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+
+            <!-- Main title -->
+
+            
+              <a class="navbar-brand" href="..">Blueprint</a>
+            
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                
+                
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                
+                
+                
+                    <li class="active">
+                        <a href="./">Configuration</a>
+                    </li>
+                
+                
+                
+                    <li >
+                        <a href="../registries/">Registries</a>
+                    </li>
+                
+                
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <i class="fas fa-search"></i> Search
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="..">
+                            <i class="fas fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="next" href="../registries/">
+                            Next <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/xpyxel/blueprint/edit/master/docs/configuration.md"><i class="fab fa-github"></i> Edit on GitHub</a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+    <div class="container">
+        
+        
+        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="first-level active"><a href="#configuration">Configuration</a></li>
+            <li class="second-level"><a href="#config-sections">Config Sections</a></li>
+                
+                <li class="third-level"><a href="#bot-settings">Bot Settings</a></li>
+                <li class="third-level"><a href="#logging-settings">Logging Settings</a></li>
+                <li class="third-level"><a href="#database-settings">Database Settings</a></li>
+                <li class="third-level"><a href="#developer-list">Developer List</a></li>
+            <li class="second-level"><a href="#complete-example">Complete Example</a></li>
+                
+    </ul>
+</div></div>
+        <div class="col-md-9" role="main">
+
+<h1 id="configuration">Configuration</h1>
+<p>Blueprint uses a YAML schema and format for configuring the library and bots using it.
+This allows a human-readable, syntatically nice looking, and easy to understand configuration.
+Due to the library using a <a href="https://www.npmjs.com/package/yaml">yaml parser</a>, it can inadvertently
+parse JSON as well, since YAML is a superset of JSON, and therefor either works.</p>
+<h2 id="config-sections">Config Sections</h2>
+<p>The configuration file for Blueprint is split into 4 seperate parts, each part correleating to a specific
+"module" of the framework. The only 2 required parts of the configuration schema are the <code>bot</code> and <code>developers</code>
+sections. Each section of the configuration schema will be explained below, with a minimal example.</p>
+<h3 id="bot-settings">Bot Settings</h3>
+<p>The <code>bot</code> section of the configuration schema defines the settings for the bot part of the framework, this part
+is <strong>required</strong> and is needed to connect to Discord in general. All of the settings used in this section are passed
+to the core library the framework is based on (<a href="https://github.com/abalabahaha/eris">Eris</a>) in order to connect and maintain a valid API client.</p>
+<p><strong>Note:</strong> The <code>bot.options</code> section is optional; it is best to look at the settings <a href="https://abal.moe/Eris/docs/Client">here</a>, on the Eris documentation.</p>
+<h4 id="bot-section-example">Bot Section Example</h4>
+<pre><code class="yml">bot:
+  prefix: '!'
+  token: 'example_bot_token_here'
+  options:
+    compress: true
+    intents:
+    - guilds
+    - guildMembers
+    - guildBans
+    - guildMessages
+    - guildPresences
+    - directMessages
+</code></pre>
+
+<h3 id="logging-settings">Logging Settings</h3>
+<p>The <code>logging</code> section of the configuration schema is optional, this is so that if people want to use a custom logger,
+they can completely disable the logging module by not specifying logger settings. For those who do however want to use the
+default logger, Blueprint's logging is based on the <a href="https://www.npmjs.com/package/log4js">log4js</a> library, which is
+extremely powerful and customizable, due to this we can't provide exact documentation, and instead it's recommended to
+read their documentation <a href="https://log4js-node.github.io/log4js-node/">here</a>.</p>
+<h4 id="logging-section-example">Logging Section Example</h4>
+<pre><code class="yml">logging:
+  appenders:
+    default: {type: stdout}
+  categories:
+    default: {appenders: [stdout], level: debug}
+</code></pre>
+
+<h3 id="database-settings">Database Settings</h3>
+<p>The <code>database</code> section, like the logging section previously is entirely optional, however it is recommended to use the
+built in database management as it is based on the amazing <a href="https://typeorm.io/">TypeORM</a> library. This allows a very powerful
+yet easy to use ORM model for managing database(s). We will not go over how to create entities here, but will in another section.
+Once again, due to the sheer complexity of the configuration that can be used for the library, it is recommended to read their documentation,
+specifically the <a href="https://typeorm.io/#/connection-options">Connection Options</a> page of it, as it will give you an overview of the settings.</p>
+<p><strong>Note:</strong> You <em>have</em> to install the driver for your database of choice as this is not provided by default due to the sheer amount of drivers
+TypeORM can support, for more information on this read part 4 of the installation section on their website.</p>
+<h4 id="database-section-example">Database Section Example</h4>
+<pre><code class="yml">database:
+  type: 'sqlite'
+  database: 'example.sqlite'
+  synchronize: true
+  entities:
+  - 'build/src/entities/**/*.js'
+</code></pre>
+
+<h3 id="developer-list">Developer List</h3>
+<p>The <code>developers</code> section is a <strong>required</strong> part of the configuration schema, as it automatically allocates user ids to a built-in permission
+group called <code>developer</code>. The only way to obtain the <code>developer</code> group is to have the user's ids specified in this part of the configuration.</p>
+<h4 id="developer-list-example">Developer List Example</h4>
+<pre><code class="yml">developers:
+  - '333459879379337216'
+  - '349977940198555660'
+</code></pre>
+
+<h2 id="complete-example">Complete Example</h2>
+<pre><code class="yml">bot:
+  prefix: '!'
+  token: 'example_bot_token_here'
+  options:
+    compress: true
+
+logging:
+  appenders:
+    default: {type: stdout}
+  categories:
+    default: {appenders: [stdout], level: debug}
+
+database:
+  type: 'sqlite'
+  database: 'example.sqlite'
+  synchronize: true
+  entities:
+  - 'build/src/entities/**/*.js'
+
+developers:
+  - '333459879379337216'
+</code></pre></div>
+        
+        
+    </div>
+
+    
+      <footer class="col-md-12 text-center">
+          
+          
+            <hr>
+            <p>
+            <small>Blueprint is licenced under the <a href="https://choosealicense.com/licenses/mpl-2.0/">Mozilla Public License 2.0</a></small><br>
+            
+            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
+            </p>
+          
+
+          
+          
+      </footer>
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../js/bootstrap-3.0.3.min.js"></script>
+
+    
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
+        
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+
+    <script>var base_url = ".."</script>
+    
+    <script src="../js/base.js"></script>
+    <script src="../search/main.js"></script>
+
+    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+    </body>
+
+</html>
