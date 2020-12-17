@@ -6,7 +6,17 @@
      <changefreq>daily</changefreq>
     </url>
     <url>
+     <loc>https://xpyxel.github.io/blueprint/commands/</loc>
+     <lastmod>2020-12-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
      <loc>https://xpyxel.github.io/blueprint/configuration/</loc>
+     <lastmod>2020-12-17</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://xpyxel.github.io/blueprint/plugins/</loc>
      <lastmod>2020-12-17</lastmod>
      <changefreq>daily</changefreq>
     </url>
