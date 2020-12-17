@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Documentation for the Blueprint bot framework">
     <meta name="author" content="xpyxel">
-    <link rel="canonical" href="https://xpyxel.github.io/blueprint/registries/">
+    <link rel="canonical" href="https://xpyxel.github.io/blueprint/database/">
     <link rel="shortcut icon" href="../img/favicon.ico">
 
     
-    <title>Registries - Blueprint</title>
+    <title>Database - Blueprint</title>
     
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
@@ -87,14 +87,14 @@
                 
                 
                 
-                    <li >
-                        <a href="../database/">Database</a>
+                    <li class="active">
+                        <a href="./">Database</a>
                     </li>
                 
                 
                 
-                    <li class="active">
-                        <a href="./">Registries</a>
+                    <li >
+                        <a href="../registries/">Registries</a>
                     </li>
                 
                 
@@ -107,12 +107,12 @@
                         </a>
                     </li>
                     <li >
-                        <a rel="prev" href="../database/">
+                        <a rel="prev" href="../configuration/">
                             <i class="fas fa-arrow-left"></i> Previous
                         </a>
                     </li>
-                    <li class="disabled">
-                        <a rel="next" >
+                    <li >
+                        <a rel="next" href="../registries/">
                             Next <i class="fas fa-arrow-right"></i>
                         </a>
                     </li>
@@ -126,60 +126,55 @@
         
         <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
     <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#registries">Registries</a></li>
-            <li class="second-level"><a href="#event-registry">Event Registry</a></li>
+        <li class="first-level active"><a href="#database">Database</a></li>
+            <li class="second-level"><a href="#entities">Entities</a></li>
                 
-            <li class="second-level"><a href="#group-registry">Group Registry</a></li>
-                
-            <li class="second-level"><a href="#plugin-registry">Plugin Registry</a></li>
+            <li class="second-level"><a href="#repositories">Repositories</a></li>
                 
     </ul>
 </div></div>
         <div class="col-md-9" role="main">
 
-<h1 id="registries">Registries</h1>
-<p>For managing things like events, plugins (command groups), and permission groups Blueprint uses registries. This
-allows the framework to be modular, allowing developers to register (enable) and unregister (disable) parts of their
-bot at will. In this section you will get an overview of each of the 3 registries that the framework's client class
-uses, for more information on the different things they manage, check their pages.</p>
-<h2 id="event-registry">Event Registry</h2>
-<p>The event registry is what you use to manage client events, due to how the registry system works you can enable and disable
-different events at will, this allows you to disable events using conditions, and more, allowing you to setup different "environments"
-among other things. Each event callback is given access to a reference of your client instance, allowing you to split up your code
-without having to worry about copy instances of things yourself.</p>
-<p>To register an event you use the <code>EventRegistry.register()</code> function, as seen below</p>
-<pre><code class="language-ts">client.events.register(&quot;eventName&quot;, async (/** args **/) =&gt; {
-  // Do stuff with the event here
-});
+<h1 id="database">Database</h1>
+<p>For database management Blueprint uses <a href="https://typeorm.io">TypeORM</a>. This allows
+developers to have a easy to use, flexible, yet powerful ORM to manage their database(s).
+The actual database configuration is all done from the <a href="../configuration/#database-settings">database</a> part
+of the configuration file you create when using the framework.</p>
+<h2 id="entities">Entities</h2>
+<p>Entities are the way Blueprint and TypeORM specify and structure data. They are classes and properties
+specified with types and decorators. This allows TypeORM to understand the structure of data and therefor
+allowing you to manage your data without having to mess with raw queries and/or SQL. For more information
+it is recommended to read <a href="https://typeorm.io/#/entities">this section</a> of the TypeORM documentation.</p>
+<pre><code class="language-ts">import {TypeORM} from '@xpyxel/blueprint';
+
+@TypeORM.Entity()
+export class User {
+  @TypeORM.PrimaryGeneratedColumn()
+  id: number;
+  @TypeORM.Column()
+  username: string;
+  @TypeORM.Column()
+  password: string;
+}
 </code></pre>
-<p>To unregister an event you can use the <code>EventRegistry.unregister()</code> function</p>
-<pre><code class="language-ts">client.events.unregister(&quot;eventName&quot;);
-</code></pre>
-<h2 id="group-registry">Group Registry</h2>
-<p>Blueprint uses a psuedo-group system for managing permissions to commands, by default the framework comes with a single built in
-group known as <code>developer</code>. As mentioned in the <a href="../configuration/#developer-list">developers</a> part of the config, this group
-is automatically populated with user ids specified in your blueprint configuration file, and can not be manually modified.</p>
-<p>To create a new permission group you can use the <code>GroupRegistry.register()</code> method, note that the <code>name</code> parameter is <strong>case sensitive</strong>,
-and if you enter the case wrong when specifying it when creating commands, it will not work as the group entered will "not exist" to the framework.</p>
-<pre><code class="language-ts">client.groups.register(&quot;groupName&quot;, {
-  permissions: [], // This is a list of Permission enum values
-  overrides: [], // This is a optional list of user and role overrides
-});
-</code></pre>
-<p>Unregistering existing groups is as simple as specifying their name with the <code>GroupRegistry.unregister()</code> method, note that the <code>developer</code> built-in
-group can not in under any circumstances be unregistered.</p>
-<pre><code class="language-ts">client.groups.unregister(&quot;groupName&quot;);
-</code></pre>
-<h2 id="plugin-registry">Plugin Registry</h2>
-<p>For managing command groups, otherwise known as "Plugins" in Blueprint, a registry for specifically managing the registration and execution of plugins
-and commands is used. Plugins in themselves are registries, specifically a registry containg classes that extend an <code>Executor</code> class, which enforces the
-method signature of command callbacks. This will be explained in more detail in the commands section part of the documentation.</p>
-<p>To register a plugin it's as simple as creating a new plugin instance, and registering it with the <code>PluginRegistry.register()</code> method.</p>
-<pre><code class="language-ts">const adminCommands = new Plugin();
-client.plugins.register(&quot;admin&quot;, adminCommands);
-</code></pre>
-<p>For unregistering, like other registries it's as simple as using the <code>PluginRegistry.unregister()</code> method.</p>
-<pre><code class="language-ts">client.plugins.unregister(&quot;admin&quot;);
+<h2 id="repositories">Repositories</h2>
+<p>The recommended way to handle saving/retrieving data in Blueprint is with entity repositories. There
+is other methods such as TypeORM's <a href="https://typeorm.io/#/working-with-entity-manager">entity manager</a>. However
+this method is considered messy in some ways as you edit the data from one central place and <code>.save()</code> it, while as
+with entity repositories, you create a new entity instance, and use a repository to save it instead. For more information
+read up on the <a href="https://typeorm.io/#/repository-api">repository api</a> that TypeORM uses.</p>
+<pre><code class="language-ts">const users = database?.getRepository(User);
+
+const pyxel = new User();
+pyxel.username = &quot;pyxel&quot;;
+pyxel.password = &quot;hello world&quot;;
+
+// saving a user entity
+await users?.save(pyxel);
+
+// getting a user entity
+const user = await users?.findOne({username: &quot;pyxel&quot;});
+console.log(user);
 </code></pre></div>
         
         
