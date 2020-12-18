@@ -48,6 +48,13 @@ export class TypeORM {
   }
 
   /**
+   * Returns the EntityManager instance
+   */
+  get manager() {
+    return this.conn.manager;
+  }
+
+  /**
    * Initializes a new connection to the database
    */
   async connect() {
