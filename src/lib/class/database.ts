@@ -5,7 +5,7 @@ import {
   EntitySchema,
 } from 'typeorm';
 
-export class Database {
+export class TypeORM {
   private conn!: Connection;
   private readonly config: ConnectionOptions;
   private readonly entities: Array<EntitySchema>;
