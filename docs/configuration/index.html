@@ -1,145 +1,500 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Documentation for the Blueprint bot framework">
-    <meta name="author" content="xpyxel">
-    <link rel="canonical" href="https://xpyxel.github.io/blueprint/configuration/">
-    <link rel="shortcut icon" href="../img/favicon.ico">
-
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <title>Configuration - Blueprint</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the Blueprint bot framework">
+      
+      
+      
+        <link rel="canonical" href="https://xpyxel.github.io/blueprint/configuration/">
+      
+      
+        <meta name="author" content="xpyxel">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.7">
     
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/v4-shims.css">
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack.min.css">
-    <link href='//rsms.me/inter/inter.css' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700&subset=latin-ext,latin' rel='stylesheet' type='text/css'>
-    <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
-    <link href="../css/base.min.css" rel="stylesheet">
-    <link href="../css/cinder.min.css" rel="stylesheet">
-
     
+      
+        <title>Configuration - Blueprint</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.19753c6b.min.css">
+      
         
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/styles/lightfair.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.196e0c26.min.css">
         
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
     
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-            <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-        <![endif]-->
-
     
-
-     
-</head>
-
-<body>
-
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-
-        <!-- Collapsed navigation -->
-        <div class="navbar-header">
-            <!-- Expander button -->
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            
-
-            <!-- Main title -->
-
-            
-              <a class="navbar-brand" href="..">Blueprint</a>
-            
-        </div>
-
-        <!-- Expanded navigation -->
-        <div class="navbar-collapse collapse">
-                <!-- Main navigation -->
-                <ul class="nav navbar-nav">
-                
-                
-                    <li >
-                        <a href="..">Home</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../commands/">Commands</a>
-                    </li>
-                
-                
-                
-                    <li class="active">
-                        <a href="./">Configuration</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../database/">Database</a>
-                    </li>
-                
-                
-                
-                    <li >
-                        <a href="../registries/">Registries</a>
-                    </li>
-                
-                
-                </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
-                            <i class="fas fa-search"></i> Search
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="prev" href="../commands/">
-                            <i class="fas fa-arrow-left"></i> Previous
-                        </a>
-                    </li>
-                    <li >
-                        <a rel="next" href="../database/">
-                            Next <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </li>
-            </ul>
-        </div>
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700%7CHack&display=fallback">
+        <style>body,input{font-family:"Open Sans",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Hack",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="black" data-md-color-accent="blue">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#configuration" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://xpyxel.github.io/blueprint" title="Blueprint" class="md-header-nav__button md-logo" aria-label="Blueprint">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 00-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Blueprint
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Configuration
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
-    <div class="container">
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://xpyxel.github.io/blueprint" title="Blueprint" class="md-nav__button md-logo" aria-label="Blueprint">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M12.41 148.02l232.94 105.67c6.8 3.09 14.49 3.09 21.29 0l232.94-105.67c16.55-7.51 16.55-32.52 0-40.03L266.65 2.31a25.607 25.607 0 00-21.29 0L12.41 107.98c-16.55 7.51-16.55 32.53 0 40.04zm487.18 88.28l-58.09-26.33-161.64 73.27c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.51 209.97l-58.1 26.33c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 276.3c16.55-7.5 16.55-32.5 0-40zm0 127.8l-57.87-26.23-161.86 73.37c-7.56 3.43-15.59 5.17-23.86 5.17s-16.29-1.74-23.86-5.17L70.29 337.87 12.41 364.1c-16.55 7.5-16.55 32.5 0 40l232.94 105.59c6.8 3.08 14.49 3.08 21.29 0L499.59 404.1c16.55-7.5 16.55-32.5 0-40z"/></svg>
+
+    </a>
+    Blueprint
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../commands/" class="md-nav__link">
+      Commands
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Configuration
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-sections" class="md-nav__link">
+    Config Sections
+  </a>
+  
+    <nav class="md-nav" aria-label="Config Sections">
+      <ul class="md-nav__list">
         
+          <li class="md-nav__item">
+  <a href="#bot-settings" class="md-nav__link">
+    Bot Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Bot Settings">
+      <ul class="md-nav__list">
         
-        <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
-    <ul class="nav bs-sidenav">
-        <li class="first-level active"><a href="#configuration">Configuration</a></li>
-            <li class="second-level"><a href="#config-sections">Config Sections</a></li>
-                
-                <li class="third-level"><a href="#bot-settings">Bot Settings</a></li>
-                <li class="third-level"><a href="#logging-settings">Logging Settings</a></li>
-                <li class="third-level"><a href="#database-settings">Database Settings</a></li>
-                <li class="third-level"><a href="#developer-list">Developer List</a></li>
-            <li class="second-level"><a href="#complete-example">Complete Example</a></li>
-                
+          <li class="md-nav__item">
+  <a href="#bot-section-example" class="md-nav__link">
+    Bot Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-settings" class="md-nav__link">
+    Logging Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-section-example" class="md-nav__link">
+    Logging Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    Database Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-section-example" class="md-nav__link">
+    Database Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developer-list" class="md-nav__link">
+    Developer List
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-list-example" class="md-nav__link">
+    Developer List Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-example" class="md-nav__link">
+    Complete Example
+  </a>
+  
+</li>
+      
     </ul>
-</div></div>
-        <div class="col-md-9" role="main">
+  
+</nav>
+    
+  </li>
 
-<h1 id="configuration">Configuration</h1>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../database/" class="md-nav__link">
+      Database
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../registries/" class="md-nav__link">
+      Registries
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#config-sections" class="md-nav__link">
+    Config Sections
+  </a>
+  
+    <nav class="md-nav" aria-label="Config Sections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bot-settings" class="md-nav__link">
+    Bot Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Bot Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bot-section-example" class="md-nav__link">
+    Bot Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logging-settings" class="md-nav__link">
+    Logging Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Logging Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logging-section-example" class="md-nav__link">
+    Logging Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-settings" class="md-nav__link">
+    Database Settings
+  </a>
+  
+    <nav class="md-nav" aria-label="Database Settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#database-section-example" class="md-nav__link">
+    Database Section Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#developer-list" class="md-nav__link">
+    Developer List
+  </a>
+  
+    <nav class="md-nav" aria-label="Developer List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#developer-list-example" class="md-nav__link">
+    Developer List Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-example" class="md-nav__link">
+    Complete Example
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="configuration">Configuration</h1>
 <p>Blueprint uses a YAML schema and format for configuring the library and bots using it.
 This allows a human-readable, syntatically nice looking, and easy to understand configuration.
 Due to the library using a <a href="https://www.npmjs.com/package/yaml">yaml parser</a>, it can inadvertently
@@ -154,19 +509,19 @@ is <strong>required</strong> and is needed to connect to Discord in general. All
 to the core library the framework is based on (<a href="https://github.com/abalabahaha/eris">Eris</a>) in order to connect and maintain a valid API client.</p>
 <p><strong>Note:</strong> The <code>bot.options</code> section is optional; it is best to look at the settings <a href="https://abal.moe/Eris/docs/Client">here</a>, on the Eris documentation.</p>
 <h4 id="bot-section-example">Bot Section Example</h4>
-<pre><code class="language-yaml">bot:
-  prefix: '!'
-  token: 'example_bot_token_here'
-  options:
-    compress: true
-    intents:
-    - guilds
-    - guildMembers
-    - guildBans
-    - guildMessages
-    - guildPresences
-    - directMessages
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">bot</span><span class="p">:</span>
+  <span class="nt">prefix</span><span class="p">:</span> <span class="s">&#39;!&#39;</span>
+  <span class="nt">token</span><span class="p">:</span> <span class="s">&#39;example_bot_token_here&#39;</span>
+  <span class="nt">options</span><span class="p">:</span>
+    <span class="nt">compress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">intents</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">guilds</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">guildMembers</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">guildBans</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">guildMessages</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">guildPresences</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">directMessages</span>
+</code></pre></div>
 <h3 id="logging-settings">Logging Settings</h3>
 <p>The <code>logging</code> section of the configuration schema is optional, this is so that if people want to use a custom logger,
 they can completely disable the logging module by not specifying logger settings. For those who do however want to use the
@@ -174,15 +529,15 @@ default logger, Blueprint's logging is based on the <a href="https://www.npmjs.c
 extremely powerful and customizable, due to this we can't provide exact documentation, and instead it's recommended to
 read their documentation <a href="https://log4js-node.github.io/log4js-node/">here</a>.</p>
 <h4 id="logging-section-example">Logging Section Example</h4>
-<pre><code class="language-yaml">logging:
-  appenders:
-    default: 
-      type: stdout
-  categories:
-    default: 
-      appenders: [stdout]
-      level: debug
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">logging</span><span class="p">:</span>
+  <span class="nt">appenders</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> 
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stdout</span>
+  <span class="nt">categories</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> 
+      <span class="nt">appenders</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">stdout</span><span class="p p-Indicator">]</span>
+      <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">debug</span>
+</code></pre></div>
 <h3 id="database-settings">Database Settings</h3>
 <p>The <code>database</code> section, like the logging section previously is entirely optional, however it is recommended to use the
 built in database management as it is based on the amazing <a href="https://typeorm.io/">TypeORM</a> library. This allows a very powerful
@@ -192,150 +547,130 @@ specifically the <a href="https://typeorm.io/#/connection-options">Connection Op
 <p><strong>Note:</strong> You <em>have</em> to install the driver for your database of choice as this is not provided by default due to the sheer amount of drivers
 TypeORM can support, for more information on this read part 4 of the installation section on their website.</p>
 <h4 id="database-section-example">Database Section Example</h4>
-<pre><code class="language-yaml">database:
-  type: 'sqlite'
-  database: 'example.sqlite'
-  synchronize: true
-  entities:
-  - 'build/src/entities/**/*.js'
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nt">database</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;sqlite&#39;</span>
+  <span class="nt">database</span><span class="p">:</span> <span class="s">&#39;example.sqlite&#39;</span>
+  <span class="nt">synchronize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">entities</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;build/src/entities/**/*.js&#39;</span>
+</code></pre></div>
 <h3 id="developer-list">Developer List</h3>
 <p>The <code>developers</code> section is a <strong>required</strong> part of the configuration schema, as it automatically allocates user ids to a built-in permission
 group called <code>developer</code>. The only way to obtain the <code>developer</code> group is to have the user's ids specified in this part of the configuration.</p>
 <h4 id="developer-list-example">Developer List Example</h4>
-<pre><code class="language-yaml">developers:
-  - '333459879379337216'
-  - '349977940198555660'
-</code></pre>
-<h2 id="complete-example">Complete Example</h2>
-<pre><code class="language-yaml">bot:
-  prefix: '!'
-  token: 'example_bot_token_here'
-  options:
-    compress: true
-
-logging:
-  appenders:
-    default: 
-      type: stdout
-  categories:
-    default: 
-      appenders: [stdout]
-      level: debug
-
-database:
-  type: 'sqlite'
-  database: 'example.sqlite'
-  synchronize: true
-  entities:
-  - 'build/src/entities/**/*.js'
-
-developers:
-  - '333459879379337216'
+<div class="highlight"><pre><span></span><code><span class="nt">developers</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;333459879379337216&#39;</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;349977940198555660&#39;</span>
 </code></pre></div>
-        
-        
-    </div>
+<h2 id="complete-example">Complete Example</h2>
+<div class="highlight"><pre><span></span><code><span class="nt">bot</span><span class="p">:</span>
+  <span class="nt">prefix</span><span class="p">:</span> <span class="s">&#39;!&#39;</span>
+  <span class="nt">token</span><span class="p">:</span> <span class="s">&#39;example_bot_token_here&#39;</span>
+  <span class="nt">options</span><span class="p">:</span>
+    <span class="nt">compress</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
 
-    
-      <footer class="col-md-12 text-center">
-          
-          
-            <hr>
-            <p>
-            <small>Blueprint is licenced under the <a href="https://choosealicense.com/licenses/mpl-2.0/">Mozilla Public License 2.0</a></small><br>
-            
-            <small>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</small>
-            </p>
-          
+<span class="nt">logging</span><span class="p">:</span>
+  <span class="nt">appenders</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> 
+      <span class="nt">type</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stdout</span>
+  <span class="nt">categories</span><span class="p">:</span>
+    <span class="nt">default</span><span class="p">:</span> 
+      <span class="nt">appenders</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">stdout</span><span class="p p-Indicator">]</span>
+      <span class="nt">level</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">debug</span>
 
-          
-          
-      </footer>
-    
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="../js/bootstrap-3.0.3.min.js"></script>
+<span class="nt">database</span><span class="p">:</span>
+  <span class="nt">type</span><span class="p">:</span> <span class="s">&#39;sqlite&#39;</span>
+  <span class="nt">database</span><span class="p">:</span> <span class="s">&#39;example.sqlite&#39;</span>
+  <span class="nt">synchronize</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">entities</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;build/src/entities/**/*.js&#39;</span>
 
-    
-    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/highlight.min.js"></script>
-        
-                <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/languages/yaml.min.js"></script>
-                <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.18.0/build/languages/typescript.min.js"></script>
-        
-    <script>hljs.initHighlightingOnLoad();</script>
-    
+<span class="nt">developers</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="s">&#39;333459879379337216&#39;</span>
+</code></pre></div>
+                
+              
+              
+                
 
-    <script>var base_url = ".."</script>
-    
-    <script src="../js/base.js"></script>
-    <script src="../search/main.js"></script>
 
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title" id="searchModalLabel">Search</h4>
-            </div>
-            <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
-                <form>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
+              
+            </article>
+          </div>
         </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../commands/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Commands
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../database/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Database
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     </div>
-</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th style="width: 20%;">Keys</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="help shortcut"><kbd>?</kbd></td>
-                    <td>Open this help</td>
-                  </tr>
-                  <tr>
-                    <td class="next shortcut"><kbd>n</kbd></td>
-                    <td>Next page</td>
-                  </tr>
-                  <tr>
-                    <td class="prev shortcut"><kbd>p</kbd></td>
-                    <td>Previous page</td>
-                  </tr>
-                  <tr>
-                    <td class="search shortcut"><kbd>s</kbd></td>
-                    <td>Search</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Blueprint is licenced under the <a href="https://choosealicense.com/licenses/mpl-2.0/">Mozilla Public License 2.0</a>
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
     </div>
-</div>
-    </body>
-
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.0ac82a11.min.js"></script>
+      <script src="../assets/javascripts/bundle.f81dfb4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
 </html>
