@@ -186,9 +186,9 @@ console.log(user);
 <p>For those who would rather use the EntityManager, you can get access to the EntityManager by using the <code>Database.manager</code> getter, as said
 previously however, the recommended method is to use repositories, but we won't force you to do anything.</p>
 <pre><code class="language-ts">const user = database?.manager.create(User);
-pyxel.username = &quot;pyxel&quot;;
-pyxel.password = &quot;hello world&quot;;
-await database?.manager.save(User);
+user.username = &quot;pyxel&quot;;
+user.password = &quot;hello world&quot;;
+await database?.manager.save(user);
 </code></pre></div>
         
         
