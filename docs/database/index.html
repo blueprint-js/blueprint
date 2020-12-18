@@ -157,13 +157,20 @@ export class User {
   password: string;
 }
 </code></pre>
+<p>In order to use an entity, you must first add it to the database, note that this must be done <strong>before</strong> starting the bot
+and incidently starting the database connection as well.</p>
+<pre><code class="language-ts">database?.add(User);
+</code></pre>
+<p>You can also remove an entity from the database using another method.</p>
+<pre><code class="language-ts">database?.remove(User);
+</code></pre>
 <h2 id="repositories">Repositories</h2>
 <p>The recommended way to handle saving/retrieving data in Blueprint is with entity repositories. There
 is other methods such as TypeORM's <a href="https://typeorm.io/#/working-with-entity-manager">entity manager</a>. However
 this method is considered messy in some ways as you edit the data from one central place and <code>.save()</code> it, while as
 with entity repositories, you create a new entity instance, and use a repository to save it instead. For more information
 read up on the <a href="https://typeorm.io/#/repository-api">repository api</a> that TypeORM uses.</p>
-<pre><code class="language-ts">const users = database?.getRepository(User);
+<pre><code class="language-ts">const users = database?.repository(User);
 
 const pyxel = new User();
 pyxel.username = &quot;pyxel&quot;;
@@ -175,6 +182,13 @@ await users?.save(pyxel);
 // getting a user entity
 const user = await users?.findOne({username: &quot;pyxel&quot;});
 console.log(user);
+</code></pre>
+<p>For those who would rather use the EntityManager, you can get access to the EntityManager by using the <code>Database.manager</code> getter, as said
+previously however, the recommended method is to use repositories, but we won't force you to do anything.</p>
+<pre><code class="language-ts">const user = database?.manager.create(User);
+pyxel.username = &quot;pyxel&quot;;
+pyxel.password = &quot;hello world&quot;;
+await database?.manager.save(User);
 </code></pre></div>
         
         

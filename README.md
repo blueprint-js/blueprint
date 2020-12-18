@@ -19,19 +19,6 @@ to do this first create a `.npmrc` file with the following contents, afterwords 
 @xpyxel:registry=https://npm.pkg.github.com
 ```
 
-## Database Support
-
-Blueprint uses [TypeORM](https://typeorm.io/#/) for database management and support, however to actually
-use the library with your database of choice you will need to install the driver for said database. An
-example of a driver is the [MongoDB](https://www.npmjs.com/package/mongodb) driver. For more information on
-this read the ["Connection Options"](https://typeorm.io/#/connection-options) section on TypeORM's website.
-
-## Logging Support
-
-For logging Blueprint uses [Log4JS](https://www.npmjs.com/package/log4js), it is a very complex and powerful logging system
-that was originally made for java known as Log4J, the configuration is very powerful, for more information on how to configure 
-logging with Log4JS, and Blueprint, you can read up on it on their website [here](https://log4js-node.github.io/log4js-node/).
-
 ## Official Support
 
 If you need help with contributing to the library or using it, you can join our official [Discord server](https://discord.gg/BEV79hWmkA).
