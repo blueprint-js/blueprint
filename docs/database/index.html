@@ -360,10 +360,10 @@ it is recommended to read <a href="https://typeorm.io/#/entities">this section</
 </code></pre></div>
 <p>In order to use an entity, you must first add it to the database, note that this must be done <strong>before</strong> starting the bot
 and incidently starting the database connection as well.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">database</span><span class="o">?</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">User</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nx">database</span><span class="o">?</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">User</span><span class="p">);</span>
 </code></pre></div>
 <p>You can also remove an entity from the database using another method.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">database</span><span class="o">?</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">User</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><span class="nx">database</span><span class="o">?</span><span class="p">.</span><span class="nx">unregister</span><span class="p">(</span><span class="nx">User</span><span class="p">);</span>
 </code></pre></div>
 <h2 id="repositories">Repositories</h2>
 <p>The recommended way to handle saving/retrieving data in Blueprint is with entity repositories. There
