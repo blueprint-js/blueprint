@@ -23,7 +23,7 @@ export class TypeORM {
    * Adds an entity to the database
    * @param entity The entity class to add
    */
-  add(entity: EntitySchema) {
+  register(entity: EntitySchema) {
     if (!this.entities.includes(entity)) this.entities.push(entity);
   }
 
@@ -31,7 +31,7 @@ export class TypeORM {
    * Removes an entity from the database
    * @param entity The entity class to remove
    */
-  remove(entity: EntitySchema) {
+  unregister(entity: EntitySchema) {
     if (this.entities.includes(entity)) {
       const index = this.entities.findIndex(e => e === entity);
       this.entities.splice(index, 1);
