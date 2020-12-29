@@ -45,4 +45,11 @@ export class InteractionRegistry extends Registry<SlashCommand> {
     this.manager.syncCommands();
     this.items.delete(key);
   }
+
+  /**
+   * Returns an instance to the slash command creator
+   */
+  get creator(): SlashCreator {
+    return this.manager;
+  }
 }
