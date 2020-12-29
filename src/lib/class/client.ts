@@ -4,6 +4,7 @@ import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {PluginRegistry} from '../registry/plugins';
+import {InteractionRegistry} from '../registry/interactions';
 import {TypeORM} from './database';
 
 interface Internals {
@@ -20,6 +21,7 @@ export class Blueprint {
   public events: EventRegistry;
   public groups: GroupRegistry;
   public plugins: PluginRegistry;
+  public interactions?: InteractionRegistry;
   private readonly config: Config;
   private readonly client: Client;
   private readonly logger?: Log4js;
@@ -37,6 +39,8 @@ export class Blueprint {
     this.groups = new GroupRegistry(this.config.developers);
     this.plugins = new PluginRegistry(this);
     this.events = new EventRegistry(this);
+    if (this.config.interactions)
+      this.interactions = new InteractionRegistry(this);
   }
 
   /**
