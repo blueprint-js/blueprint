@@ -27,6 +27,7 @@
   "dependencies": {
     "eris": "^0.14.0",
     "log4js": "^6.3.0",
+    "slash-create": "^1.2.0",
     "typeorm": "^0.2.29",
     "yaml": "^1.10.0"
   }
