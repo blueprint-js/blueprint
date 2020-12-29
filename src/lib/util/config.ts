@@ -10,7 +10,7 @@ interface BotOptions {
   options?: ClientOptions;
 }
 
-interface InteractionOptions {
+export interface InteractionOptions {
   applicationID: string;
   publicKey: string;
 }
