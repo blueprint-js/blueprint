@@ -4,8 +4,8 @@ import {Blueprint} from '../class/client';
 import {InteractionOptions} from '../util/config';
 import {AnyRequestData} from 'slash-create/lib/constants';
 
-export class InteractionRegistry extends Registry<SlashCommand> {
-  private manager: SlashCreator;
+export class SlashRegistry extends Registry<SlashCommand> {
+  private readonly manager: SlashCreator;
 
   constructor(client: Blueprint) {
     super();
@@ -31,7 +31,6 @@ export class InteractionRegistry extends Registry<SlashCommand> {
   register(key: string, value: SlashCommand): void {
     if (this.items.get(key)) return;
     this.manager.registerCommand(value);
-    this.manager.syncCommands();
     this.items.set(key, value);
   }
 
@@ -42,8 +41,15 @@ export class InteractionRegistry extends Registry<SlashCommand> {
   unregister(key: string): void {
     if (!this.items.get(key)) return;
     this.manager.unregisterCommand(this.items.get(key) as SlashCommand);
-    this.manager.syncCommands();
     this.items.delete(key);
+  }
+
+  /**
+   * Syncs the commands to Discord
+   */
+  async sync() {
+    this.manager.syncCommands();
+    await this.manager.syncGlobalCommands();
   }
 
   /**
