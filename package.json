@@ -1,18 +1,16 @@
 {
   "name": "@xpyxel/blueprint",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
   "main": "build/src/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
   "author": "xpyxel <xpyxel@gmail.com>",
   "license": "MPL-2.0",
   "devDependencies": {
-    "@types/express": "^4.17.9",
     "@types/log4js": "^2.3.5",
     "@types/node": "^14.11.2",
     "@types/reflect-metadata": "^0.1.0",
     "@types/yaml": "^1.9.7",
-    "fastify": "^3.9.2",
     "gts": "^3.0.2",
     "reflect-metadata": "^0.1.13",
     "typedoc": "^0.20.1",
@@ -33,6 +31,8 @@
     "log4js": "^6.3.0",
     "slash-create": "^1.2.0",
     "typeorm": "^0.2.29",
-    "yaml": "^1.10.0"
+    "yaml": "^1.10.0",
+    "@types/express": "^4.17.9",
+    "fastify": "^3.9.2"
   }
 }

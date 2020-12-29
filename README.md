@@ -12,6 +12,8 @@ A modern, powerful, experimental, and modular Discord bot framework
 
 **Note:** You must be logged into the GitHub package registry before this will work.
 
+**Note:** You must have `"allowSyntheticDefaultImports": true` in your tsconfig.json for this package to work!
+
 To install Blueprint you first need to configure NPM to use the GitHub package registry,
 to do this first create a `.npmrc` file with the following contents, afterwords you can install the library using `npm i @xpyxel/blueprint`.
 
