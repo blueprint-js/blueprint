@@ -57,34 +57,98 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<div class="tsd-panel tsd-typography">
-				<a href="#blueprint" id="blueprint" style="color: inherit; text-decoration: none;">
-					<h1>Blueprint</h1>
-				</a>
-				<p><img src="https://siasky.net/EACyoXDqOUO61hZ7-qnF_DZOs7UJuMUjn7HL7eQeD0XQ7A" alt="logo"><br><img src="https://img.shields.io/github/package-json/v/xpyxel/blueprint?style=flat-square" alt="GitHub package.json version">
-					<img src="https://img.shields.io/github/forks/xpyxel/blueprint?style=flat-square" alt="GitHub forks">
-					<img src="https://img.shields.io/github/stars/xpyxel/blueprint?style=flat-square" alt="GitHub Repo stars">
-					<img src="https://img.shields.io/github/issues/xpyxel/blueprint?style=flat-square" alt="GitHub issues">
-				<img src="https://img.shields.io/github/license/xpyxel/blueprint?style=flat-square" alt="GitHub"><br>A modern, powerful, experimental, and modular Discord bot framework</p>
-				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
-					<h2>Installation</h2>
-				</a>
-				<p><strong>Note:</strong> You must be logged into the GitHub package registry before this will work.</p>
-				<p>To install Blueprint you first need to configure NPM to use the GitHub package registry,
-				to do this first create a <code>.npmrc</code> file with the following contents, afterwords you can install the library using <code>npm i @xpyxel/blueprint</code>.</p>
-				<pre><code class="language-npmrc">@xpyxel:registry=https://npm.pkg.github.com</code></pre>
-				<a href="#official-support" id="official-support" style="color: inherit; text-decoration: none;">
-					<h2>Official Support</h2>
-				</a>
-				<p>If you need help with contributing to the library or using it, you can join our official <a href="https://discord.gg/BEV79hWmkA">Discord server</a>.
-					You will be able to chat with other people that use or contribute to the library, as well talk to the maintainers directly. Do note that
-				we (the maintainers) do not provide 1-on-1 support for the library.</p>
-			</div>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Namespaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-namespace tsd-is-external"><a href="modules/typeorm.html" class="tsd-kind-icon">TypeORM</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Enumerations</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-enum"><a href="enums/permissions.html" class="tsd-kind-icon">Permissions</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Classes</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-class"><a href="classes/blueprint.html" class="tsd-kind-icon">Blueprint</a></li>
+								<li class="tsd-kind-class"><a href="classes/executor.html" class="tsd-kind-icon">Executor</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter tsd-is-external"><a href="classes/message.html" class="tsd-kind-icon">Message</a></li>
+								<li class="tsd-kind-class"><a href="classes/plugin.html" class="tsd-kind-icon">Plugin</a></li>
+								<li class="tsd-kind-class tsd-is-external"><a href="classes/slashcommand.html" class="tsd-kind-icon">Slash<wbr>Command</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function"><a href="modules.html#command" class="tsd-kind-icon">Command</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function">
+					<a name="command" class="tsd-anchor"></a>
+					<h3>Command</h3>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">Command<span class="tsd-signature-symbol">(</span>meta<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandMeta</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/xpyxel/blueprint/blob/492b1a4/src/lib/class/command.ts#L14">src/lib/class/command.ts:14</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Decorator used to define the properties of a command</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>meta: <span class="tsd-signature-type">CommandMeta</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The metadata to use for the command</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h4>
+							<ul class="tsd-parameters">
+								<li class="tsd-parameter-signature">
+									<ul class="tsd-signatures tsd-kind-type-literal">
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>target<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+									</ul>
+									<ul class="tsd-descriptions">
+										<li class="tsd-description">
+											<h4 class="tsd-parameters-title">Parameters</h4>
+											<ul class="tsd-parameters">
+												<li>
+													<h5>target: <span class="tsd-signature-type">Function</span></h5>
+												</li>
+											</ul>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class=" ">
+					<li class="current ">
 						<a href="modules.html">Exports</a>
 					</li>
 					<li class="label tsd-is-external">
