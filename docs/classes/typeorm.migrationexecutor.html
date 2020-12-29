@@ -1,0 +1,837 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>MigrationExecutor | @xpyxel/blueprint</title>
+	<meta name="description" content="Documentation for @xpyxel/blueprint">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">@xpyxel/blueprint</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../modules.html">@xpyxel/blueprint</a>
+				</li>
+				<li>
+					<a href="../modules/typeorm.html">TypeORM</a>
+				</li>
+				<li>
+					<a href="typeorm.migrationexecutor.html">MigrationExecutor</a>
+				</li>
+			</ul>
+			<h1>Class MigrationExecutor</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Executes migrations: runs pending and reverts previously executed migrations.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">MigrationExecutor</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Constructors</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#connection" class="tsd-kind-icon">connection</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="typeorm.migrationexecutor.html#migrationstable" class="tsd-kind-icon">migrations<wbr>Table</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external"><a href="typeorm.migrationexecutor.html#migrationstablename" class="tsd-kind-icon">migrations<wbr>Table<wbr>Name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#queryrunner" class="tsd-kind-icon">query<wbr>Runner</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#transaction" class="tsd-kind-icon">transaction</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#checkforduplicatemigrations" class="tsd-kind-icon">check<wbr>For<wbr>Duplicate<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#createmigrationstableifnotexist" class="tsd-kind-icon">create<wbr>Migrations<wbr>Table<wbr>IfNot<wbr>Exist</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#deleteexecutedmigration" class="tsd-kind-icon">delete<wbr>Executed<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#deletemigration" class="tsd-kind-icon">delete<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#executemigration" class="tsd-kind-icon">execute<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#executependingmigrations" class="tsd-kind-icon">execute<wbr>Pending<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#getallmigrations" class="tsd-kind-icon">get<wbr>All<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#getexecutedmigrations" class="tsd-kind-icon">get<wbr>Executed<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#getlatestexecutedmigration" class="tsd-kind-icon">get<wbr>Latest<wbr>Executed<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#getlatesttimestampmigration" class="tsd-kind-icon">get<wbr>Latest<wbr>Timestamp<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#getmigrations" class="tsd-kind-icon">get<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#getpendingmigrations" class="tsd-kind-icon">get<wbr>Pending<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#insertexecutedmigration" class="tsd-kind-icon">insert<wbr>Executed<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#insertmigration" class="tsd-kind-icon">insert<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#loadexecutedmigrations" class="tsd-kind-icon">load<wbr>Executed<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#showmigrations" class="tsd-kind-icon">show<wbr>Migrations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-external"><a href="typeorm.migrationexecutor.html#undolastmigration" class="tsd-kind-icon">undo<wbr>Last<wbr>Migration</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-protected tsd-is-external"><a href="typeorm.migrationexecutor.html#withqueryrunner" class="tsd-kind-icon">with<wbr>Query<wbr>Runner</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Constructors</h2>
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+					<a name="constructor" class="tsd-anchor"></a>
+					<h3>constructor</h3>
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Migration<wbr>Executor<span class="tsd-signature-symbol">(</span>connection<span class="tsd-signature-symbol">: </span><a href="typeorm.connection.html" class="tsd-signature-type" data-tsd-kind="Class">Connection</a>, queryRunner<span class="tsd-signature-symbol">?: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="typeorm.migrationexecutor.html" class="tsd-signature-type" data-tsd-kind="Class">MigrationExecutor</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:18</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>connection: <a href="typeorm.connection.html" class="tsd-signature-type" data-tsd-kind="Class">Connection</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="typeorm.migrationexecutor.html" class="tsd-signature-type" data-tsd-kind="Class">MigrationExecutor</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="connection" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> connection</h3>
+					<div class="tsd-signature tsd-kind-icon">connection<span class="tsd-signature-symbol">:</span> <a href="typeorm.connection.html" class="tsd-signature-type" data-tsd-kind="Class">Connection</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:8</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="migrationstable" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> migrations<wbr>Table</h3>
+					<div class="tsd-signature tsd-kind-icon">migrations<wbr>Table<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:17</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+					<a name="migrationstablename" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> migrations<wbr>Table<wbr>Name</h3>
+					<div class="tsd-signature tsd-kind-icon">migrations<wbr>Table<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:18</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="queryrunner" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagOptional">Optional</span> query<wbr>Runner</h3>
+					<div class="tsd-signature tsd-kind-icon">query<wbr>Runner<span class="tsd-signature-symbol">:</span> <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:9</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-external">
+					<a name="transaction" class="tsd-anchor"></a>
+					<h3>transaction</h3>
+					<div class="tsd-signature tsd-kind-icon">transaction<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;all&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;none&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;each&quot;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:16</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Indicates how migrations should be run in transactions.
+								all: all migrations are run in a single transaction
+								none: all migrations are run without a transaction
+							each: each migration is run in a separate transaction</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="checkforduplicatemigrations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> check<wbr>For<wbr>Duplicate<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">check<wbr>For<wbr>Duplicate<wbr>Migrations<span class="tsd-signature-symbol">(</span>migrations<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:70</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>migrations: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="createmigrationstableifnotexist" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> create<wbr>Migrations<wbr>Table<wbr>IfNot<wbr>Exist</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Migrations<wbr>Table<wbr>IfNot<wbr>Exist<span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:61</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Creates table &quot;migrations&quot; that will store information about executed migrations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="deleteexecutedmigration" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> delete<wbr>Executed<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Executed<wbr>Migration<span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a>, migration<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:87</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Delete previously executed migration&#39;s data from the migrations table.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+								</li>
+								<li>
+									<h5>migration: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="deletemigration" class="tsd-anchor"></a>
+					<h3>delete<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">delete<wbr>Migration<span class="tsd-signature-symbol">(</span>migration<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:43</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Deletes an executed migration.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>migration: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="executemigration" class="tsd-anchor"></a>
+					<h3>execute<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Migration<span class="tsd-signature-symbol">(</span>migration<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:23</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Tries to execute a single migration given.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>migration: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="executependingmigrations" class="tsd-anchor"></a>
+					<h3>execute<wbr>Pending<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Pending<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:53</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Executes all pending migrations. Pending migrations are migrations that are not yet executed,
+									thus not saved in the database.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getallmigrations" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:27</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an array of all migrations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getexecutedmigrations" class="tsd-anchor"></a>
+					<h3>get<wbr>Executed<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Executed<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:31</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an array of all executed migrations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="getlatestexecutedmigration" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Latest<wbr>Executed<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Latest<wbr>Executed<wbr>Migration<span class="tsd-signature-symbol">(</span>sortedMigrations<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:79</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the latest migration in the given array of migrations.
+									PRE: Migration array must be sorted by descending id.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>sortedMigrations: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="getlatesttimestampmigration" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Latest<wbr>Timestamp<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Latest<wbr>Timestamp<wbr>Migration<span class="tsd-signature-symbol">(</span>migrations<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:74</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Finds the latest migration (sorts by timestamp) in the given array of migrations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>migrations: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="getmigrations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:69</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all migrations that setup for this connection.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="getpendingmigrations" class="tsd-anchor"></a>
+					<h3>get<wbr>Pending<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Pending<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:35</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns an array of all pending migrations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="insertexecutedmigration" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> insert<wbr>Executed<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Executed<wbr>Migration<span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a>, migration<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:83</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Inserts new executed migration&#39;s data into migrations table.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+								</li>
+								<li>
+									<h5>migration: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="insertmigration" class="tsd-anchor"></a>
+					<h3>insert<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">insert<wbr>Migration<span class="tsd-signature-symbol">(</span>migration<span class="tsd-signature-symbol">: </span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:39</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Inserts an executed migration.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>migration: <a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+					<a name="loadexecutedmigrations" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> load<wbr>Executed<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">load<wbr>Executed<wbr>Migrations<span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:65</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Loads all migrations that were executed and saved into the database (sorts by id).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="typeorm.migration.html" class="tsd-signature-type" data-tsd-kind="Class">Migration</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="showmigrations" class="tsd-anchor"></a>
+					<h3>show<wbr>Migrations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">show<wbr>Migrations<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:48</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Lists all migrations and whether they have been executed or not
+									returns true if there are unapplied migrations</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-external">
+					<a name="undolastmigration" class="tsd-anchor"></a>
+					<h3>undo<wbr>Last<wbr>Migration</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">undo<wbr>Last<wbr>Migration<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:57</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Reverts last migration that were run.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-protected tsd-is-external">
+					<a name="withqueryrunner" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagProtected">Protected</span> with<wbr>Query<wbr>Runner</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-protected tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Query<wbr>Runner&lt;T&gt;<span class="tsd-signature-symbol">(</span>callback<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/typeorm/migration/MigrationExecutor.d.ts:88</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>callback: <span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">T</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-signature">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-external">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>queryRunner<span class="tsd-signature-symbol">: </span><a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>queryRunner: <a href="../interfaces/typeorm.queryrunner.html" class="tsd-signature-type" data-tsd-kind="Interface">QueryRunner</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="../modules.html">Exports</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class="current tsd-kind-namespace tsd-is-external">
+						<a href="../modules/typeorm.html">TypeORM</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-class tsd-parent-kind-namespace tsd-is-external">
+						<a href="typeorm.migrationexecutor.html" class="tsd-kind-icon">Migration<wbr>Executor</a>
+						<ul>
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#constructor" class="tsd-kind-icon">constructor</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#connection" class="tsd-kind-icon">connection</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#migrationstable" class="tsd-kind-icon">migrations<wbr>Table</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#migrationstablename" class="tsd-kind-icon">migrations<wbr>Table<wbr>Name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#queryrunner" class="tsd-kind-icon">query<wbr>Runner</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#transaction" class="tsd-kind-icon">transaction</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#checkforduplicatemigrations" class="tsd-kind-icon">check<wbr>For<wbr>Duplicate<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#createmigrationstableifnotexist" class="tsd-kind-icon">create<wbr>Migrations<wbr>Table<wbr>IfNot<wbr>Exist</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#deleteexecutedmigration" class="tsd-kind-icon">delete<wbr>Executed<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#deletemigration" class="tsd-kind-icon">delete<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#executemigration" class="tsd-kind-icon">execute<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#executependingmigrations" class="tsd-kind-icon">execute<wbr>Pending<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getallmigrations" class="tsd-kind-icon">get<wbr>All<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getexecutedmigrations" class="tsd-kind-icon">get<wbr>Executed<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getlatestexecutedmigration" class="tsd-kind-icon">get<wbr>Latest<wbr>Executed<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getlatesttimestampmigration" class="tsd-kind-icon">get<wbr>Latest<wbr>Timestamp<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getmigrations" class="tsd-kind-icon">get<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#getpendingmigrations" class="tsd-kind-icon">get<wbr>Pending<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#insertexecutedmigration" class="tsd-kind-icon">insert<wbr>Executed<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#insertmigration" class="tsd-kind-icon">insert<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#loadexecutedmigrations" class="tsd-kind-icon">load<wbr>Executed<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#showmigrations" class="tsd-kind-icon">show<wbr>Migrations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#undolastmigration" class="tsd-kind-icon">undo<wbr>Last<wbr>Migration</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter tsd-is-protected tsd-is-external">
+								<a href="typeorm.migrationexecutor.html#withqueryrunner" class="tsd-kind-icon">with<wbr>Query<wbr>Runner</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
