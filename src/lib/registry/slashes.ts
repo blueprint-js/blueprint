@@ -48,8 +48,18 @@ export class SlashRegistry extends Registry<SlashCommand> {
    * Syncs the commands to Discord
    */
   async sync() {
-    this.manager.syncCommands();
     await this.manager.syncGlobalCommands();
+
+    const guildIDs: string[] = [];
+    for (const [, command] of this.manager.commands) {
+      if (command.guildID && !guildIDs.includes(command.guildID)) guildIDs.push(command.guildID);
+    }
+
+    for (const guildID of guildIDs) {
+      try {
+        await this.manager.syncCommandsIn(guildID);
+      } catch (e) {}
+    }
   }
 
   /**
