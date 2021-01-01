@@ -58,7 +58,7 @@ export class SlashRegistry extends Registry<SlashCommand> {
     for (const guildID of guildIDs) {
       try {
         await this.manager.syncCommandsIn(guildID);
-      } catch () {}
+      } catch (e) {}
     }
   }
 
