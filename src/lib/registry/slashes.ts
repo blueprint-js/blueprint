@@ -52,13 +52,12 @@ export class SlashRegistry extends Registry<SlashCommand> {
 
     const guildIDs: string[] = [];
     for (const [, command] of this.manager.commands) {
-      if (command.guildID && !guildIDs.includes(command.guildID)) guildIDs.push(command.guildID);
+      if (command.guildID && !guildIDs.includes(command.guildID))
+        guildIDs.push(command.guildID);
     }
 
     for (const guildID of guildIDs) {
-      try {
-        await this.manager.syncCommandsIn(guildID);
-      } catch (e) {}
+      await this.manager.syncCommandsIn(guildID);
     }
   }
 
