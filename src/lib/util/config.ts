@@ -10,11 +10,6 @@ interface BotOptions {
   options?: ClientOptions;
 }
 
-export interface InteractionOptions {
-  applicationID: string;
-  publicKey: string;
-}
-
 /**
  * The type interface for the bot configuration
  */
@@ -23,7 +18,6 @@ export interface Config {
   developers: Array<string>;
   logging?: LoggerOptions;
   database?: ConnectionOptions;
-  interactions?: InteractionOptions;
 }
 
 /**

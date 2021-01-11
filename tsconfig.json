@@ -6,8 +6,7 @@
     "target": "ES5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "downlevelIteration": true,
-    "allowSyntheticDefaultImports": true
+    "downlevelIteration": true
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }
