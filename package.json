@@ -22,8 +22,7 @@
     "fix": "gts fix",
     "prepare": "npm run compile",
     "pretest": "npm run compile",
-    "posttest": "npm run lint",
-    "document": "typedoc src/index.ts --out docs/"
+    "posttest": "npm run lint"
   },
   "dependencies": {
     "eris": "^0.14.0",
