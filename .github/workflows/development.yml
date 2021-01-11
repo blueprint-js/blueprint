@@ -19,3 +19,22 @@ jobs:
         run: npm ci
       - name: Lint Source Files
         run: npm run lint
+  publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+    needs: [lint]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - name: Install Dependencies
+        run: npm ci
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          check-version: false
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: nightly
