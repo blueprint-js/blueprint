@@ -28,7 +28,7 @@ jobs:
       - name: Setup Node.js 14
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 15.x
       - uses: pnpm/action-setup@v1.2.1
         with:
           version: 5.15
