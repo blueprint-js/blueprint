@@ -5,12 +5,14 @@ import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {CommandRegistry} from '../registry/commands';
 import {TypeORM} from './database';
+import {Extension} from './extension';
 
 interface Internals {
   config: Config;
   client: Client;
   logger?: Log4js;
   database?: TypeORM;
+  extensions: Set<Extension>;
 }
 
 /**
@@ -24,6 +26,7 @@ export class Blueprint {
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
+  private readonly extensions: Set<Extension>;
 
   /**
    * Creates a new Blueprint instance
@@ -37,6 +40,7 @@ export class Blueprint {
     this.groups = new GroupRegistry(this.config.developers);
     this.commands = new CommandRegistry();
     this.events = new EventRegistry(this);
+    this.extensions = new Set();
   }
 
   /**
@@ -48,7 +52,13 @@ export class Blueprint {
       client: this.client,
       logger: this.logger,
       database: this.database,
+      extensions: this.extensions,
     };
+  }
+
+  inject(ext: Extension): void {
+    this.extensions.add(ext);
+    ext.injector(this);
   }
 
   /**
