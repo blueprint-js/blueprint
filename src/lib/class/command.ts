@@ -1,7 +1,8 @@
 import {Message} from 'eris';
 import {Blueprint} from './client';
 
-interface CommandMeta {
+export interface CommandMeta {
+  name: string;
   aliases: Array<string>;
   groups: Array<string>;
 }
