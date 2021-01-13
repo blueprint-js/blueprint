@@ -8,6 +8,7 @@ interface Override {
 }
 
 interface Group {
+  inherits?: Array<string>;
   permissions: Array<PermissionString>;
   overrides?: Array<Override>;
 }
@@ -40,6 +41,15 @@ export class GroupRegistry extends Registry<Group> {
    */
   register(key: string, value: Group): void {
     if (key === 'developer') return;
+    if (value.inherits && value.inherits.length > 0) {
+      for (const inherited of value.inherits) {
+        const g = this.items.get(inherited);
+        if (g) {
+          value.permissions.concat(g.permissions);
+          if (g.overrides) value.overrides?.concat(g.overrides);
+        }
+      }
+    }
     this.items.set(key, value);
   }
 
