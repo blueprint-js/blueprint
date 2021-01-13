@@ -3,7 +3,7 @@ import {configure, Log4js} from 'log4js';
 import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
-import {PluginRegistry} from '../registry/plugins';
+import {CommandRegistry} from '../registry/commands';
 import {TypeORM} from './database';
 
 interface Internals {
@@ -19,7 +19,7 @@ interface Internals {
 export class Blueprint {
   public events: EventRegistry;
   public groups: GroupRegistry;
-  public plugins: PluginRegistry;
+  public commands: CommandRegistry;
   private readonly config: Config;
   private readonly client: Client;
   private readonly logger?: Log4js;
@@ -35,7 +35,7 @@ export class Blueprint {
     if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
-    this.plugins = new PluginRegistry(this);
+    this.commands = new CommandRegistry();
     this.events = new EventRegistry(this);
   }
 
