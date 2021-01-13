@@ -36,7 +36,7 @@ export class CommandRegistry extends AutoRegistry<Class> {
       if (meta.aliases.includes(cmd) || key === cmd) {
         const ugroups = ref.groups.check(user);
         if (ugroups.some((g: string) => meta.groups.includes(g)))
-          ((value as unknown) as Executor).callback(msg, ref);
+          (new value() as Executor).callback(msg, ref);
         break;
       }
     }
