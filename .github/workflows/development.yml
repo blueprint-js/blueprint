@@ -47,6 +47,6 @@ jobs:
         if: steps.npmver.outputs.prerelease == 'nightly'
         with:
           access: public
-          check-version: false
+          check-version: true
           token: ${{ secrets.NPM_TOKEN }}
           tag: nightly
