@@ -2,7 +2,6 @@
 import 'reflect-metadata';
 
 export {Blueprint} from './lib/class/client';
-export {Permissions} from './lib/util/permissions';
 export {Command, Executor} from './lib/class/command';
 export {ClientEvents} from './lib/util/types';
 export {Plugin} from './lib/class/plugin';
