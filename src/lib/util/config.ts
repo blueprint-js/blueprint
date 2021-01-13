@@ -1,4 +1,3 @@
-import {parse} from 'yaml';
 import {readFileSync} from 'fs';
 import {ClientOptions} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
@@ -21,10 +20,10 @@ export interface Config {
 }
 
 /**
- * Loads a YAML configuration file
- * @param path The path to a YAML configuration file
+ * Loads a JSON configuration file
+ * @param path The path to a JSON configuration file
  */
 export function loadConfig(path: string): Config {
   const data = readFileSync(path, {encoding: 'utf-8'});
-  return parse(data);
+  return JSON.parse(data);
 }
