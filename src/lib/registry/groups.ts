@@ -1,5 +1,5 @@
 import {Registry} from '../class/registry';
-import {convertPermission, Permissions} from '../util/permissions';
+import {convertPermission, PermissionString} from '../util/permissions';
 import {Member, User} from 'eris';
 
 interface Override {
@@ -8,7 +8,7 @@ interface Override {
 }
 
 interface Group {
-  permissions: Array<Permissions>;
+  permissions: Array<PermissionString>;
   overrides?: Array<Override>;
 }
 
@@ -61,12 +61,14 @@ export class GroupRegistry extends Registry<Group> {
     if (user instanceof User) return [];
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
-      .map(p => convertPermission(p[0]));
+      .map(p => convertPermission(p[0] as PermissionString));
     for (const [key, {permissions, overrides}] of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
-      else if (permissions.length > 0)
-        if (permissions.every(p => userPermissions.includes(p)))
-          groups.push(key);
+      else if (
+        permissions.length > 0 &&
+        permissions.every(p => userPermissions.includes(convertPermission(p)))
+      )
+        groups.push(key);
     }
     return groups;
   }
