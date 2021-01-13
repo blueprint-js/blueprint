@@ -58,7 +58,30 @@ export class Blueprint {
 
   inject(ext: Extension): void {
     this.extensions.add(ext);
-    ext.injector(this);
+    switch (ext.type) {
+      case 'core':
+        ext.injector({core: this.core});
+        break;
+      case 'registry':
+        ext.injector({
+          registries: {
+            events: this.events,
+            groups: this.groups,
+            commands: this.commands,
+          },
+        });
+        break;
+      case 'full':
+        ext.injector({
+          core: this.core,
+          registries: {
+            events: this.events,
+            groups: this.groups,
+            commands: this.commands,
+          },
+        });
+        break;
+    }
   }
 
   /**
