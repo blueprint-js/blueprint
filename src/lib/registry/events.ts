@@ -16,7 +16,7 @@ export class EventRegistry extends Registry<Callback> {
         (this.items.get('messageCreate') as Callback)(this.ref, msg);
       if (msg.author.bot) return;
       if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
-      this.ref.commands.execute(
+      this.ref.registry.commands.execute(
         msg.content
           .replace(this.ref.core.config.bot.prefix, '')
           .split(' ')

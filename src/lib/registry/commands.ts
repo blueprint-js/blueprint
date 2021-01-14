@@ -34,7 +34,7 @@ export class CommandRegistry extends AutoRegistry<Command> {
     for (const [key, value] of this.items.entries()) {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
       if (meta.aliases.includes(cmd) || key === cmd) {
-        const ugroups = ref.groups.check(user);
+        const ugroups = ref.registry.groups.check(user);
         if (ugroups.some((g: string) => meta.groups.includes(g)))
           value.callback(msg, ref);
         break;
