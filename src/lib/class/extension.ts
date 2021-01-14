@@ -1,15 +1,6 @@
-import {Internals} from '../class/client';
-import {CommandRegistry} from '../registry/commands';
-import {EventRegistry} from '../registry/events';
-import {GroupRegistry} from '../registry/groups';
+import {Internals, Registries} from '../class/client';
 
 export type ExtensionType = 'core' | 'registry' | 'full';
-
-interface Registries {
-  commands: CommandRegistry;
-  events: EventRegistry;
-  groups: GroupRegistry;
-}
 
 export interface ExtensionData {
   core?: Internals;

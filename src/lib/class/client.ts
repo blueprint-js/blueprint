@@ -4,8 +4,8 @@ import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {CommandRegistry} from '../registry/commands';
-import {TypeORM} from './database';
 import {Extension} from './extension';
+import {TypeORM} from './database';
 
 export interface Internals {
   config: Config;
@@ -15,13 +15,19 @@ export interface Internals {
   extensions: Set<Extension>;
 }
 
+export interface Registries {
+  commands: CommandRegistry;
+  events: EventRegistry;
+  groups: GroupRegistry;
+}
+
 /**
  * The core Blueprint client class to manage everything
  */
 export class Blueprint {
-  public events: EventRegistry;
-  public groups: GroupRegistry;
-  public commands: CommandRegistry;
+  private readonly events: EventRegistry;
+  private readonly groups: GroupRegistry;
+  private readonly commands: CommandRegistry;
   private readonly config: Config;
   private readonly client: Client;
   private readonly logger?: Log4js;
@@ -56,32 +62,26 @@ export class Blueprint {
     };
   }
 
+  /**
+   * Returns the registries of the client
+   */
+  get registry(): Registries {
+    return {
+      events: this.events,
+      commands: this.commands,
+      groups: this.groups,
+    };
+  }
+
   inject(ext: Extension): void {
     this.extensions.add(ext);
-    switch (ext.type) {
-      case 'core':
-        ext.injector({core: this.core});
-        break;
-      case 'registry':
-        ext.injector({
-          registries: {
-            events: this.events,
-            groups: this.groups,
-            commands: this.commands,
-          },
-        });
-        break;
-      case 'full':
-        ext.injector({
-          core: this.core,
-          registries: {
-            events: this.events,
-            groups: this.groups,
-            commands: this.commands,
-          },
-        });
-        break;
-    }
+    ext.injector({
+      core: ext.type === 'core' || ext.type === 'full' ? this.core : undefined,
+      registries:
+        ext.type === 'registry' || ext.type === 'full'
+          ? this.registry
+          : undefined,
+    });
   }
 
   /**
