@@ -76,11 +76,8 @@ export class Blueprint {
   inject(ext: Extension): void {
     this.extensions.add(ext);
     ext.injector({
-      core: ext.type === 'core' || ext.type === 'full' ? this.core : undefined,
-      registries:
-        ext.type === 'registry' || ext.type === 'full'
-          ? this.registry
-          : undefined,
+      core: ext.type !== 'registry' ? this.core : undefined,
+      registries: ext.type !== 'core' ? this.registry : undefined,
     });
   }
 
