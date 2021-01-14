@@ -3,8 +3,8 @@ export abstract class Registry<T> {
   constructor() {
     this.items = new Map();
   }
-  getItem(key: string): T | null {
-    return this.items.get(key) ?? null;
+  item(key: string): T | undefined {
+    return this.items.get(key);
   }
   abstract register(key: string, value: T): void;
   abstract unregister(key: string): void;
@@ -15,8 +15,8 @@ export abstract class AutoRegistry<T> {
   constructor() {
     this.items = new Map();
   }
-  getItem(key: string): T | null {
-    return this.items.get(key) ?? null;
+  item(key: string): T | undefined {
+    return this.items.get(key);
   }
   abstract register(value: T): void;
   abstract unregister(key: string): void;
