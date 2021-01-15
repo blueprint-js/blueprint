@@ -41,5 +41,10 @@
     "log4js": "^6.3.0",
     "module-alias": "^2.2.2",
     "typeorm": "^0.2.29"
+  },
+  "_moduleAliases": {
+    "@class": "src/lib/class",
+    "@registry": "src/lib/registry",
+    "@util": "src/lib/util"
   }
 }
