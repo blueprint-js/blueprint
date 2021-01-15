@@ -1,12 +1,17 @@
 {
   "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "rootDir": ".",
+    "baseUrl": ".",
     "outDir": "build",
     "target": "ES5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "paths": {
+      "@class/*": ["./src/lib/class/*"],
+      "@registry/*": ["./src/lib/registry/*"],
+      "@util/*": ["./src/lib/util/*"]
+    }
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }

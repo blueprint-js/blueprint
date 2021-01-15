@@ -1,9 +1,10 @@
 // eslint-disable-next-line node/no-unpublished-import
 import 'reflect-metadata';
+import 'module-alias';
 
-export {Blueprint} from './lib/class/client';
-export {Command, Executor} from './lib/class/command';
-export {Extension, ExtensionData, ExtensionType} from './lib/class/extension';
-export {ClientEvents} from './lib/util/types';
+export {Blueprint} from '@class/client';
+export {Command, Executor} from '@class/command';
+export {Extension, ExtensionData, ExtensionType} from '@class/extension';
 export {Message, User, Member} from 'eris';
+export {ClientEvents} from '@util/types';
 export * as TypeORM from 'typeorm';

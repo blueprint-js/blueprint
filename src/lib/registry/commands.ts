@@ -1,7 +1,7 @@
-import {AutoRegistry} from '../class/registry';
-import {CommandMeta, Executor} from '../class/command';
 import {Member, Message, User} from 'eris';
-import {Blueprint} from '../class/client';
+import {AutoRegistry} from '@class/registry';
+import {CommandMeta, Executor} from '@class/command';
+import {Blueprint} from '@class/client';
 
 type Command = {new (...args: Array<unknown>): unknown} & Executor;
 

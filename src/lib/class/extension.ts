@@ -1,4 +1,4 @@
-import {Internals, Registries} from '../class/client';
+import {Internals, Registries} from '@class/client';
 
 export type ExtensionType = 'core' | 'registry' | 'full';
 

@@ -1,6 +1,6 @@
-import {Registry} from '../class/registry';
-import {Blueprint} from '../class/client';
-import {ClientEvents} from '../util/types';
+import {Registry} from '@class/registry';
+import {Blueprint} from '@class/client';
+import {ClientEvents} from '@util/types';
 
 type Callback = (...args: Array<unknown>) => void;
 

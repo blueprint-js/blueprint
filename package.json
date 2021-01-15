@@ -21,6 +21,7 @@
     "log4js"
   ],
   "devDependencies": {
+    "@types/module-alias": "^2.0.0",
     "@types/node": "^14.11.2",
     "gts": "^3.0.2",
     "reflect-metadata": "^0.1.13",

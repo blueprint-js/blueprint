@@ -1,11 +1,11 @@
 import {Client} from 'eris';
 import {configure, Log4js} from 'log4js';
-import {Config, loadConfig} from '../util/config';
-import {EventRegistry} from '../registry/events';
-import {GroupRegistry} from '../registry/groups';
-import {CommandRegistry} from '../registry/commands';
-import {Extension} from './extension';
-import {TypeORM} from './database';
+import {Config, loadConfig} from '@util/config';
+import {EventRegistry} from '@registry/events';
+import {GroupRegistry} from '@registry/groups';
+import {CommandRegistry} from '@registry/commands';
+import {Extension} from '@class/extension';
+import {TypeORM} from '@class/database';
 
 export interface Internals {
   config: Config;
