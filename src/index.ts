@@ -1,6 +1,6 @@
 // eslint-disable-next-line node/no-unpublished-import
 import 'reflect-metadata';
-import 'module-alias';
+import 'module-alias/register';
 
 export {Blueprint} from '@class/client';
 export {Command, Executor} from '@class/command';

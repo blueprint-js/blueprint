@@ -43,8 +43,8 @@
     "typeorm": "^0.2.29"
   },
   "_moduleAliases": {
-    "@class": "src/lib/class",
-    "@registry": "src/lib/registry",
-    "@util": "src/lib/util"
+    "@class": "build/lib/class",
+    "@registry": "build/lib/registry",
+    "@util": "build/lib/util"
   }
 }
