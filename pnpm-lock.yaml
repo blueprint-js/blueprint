@@ -1,6 +1,7 @@
 dependencies:
   eris: 0.14.0
   log4js: 6.3.0
+  module-alias: 2.2.2
   typeorm: 0.2.30
 devDependencies:
   '@types/node': 14.14.20
@@ -1626,6 +1627,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==
+  /module-alias/2.2.2:
+    dev: false
+    resolution:
+      integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
   /ms/2.1.2:
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
@@ -2579,6 +2584,7 @@ specifiers:
   eris: ^0.14.0
   gts: ^3.0.2
   log4js: ^6.3.0
+  module-alias: ^2.2.2
   reflect-metadata: ^0.1.13
   typeorm: ^0.2.29
   typescript: ^4.0.3

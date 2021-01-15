@@ -38,6 +38,7 @@
   "dependencies": {
     "eris": "^0.14.0",
     "log4js": "^6.3.0",
+    "module-alias": "^2.2.2",
     "typeorm": "^0.2.29"
   }
 }
