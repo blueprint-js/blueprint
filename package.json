@@ -1,8 +1,8 @@
 {
   "name": "@dxz/blueprint",
-  "version": "2.0.0-nightly.11",
+  "version": "2.0.0-nightly.12",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
-  "main": "build/src/index.js",
+  "main": "build/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
   "author": "xpyxel <xpyxel@gmail.com>",
   "license": "MPL-2.0",
