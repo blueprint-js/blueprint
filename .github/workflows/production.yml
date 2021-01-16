@@ -18,7 +18,7 @@ jobs:
           version: 5.15
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
-      - name: Cache multiple paths
+      - name: Use pnpm storage cache
         uses: actions/cache@v2
         with:
           path: ~/.pnpm-store/v3
