@@ -20,6 +20,11 @@ jobs:
           version: 5.15
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store/v3
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Lint Source Files
         run: npm run lint
   publish:
@@ -41,7 +46,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.pnpm-store/v3
-          key: pnpm-${{ github.sha }}
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - id: npmver
         name: NPM SemVer
         uses: odinr/action-npm-semver@v1

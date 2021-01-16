@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.pnpm-store/v3
-          key: pnpm-${{ github.sha }}
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: NPM Publish
         uses: JS-DevTools/npm-publish@v1
         with:
