@@ -18,6 +18,11 @@ jobs:
           version: 5.15
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
+      - name: Cache multiple paths
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store/v3
+          key: pnpm-${{ github.sha }}
       - name: NPM Publish
         uses: JS-DevTools/npm-publish@v1
         with:
