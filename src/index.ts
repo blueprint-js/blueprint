@@ -2,9 +2,9 @@
 import 'reflect-metadata';
 import 'module-alias/register';
 
-export {Blueprint} from '@class/client';
-export {Command, Executor} from '@class/command';
-export {Extension, ExtensionData, ExtensionType} from '@class/extension';
+export {Blueprint} from './lib/class/client';
+export {Command, Executor} from './lib/class/command';
+export {Extension, ExtensionData, ExtensionType} from './lib/class/extension';
 export {Message, User, Member} from 'eris';
-export {ClientEvents} from '@util/types';
+export {ClientEvents} from './lib/util/types';
 export * as TypeORM from 'typeorm';

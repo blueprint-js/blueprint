@@ -1,5 +1,5 @@
 import {Message} from 'eris';
-import {Blueprint} from '@class/client';
+import {Blueprint} from '../class/client';
 
 export interface CommandMeta {
   name: string;
