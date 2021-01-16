@@ -16,10 +16,12 @@ jobs:
       - uses: pnpm/action-setup@v1.2.1
         with:
           version: 5.15
-      - name: Use pnpm storage cache
+      - name: Check for and use cache
         uses: actions/cache@v2
         with:
-          path: ~/.pnpm-store/v3
+          path: |
+            ~/.pnpm-store/v3
+            build/
           key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install Dependencies
         run: pnpm i --frozen-lockfile
