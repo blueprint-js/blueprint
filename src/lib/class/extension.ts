@@ -7,11 +7,14 @@ export interface ExtensionData {
   registries?: Registries;
 }
 
+export interface ExtensionMeta {
+  name: string;
+  type: ExtensionType;
+}
+
 /**
  * Class used to create middleware
  */
-export interface Extension {
-  name: string;
-  type: ExtensionType;
+export interface Extension extends ExtensionMeta {
   injector(inst: ExtensionData): void;
 }
