@@ -21,6 +21,6 @@ export function Command(meta: CommandMeta) {
 /**
  * Abstract class used to enforce the callback signature of a command
  */
-export abstract class Executor {
-  abstract callback(ctx: Message, ref: Blueprint): void;
+export interface Executor {
+  callback(ctx: Message, ref: Blueprint): void;
 }
