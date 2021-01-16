@@ -1,10 +1,11 @@
 {
   "name": "@dxz/blueprint",
-  "version": "2.0.0-nightly.13",
+  "version": "2.0.0-nightly.14",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
   "main": "build/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
   "author": "xpyxel <xpyxel@gmail.com>",
+  "types": "build/index.d.ts",
   "license": "MPL-2.0",
   "keywords": [
     "blueprint",
@@ -30,8 +31,8 @@
   },
   "scripts": {
     "lint": "gts lint",
-    "prepare": "pnpm run compile",
     "clean": "gts clean",
+    "prepare": "pnpm run compile",
     "compile": "swc src -d build && pnpm run gen-types",
     "gen-types": "tsc -d --declarationDir build --emitDeclarationOnly",
     "fix": "gts fix"
