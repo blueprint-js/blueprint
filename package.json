@@ -31,9 +31,9 @@
   },
   "scripts": {
     "lint": "gts lint",
-    "prepare": "npm run compile",
+    "prepare": "pnpm run compile",
     "clean": "gts clean",
-    "compile": "swc src -d build && npm run gen-types",
+    "compile": "swc src -d build && pnpm run gen-types",
     "gen-types": "tsc -d --declarationDir build --emitDeclarationOnly",
     "fix": "gts fix"
   },
