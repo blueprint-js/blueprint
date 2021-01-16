@@ -4,7 +4,7 @@ import {Config, loadConfig} from '@util/config';
 import {EventRegistry} from '@registry/events';
 import {GroupRegistry} from '@registry/groups';
 import {CommandRegistry} from '@registry/commands';
-import {Extension, ExtensionMeta} from '@class/extension';
+import {Extension} from '@class/extension';
 import {TypeORM} from '@class/database';
 
 export interface Internals {
@@ -12,7 +12,7 @@ export interface Internals {
   client: Client;
   logger?: Log4js;
   database?: TypeORM;
-  extensions: Array<ExtensionMeta>;
+  extensions: Map<String, String>;
 }
 
 export interface Registries {
@@ -32,7 +32,7 @@ export class Blueprint {
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
-  private readonly extensions: Array<ExtensionMeta>;
+  private readonly extensions: Map<String, String>;
 
   /**
    * Creates a new Blueprint instance
@@ -46,7 +46,7 @@ export class Blueprint {
     this.groups = new GroupRegistry(this.config.developers);
     this.commands = new CommandRegistry();
     this.events = new EventRegistry(this);
-    this.extensions = [];
+    this.extensions = new Map();
   }
 
   /**
@@ -78,7 +78,7 @@ export class Blueprint {
       core: ext.type !== 'registry' ? this.core : undefined,
       registries: ext.type !== 'core' ? this.registry : undefined,
     });
-    this.extensions.push({name: ext.name, type: ext.type});
+    this.extensions.set(ext.name, ext.type);
   }
 
   /**
