@@ -22,6 +22,7 @@ export interface Config {
 /**
  * Loads a JSON configuration file
  * @param path The path to a JSON configuration file
+ * @param parser An optional configuration parser
  */
 export function loadConfig(path: string, parser?: Function): Config {
   const data = readFileSync(path, {encoding: 'utf-8'});
