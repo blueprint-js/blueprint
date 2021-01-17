@@ -19,7 +19,7 @@ export interface Registries {
   groups: GroupRegistry;
 }
 
-type Injection = (core: Internals, registry: Registries) => void;
+export type Injection = (core: Internals, registry: Registries) => void;
 
 /**
  * The core Blueprint client class to manage everything
