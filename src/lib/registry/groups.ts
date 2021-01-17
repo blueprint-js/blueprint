@@ -44,18 +44,18 @@ export class GroupRegistry extends Registry<Group> {
    * @param value The group definition
    */
   register(key: string, value: Group): void {
-    const groupClone = value;
     if (key === 'developer') return;
     if (value.inherits && value.inherits.length > 0) {
       const gs = value.inherits.map(gn => this.items.get(gn) as Group);
       for (const g of gs) {
-        groupClone.permissions.concat(g.permissions);
+        value.permissions = value.permissions.concat(g.permissions);
         if (g.overrides) {
-          if (groupClone.overrides) groupClone.overrides.concat(g.overrides);
-        } else groupClone.overrides = g.overrides;
+          if (value.overrides)
+            value.overrides = value.overrides.concat(g.overrides);
+        } else value.overrides = g.overrides;
       }
     }
-    this.items.set(key, groupClone);
+    this.items.set(key, value);
   }
 
   /**
