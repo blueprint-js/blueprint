@@ -19,12 +19,17 @@ export interface Config {
   database?: ConnectionOptions;
 }
 
+export interface ParserOptions {
+  parser?: Function;
+  encoding?: BufferEncoding;
+}
+
 /**
  * Loads a JSON configuration file
  * @param path The path to a JSON configuration file
- * @param parser An optional configuration parser
+ * @param options Optional parser configuration
  */
-export function loadConfig(path: string, parser?: Function): Config {
-  const data = readFileSync(path, {encoding: 'utf-8'});
-  return parser?.(data) ?? JSON.parse(data);
+export function loadConfig(path: string, options?: ParserOptions): Config {
+  const data = readFileSync(path, {encoding: options?.encoding ?? 'utf-8'});
+  return options?.parser?.(data) ?? JSON.parse(data);
 }
