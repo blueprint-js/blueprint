@@ -39,6 +39,7 @@ export class Blueprint {
    * @param options Optional parser configuration
    */
   constructor(config: string, options?: ParserOptions) {
+    this.inject.bind(this);
     this.config = loadConfig(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
     if (this.config.database) this.database = new TypeORM(this.config.database);
