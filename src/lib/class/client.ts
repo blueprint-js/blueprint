@@ -37,9 +37,10 @@ export class Blueprint {
   /**
    * Creates a new Blueprint instance
    * @param config A path to a Blueprint configuration file
+   * @param parser An optional configuration parser (uses JSON by default)
    */
-  constructor(config: string) {
-    this.config = loadConfig(config);
+  constructor(config: string, parser?: Function) {
+    this.config = loadConfig(config, parser);
     if (this.config.logging) this.logger = configure(this.config.logging);
     if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
