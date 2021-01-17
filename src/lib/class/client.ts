@@ -19,6 +19,8 @@ export interface Registries {
   groups: GroupRegistry;
 }
 
+type Injection = (core: Internals, registry: Registries) => void;
+
 /**
  * The core Blueprint client class to manage everything
  */
@@ -68,6 +70,12 @@ export class Blueprint {
       groups: this.groups,
     };
   }
+
+  /**
+   * Injects code into the client, similar to middleware
+   * @param injection The injection to inject into the client
+   */
+  inject = (injection: Injection) => injection(this.core, this.registry);
 
   /**
    * Initializes everything and connects to Discord
