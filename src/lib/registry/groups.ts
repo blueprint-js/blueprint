@@ -1,5 +1,9 @@
+import {
+  mapPermission,
+  erisPermissionMap,
+  PermissionString,
+} from '../util/permissions';
 import {Registry} from '../class/registry';
-import {convertPermission, PermissionString} from '../util/permissions';
 import {Member, User} from 'eris';
 
 interface Override {
@@ -67,19 +71,19 @@ export class GroupRegistry extends Registry<Group> {
    * @param user The user to check groups of
    */
   check(user: User | Member): Array<string> {
-    const groups = [];
+    const groups: Array<string> = [];
     if (user instanceof User) return [];
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
-      .map(p => convertPermission(p[0] as PermissionString));
-    for (const [key, {permissions, overrides}] of this.items) {
+      .map(p => mapPermission(p[0]));
+    this.items.forEach(({permissions, overrides}, key) => {
       if (hasOverrides(user, overrides)) groups.push(key);
       else if (
         permissions.length > 0 &&
-        permissions.every(p => userPermissions.includes(convertPermission(p)))
+        permissions.every(p => userPermissions.includes(erisPermissionMap[p]))
       )
         groups.push(key);
-    }
+    });
     return groups;
   }
 }

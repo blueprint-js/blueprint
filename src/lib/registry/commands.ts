@@ -3,7 +3,7 @@ import {AutoRegistry} from '../class/registry';
 import {CommandMeta, Executor} from '../class/command';
 import {Blueprint} from '../class/client';
 
-type Command = {new (...args: Array<unknown>): unknown} & Executor;
+type Command = {new (...args: Array<unknown>): unknown};
 
 export class CommandRegistry extends AutoRegistry<Command> {
   /**
@@ -12,7 +12,7 @@ export class CommandRegistry extends AutoRegistry<Command> {
    */
   register(value: Command): void {
     const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-    this.items.set(meta.name, new value() as Command);
+    this.items.set(meta.name, value);
   }
 
   /**
@@ -31,14 +31,13 @@ export class CommandRegistry extends AutoRegistry<Command> {
    * @param ref The blueprint instance
    */
   execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
-    for (const [key, value] of this.items.entries()) {
+    this.items.forEach((value, key) => {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
       if (meta.aliases.includes(cmd) || key === cmd) {
         const ugroups = ref.registry.groups.check(user);
         if (ugroups.some((g: string) => meta.groups.includes(g)))
-          value.callback(msg, ref);
-        break;
+          (new value() as Executor).callback(msg, ref);
       }
-    }
+    });
   }
 }
