@@ -54,8 +54,8 @@ export class GroupRegistry extends Registry<Group> {
             value.overrides = value.overrides.concat(g.overrides);
         } else value.overrides = g.overrides;
       }
+      delete value.inherits;
     }
-    delete value.inherits;
     this.items.set(key, value);
   }
 
