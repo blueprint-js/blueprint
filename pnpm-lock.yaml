@@ -1,6 +1,7 @@
 dependencies:
   eris: 0.14.0
   log4js: 6.3.0
+  regenerator-runtime: 0.13.7
   typeorm: 0.2.30
 devDependencies:
   '@swc/cli': 0.1.27_@swc+core@1.2.45
@@ -2140,6 +2141,10 @@ packages:
   /reflect-metadata/0.1.13:
     resolution:
       integrity: sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+  /regenerator-runtime/0.13.7:
+    dev: false
+    resolution:
+      integrity: sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew==
   /regexpp/3.1.0:
     dev: true
     engines:
@@ -2807,5 +2812,6 @@ specifiers:
   gts: ^3.0.2
   log4js: ^6.3.0
   reflect-metadata: ^0.1.13
+  regenerator-runtime: ^0.13.7
   typeorm: ^0.2.29
   typescript: ^4.1.3
