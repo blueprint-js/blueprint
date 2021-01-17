@@ -1,8 +1,4 @@
-import {
-  mapPermission,
-  erisPermissionMap,
-  PermissionString,
-} from '../util/permissions';
+import {mapPermission, PermissionString} from '../util/permissions';
 import {Registry} from '../class/registry';
 import {Member, User} from 'eris';
 
@@ -82,7 +78,7 @@ export class GroupRegistry extends Registry<Group> {
       if (hasOverrides(user, overrides)) groups.push(key);
       else if (
         permissions.length > 0 &&
-        permissions.every(p => userPermissions.includes(erisPermissionMap[p]))
+        permissions.every(p => userPermissions.includes(mapPermission(p)))
       )
         groups.push(key);
     });
