@@ -69,11 +69,13 @@ export type PermissionString =
   | 'emojis.manage'
   | 'guild.manage';
 
-export function mapPermission(key: string) {
-  return Permissions[key as keyof typeof Permissions];
+export function mapPermission(key: string | PermissionString): Permissions {
+  if (Object.keys(erisPermissionMap).includes(key))
+    return erisPermissionMap[key as keyof typeof erisPermissionMap];
+  else return Permissions[key as keyof typeof Permissions];
 }
 
-export const erisPermissionMap = {
+const erisPermissionMap = {
   'invite.create': Permissions.createInstantInvite,
   'members.kick': Permissions.kickMembers,
   'members.ban': Permissions.banMembers,
