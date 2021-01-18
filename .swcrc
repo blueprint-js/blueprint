@@ -1,5 +1,4 @@
 {
-  "minify": true,
   "jsc": {
     "target": "es5",
     "loose": true,
