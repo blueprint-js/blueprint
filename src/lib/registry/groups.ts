@@ -65,12 +65,13 @@ export class GroupRegistry extends Registry<Group> {
   }
 
   /**
-   * Returns the groups a user belongs to
+   * Validates if a user has the required groups
    * @param user The user to check groups of
+   * @param cmdGroups The command's groups
    */
-  check(user: User | Member): Array<string> {
+  validate(user: User | Member, cmdGroups: Array<string>): boolean {
     const groups: Array<string> = [];
-    if (user instanceof User) return [];
+    if (user instanceof User) return false;
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
       .map(p => mapPermission(p[0]));
@@ -82,6 +83,6 @@ export class GroupRegistry extends Registry<Group> {
       )
         groups.push(key);
     });
-    return groups;
+    return cmdGroups.some(g => groups.includes(g));
   }
 }
