@@ -63,4 +63,11 @@ export class TypeORM {
       ...this.config,
     });
   }
+
+  /**
+   * Disconnects the database
+   */
+  async disconnect() {
+    await this.conn.close();
+  }
 }

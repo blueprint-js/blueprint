@@ -85,4 +85,12 @@ export class Blueprint {
     await this.database?.connect();
     await this.client.connect();
   }
+
+  /**
+   * Destroy the database and Discord connections
+   */
+  async destroy() {
+    await this.database?.disconnect();
+    this.client.disconnect({reconnect: false});
+  }
 }
