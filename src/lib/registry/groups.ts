@@ -80,14 +80,17 @@ export class GroupRegistry extends Registry<Group> {
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
       .map(p => mapPermission(p[0]));
-    this.items.forEach(({key, value: {permissions, overrides}}) => {
+    for (const {
+      key,
+      value: {permissions, overrides},
+    } of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
       else if (
         permissions.length > 0 &&
         permissions.every(p => userPermissions.includes(mapPermission(p)))
       )
         groups.push(key);
-    });
+    }
     return cmdGroups.some(g => groups.includes(g));
   }
 }

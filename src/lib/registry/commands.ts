@@ -32,12 +32,12 @@ export class CommandRegistry extends AutoRegistry<Command> {
    * @param ref The blueprint instance
    */
   execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
-    this.items.forEach(({value}) => {
+    for (const {value} of this.items) {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
       if (meta.aliases.includes(cmd) || meta.name === cmd) {
         if (ref.registry.groups.validate(user, meta.groups))
           (new value() as Executor).callback(msg, ref);
       }
-    });
+    }
   }
 }
