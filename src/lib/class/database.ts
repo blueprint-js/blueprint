@@ -15,6 +15,7 @@ export class TypeORM {
    * @param config The connection options to use
    */
   constructor(config: ConnectionOptions) {
+    this.disconnect.bind(this);
     this.config = config;
     this.entities = [];
   }
@@ -67,7 +68,5 @@ export class TypeORM {
   /**
    * Disconnects the database
    */
-  async disconnect() {
-    await this.conn.close();
-  }
+  disconnect = async () => await this.conn.close();
 }
