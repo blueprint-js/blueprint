@@ -1,4 +1,4 @@
-export enum Permissions {
+enum Permissions {
   createInstantInvite = 1,
   kickMembers = 2,
   banMembers = 4,
