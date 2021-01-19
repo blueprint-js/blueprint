@@ -28,9 +28,12 @@ function hasOverrides(
 export class GroupRegistry extends Registry<Group> {
   constructor(developers: Array<string>) {
     super();
-    this.items.set('developer', {
-      permissions: [],
-      overrides: developers.map(id => ({type: 'user', id})),
+    this.items.push({
+      key: 'developer',
+      value: {
+        permissions: [],
+        overrides: developers.map(id => ({type: 'user', id})),
+      },
     });
   }
 
@@ -42,7 +45,9 @@ export class GroupRegistry extends Registry<Group> {
   register(key: string, value: Group): void {
     if (key === 'developer') return;
     if (value.inherits && value.inherits.length > 0) {
-      const gs = value.inherits.map(gn => this.items.get(gn) as Group);
+      const gs = value.inherits.map(
+        gn => this.items.find(v => v.key === gn)?.value as Group
+      );
       for (const g of gs) {
         value.permissions = value.permissions.concat(g.permissions);
         if (g.overrides) {
@@ -52,7 +57,7 @@ export class GroupRegistry extends Registry<Group> {
       }
       delete value.inherits;
     }
-    this.items.set(key, value);
+    this.items.push({key, value});
   }
 
   /**
@@ -60,8 +65,8 @@ export class GroupRegistry extends Registry<Group> {
    * @param key The name of the permission group
    */
   unregister(key: string): void {
-    if (key === 'developer') return;
-    if (this.items.has(key)) this.items.delete(key);
+    const vk = this.items.findIndex(v => v.key === key);
+    if (vk > 0) this.items.splice(vk, 1);
   }
 
   /**
@@ -75,7 +80,7 @@ export class GroupRegistry extends Registry<Group> {
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
       .map(p => mapPermission(p[0]));
-    this.items.forEach(({permissions, overrides}, key) => {
+    this.items.forEach(({key, value: {permissions, overrides}}) => {
       if (hasOverrides(user, overrides)) groups.push(key);
       else if (
         permissions.length > 0 &&

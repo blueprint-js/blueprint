@@ -12,7 +12,7 @@ export class CommandRegistry extends AutoRegistry<Command> {
    */
   register(value: Command): void {
     const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-    this.items.set(meta.name, value);
+    this.items.push({key: meta.name, value});
   }
 
   /**
@@ -20,7 +20,8 @@ export class CommandRegistry extends AutoRegistry<Command> {
    * @param key The name of the command
    */
   unregister(key: string): void {
-    if (this.items.has(key)) this.items.delete(key);
+    const vk = this.items.findIndex(v => v.key === key);
+    if (vk > 0) this.items.splice(vk, 1);
   }
 
   /**
@@ -31,9 +32,9 @@ export class CommandRegistry extends AutoRegistry<Command> {
    * @param ref The blueprint instance
    */
   execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
-    this.items.forEach((value, key) => {
+    this.items.forEach(({value}) => {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-      if (meta.aliases.includes(cmd) || key === cmd) {
+      if (meta.aliases.includes(cmd) || meta.name === cmd) {
         if (ref.registry.groups.validate(user, meta.groups))
           (new value() as Executor).callback(msg, ref);
       }
