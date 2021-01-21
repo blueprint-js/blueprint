@@ -8,7 +8,7 @@ import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
 
 export interface Internals<T> {
-  config: BaseConfig;
+  config: T;
   client: Client;
   logger?: Log4js;
   database?: TypeORM;
