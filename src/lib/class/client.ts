@@ -5,6 +5,7 @@ import {GroupRegistry} from '../registry/groups';
 import {Config, loadConfig, ParserOptions} from '../util/config';
 import {CommandRegistry} from '../registry/commands';
 import {TypeORM} from '../class/database';
+import {DataRegistry} from '../registry/data';
 
 export interface Internals {
   config: Config;
@@ -17,9 +18,14 @@ export interface Registries {
   commands: CommandRegistry;
   events: EventRegistry;
   groups: GroupRegistry;
+  data: {get: (key: string) => unknown};
 }
 
-export type Injection = (core: Internals, registry: Registries) => void;
+export type Extension = (
+  core: Internals,
+  registry: Registries,
+  data: DataRegistry
+) => void;
 
 /**
  * The core Blueprint client class to manage everything
@@ -32,6 +38,7 @@ export class Blueprint {
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
+  private readonly data: DataRegistry;
 
   /**
    * Creates a new Blueprint instance
@@ -47,6 +54,7 @@ export class Blueprint {
     this.groups = new GroupRegistry(this.config.developers);
     this.commands = new CommandRegistry();
     this.events = new EventRegistry(this);
+    this.data = new DataRegistry();
   }
 
   /**
@@ -69,6 +77,7 @@ export class Blueprint {
       events: this.events,
       commands: this.commands,
       groups: this.groups,
+      data: {get: key => this.data.item(key)},
     };
   }
 
@@ -76,7 +85,7 @@ export class Blueprint {
    * Injects code into the client, similar to middleware
    * @param injection The injection to inject into the client
    */
-  inject = (injection: Injection) => injection(this.core, this.registry);
+  inject = (ext: Extension) => ext(this.core, this.registry, this.data);
 
   /**
    * Initializes everything and connects to Discord
