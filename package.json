@@ -1,6 +1,6 @@
 {
   "name": "@dxz/blueprint",
-  "version": "2.0.0-nightly.23",
+  "version": "2.0.0-nightly.24",
   "description": "A modern, powerful, experimental, and modular Discord bot framework",
   "main": "build/index.js",
   "repository": "git@github.com:xpyxel/blueprint.git",
