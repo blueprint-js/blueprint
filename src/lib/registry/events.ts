@@ -12,17 +12,18 @@ export class EventRegistry extends Registry<Callback> {
     this.ref = ref;
     this.register.bind(this);
     this.ref.core.client.on('messageCreate', msg => {
-      if (this.items.has('messageCreate'))
-        (this.items.get('messageCreate') as Callback)(this.ref, msg);
+      const v = this.items.find(v => v.key === 'messageCreate');
+      if (v) (v.value as Callback)(this.ref, msg);
       if (msg.author.bot) return;
       if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
-      this.ref.plugins.execute(
+      this.ref.registry.commands.execute(
         msg.content
           .replace(this.ref.core.config.bot.prefix, '')
           .split(' ')
           .shift() as string,
+        msg,
         msg.member ?? msg.author,
-        msg
+        this.ref
       );
     });
   }
@@ -36,8 +37,8 @@ export class EventRegistry extends Registry<Callback> {
     const callback = (...args: Array<unknown>) => value(this.ref, ...args);
     if (key !== 'messageCreate') {
       this.ref.core.client.on(key, callback);
-      this.items.set(key, callback);
-    } else this.items.set(key, value as Callback);
+      this.items.push({key, value: callback});
+    } else this.items.push({key, value: value as Callback});
   };
 
   /**
@@ -45,10 +46,20 @@ export class EventRegistry extends Registry<Callback> {
    * @param key The name of the event
    */
   unregister(key: string): void {
-    if (!this.items.has(key)) return;
+    if (!this.items.find(v => v.key === key)) return;
     if (key !== 'messageCreate') {
-      this.ref.core.client.off(key, this.items.get(key) as Callback);
-      this.items.delete(key);
-    } else this.items.delete(key);
+      this.ref.core.client.off(
+        key,
+        this.items.find(v => v.key === key)?.value as Callback
+      );
+      this.items.splice(
+        this.items.findIndex(v => v.key),
+        1
+      );
+    } else
+      this.items.splice(
+        this.items.findIndex(v => v.key),
+        1
+      );
   }
 }

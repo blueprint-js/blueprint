@@ -1,42 +1,60 @@
 import {Client} from 'eris';
 import {configure, Log4js} from 'log4js';
-import {Config, loadConfig} from '../util/config';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
-import {PluginRegistry} from '../registry/plugins';
-import {TypeORM} from './database';
+import {Config, loadConfig, ParserOptions} from '../util/config';
+import {CommandRegistry} from '../registry/commands';
+import {TypeORM} from '../class/database';
+import {DataRegistry} from '../registry/data';
 
-interface Internals {
+export interface Internals {
   config: Config;
   client: Client;
   logger?: Log4js;
   database?: TypeORM;
 }
 
+export interface Registries {
+  commands: CommandRegistry;
+  events: EventRegistry;
+  groups: GroupRegistry;
+  data: {get: (key: string) => unknown};
+}
+
+export type Extension = (
+  core: Internals,
+  registry: Registries,
+  data: DataRegistry
+) => void;
+
 /**
  * The core Blueprint client class to manage everything
  */
 export class Blueprint {
-  public events: EventRegistry;
-  public groups: GroupRegistry;
-  public plugins: PluginRegistry;
+  private readonly events: EventRegistry;
+  private readonly groups: GroupRegistry;
+  private readonly commands: CommandRegistry;
   private readonly config: Config;
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
+  private readonly data: DataRegistry;
 
   /**
    * Creates a new Blueprint instance
    * @param config A path to a Blueprint configuration file
+   * @param options Optional parser configuration
    */
-  constructor(config: string) {
-    this.config = loadConfig(config);
+  constructor(config: string, options?: ParserOptions) {
+    this.inject.bind(this);
+    this.config = loadConfig(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
     if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
-    this.plugins = new PluginRegistry(this);
+    this.commands = new CommandRegistry();
     this.events = new EventRegistry(this);
+    this.data = new DataRegistry();
   }
 
   /**
@@ -52,10 +70,36 @@ export class Blueprint {
   }
 
   /**
+   * Returns the registries of the client
+   */
+  get registry(): Registries {
+    return {
+      events: this.events,
+      commands: this.commands,
+      groups: this.groups,
+      data: {get: key => this.data.item(key)},
+    };
+  }
+
+  /**
+   * Injects code into the client, similar to middleware
+   * @param injection The injection to inject into the client
+   */
+  inject = (ext: Extension) => ext(this.core, this.registry, this.data);
+
+  /**
    * Initializes everything and connects to Discord
    */
   async start() {
     await this.database?.connect();
     await this.client.connect();
+  }
+
+  /**
+   * Destroy the database and Discord connections
+   */
+  async destroy() {
+    await this.database?.disconnect();
+    this.client.disconnect({reconnect: false});
   }
 }

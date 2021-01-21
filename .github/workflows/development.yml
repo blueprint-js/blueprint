@@ -11,12 +11,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js 14
+      - name: Setup Node.js 15
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 15.x
+      - uses: pnpm/action-setup@v1.2.1
+        with:
+          version: 5.15
+      - name: Use pnpm storage cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store/v3
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm i --frozen-lockfile
       - name: Lint Source Files
         run: npm run lint
   publish:
@@ -25,12 +33,20 @@ jobs:
     needs: [lint]
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js 14
+      - name: Setup Node.js 15
         uses: actions/setup-node@v1
         with:
-          node-version: 14.x
+          node-version: 15.x
+      - uses: pnpm/action-setup@v1.2.1
+        with:
+          version: 5.15
+      - name: Use pnpm storage cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store/v3
+          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install Dependencies
-        run: npm ci
+        run: pnpm i --frozen-lockfile
       - id: npmver
         name: NPM SemVer
         uses: odinr/action-npm-semver@v1
@@ -41,6 +57,6 @@ jobs:
         if: steps.npmver.outputs.prerelease == 'nightly'
         with:
           access: public
-          check-version: false
+          check-version: true
           token: ${{ secrets.NPM_TOKEN }}
           tag: nightly

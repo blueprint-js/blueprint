@@ -1,7 +1,8 @@
 import {Message} from 'eris';
-import {Blueprint} from './client';
+import {Blueprint} from '../class/client';
 
-interface CommandMeta {
+export interface CommandMeta {
+  name: string;
   aliases: Array<string>;
   groups: Array<string>;
 }
@@ -18,8 +19,8 @@ export function Command(meta: CommandMeta) {
 }
 
 /**
- * Abstract class used to enforce the callback signature of a command
+ * Interface used to enforce the callback signature of a command
  */
-export abstract class Executor {
-  abstract callback(ctx: Message, ref: Blueprint): void;
+export interface Executor {
+  callback(ctx: Message, ref: Blueprint): void;
 }

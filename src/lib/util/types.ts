@@ -33,7 +33,7 @@ import {
   AnyChannel,
 } from 'eris';
 
-import {Blueprint} from '../..';
+import {Blueprint} from '../class/client';
 
 interface EventListeners<T> {
   (event: 'ready' | 'disconnect', listener: (ref: Blueprint) => void): T;

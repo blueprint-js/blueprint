@@ -1,5 +1,5 @@
+import {mapPermission, PermissionString} from '../util/permissions';
 import {Registry} from '../class/registry';
-import {convertPermission, Permissions} from '../util/permissions';
 import {Member, User} from 'eris';
 
 interface Override {
@@ -8,7 +8,8 @@ interface Override {
 }
 
 interface Group {
-  permissions: Array<Permissions>;
+  inherits?: Array<string>;
+  permissions: Array<PermissionString>;
   overrides?: Array<Override>;
 }
 
@@ -27,9 +28,12 @@ function hasOverrides(
 export class GroupRegistry extends Registry<Group> {
   constructor(developers: Array<string>) {
     super();
-    this.items.set('developer', {
-      permissions: [],
-      overrides: developers.map(id => ({type: 'user', id})),
+    this.items.push({
+      key: 'developer',
+      value: {
+        permissions: [],
+        overrides: developers.map(id => ({type: 'user', id})),
+      },
     });
   }
 
@@ -40,7 +44,20 @@ export class GroupRegistry extends Registry<Group> {
    */
   register(key: string, value: Group): void {
     if (key === 'developer') return;
-    this.items.set(key, value);
+    if (value.inherits && value.inherits.length > 0) {
+      const gs = value.inherits.map(
+        gn => this.items.find(v => v.key === gn)?.value as Group
+      );
+      for (const g of gs) {
+        value.permissions = value.permissions.concat(g.permissions);
+        if (g.overrides) {
+          if (value.overrides)
+            value.overrides = value.overrides.concat(g.overrides);
+        } else value.overrides = g.overrides;
+      }
+      delete value.inherits;
+    }
+    this.items.push({key, value});
   }
 
   /**
@@ -48,26 +65,32 @@ export class GroupRegistry extends Registry<Group> {
    * @param key The name of the permission group
    */
   unregister(key: string): void {
-    if (key === 'developer') return;
-    if (this.items.has(key)) this.items.delete(key);
+    const vk = this.items.findIndex(v => v.key === key);
+    if (vk > 0) this.items.splice(vk, 1);
   }
 
   /**
-   * Returns the groups a user belongs to
+   * Validates if a user has the required groups
    * @param user The user to check groups of
+   * @param cmdGroups The command's groups
    */
-  check(user: User | Member): Array<string> {
-    const groups = [];
-    if (user instanceof User) return [];
+  validate(user: User | Member, cmdGroups: Array<string>): boolean {
+    const groups: Array<string> = [];
+    if (user instanceof User) return false;
     const userPermissions = Object.entries((user as Member).permissions.json)
       .filter(p => p[1])
-      .map(p => convertPermission(p[0]));
-    for (const [key, {permissions, overrides}] of this.items) {
+      .map(p => mapPermission(p[0]));
+    for (const {
+      key,
+      value: {permissions, overrides},
+    } of this.items) {
       if (hasOverrides(user, overrides)) groups.push(key);
-      else if (permissions.length > 0)
-        if (permissions.every(p => userPermissions.includes(p)))
-          groups.push(key);
+      else if (
+        permissions.length > 0 &&
+        permissions.every(p => userPermissions.includes(mapPermission(p)))
+      )
+        groups.push(key);
     }
-    return groups;
+    return cmdGroups.some(g => groups.includes(g));
   }
 }

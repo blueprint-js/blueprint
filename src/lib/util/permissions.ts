@@ -1,4 +1,4 @@
-export enum Permissions {
+enum Permissions {
   createInstantInvite = 1,
   kickMembers = 2,
   banMembers = 4,
@@ -36,6 +36,75 @@ export enum Permissions {
   allVoice = 871367441,
 }
 
-export function convertPermission(key: string) {
-  return Permissions[key as keyof typeof Permissions];
+export type PermissionString =
+  | 'invite.create'
+  | 'members.kick'
+  | 'members.ban'
+  | 'guild.administrator'
+  | 'channels.manage'
+  | 'reactions.add'
+  | 'auditlogs.view'
+  | 'voice.priority'
+  | 'voice.stream'
+  | 'messages.read'
+  | 'messages.send'
+  | 'messages.send.tts'
+  | 'messages.manage'
+  | 'messages.links'
+  | 'messages.files'
+  | 'messages.read.history'
+  | 'messages.mention'
+  | 'emojis.external'
+  | 'guild.insights'
+  | 'voice.connect'
+  | 'voice.speak'
+  | 'voice.manage.mute'
+  | 'voice.manage.deafen'
+  | 'voice.manage.move'
+  | 'voice.vad'
+  | 'nicks.change'
+  | 'nicks.manage'
+  | 'roles.manage'
+  | 'webhooks.manage'
+  | 'emojis.manage'
+  | 'guild.manage';
+
+export function mapPermission(key: string | PermissionString): Permissions {
+  if (Object.keys(erisPermissionMap).includes(key))
+    return erisPermissionMap[key as keyof typeof erisPermissionMap];
+  else return Permissions[key as keyof typeof Permissions];
 }
+
+const erisPermissionMap = {
+  'invite.create': Permissions.createInstantInvite,
+  'members.kick': Permissions.kickMembers,
+  'members.ban': Permissions.banMembers,
+  'guild.administrator': Permissions.banMembers,
+  'channels.manage': Permissions.manageChannels,
+  'reactions.add': Permissions.addReactions,
+  'auditlogs.view': Permissions.viewAuditLogs,
+  'voice.priority': Permissions.voicePrioritySpeaker,
+  'voice.stream': Permissions.stream,
+  'messages.read': Permissions.readMessages,
+  'messages.send': Permissions.sendMessages,
+  'messages.send.tts': Permissions.sendTTSMessages,
+  'messages.manage': Permissions.manageMessages,
+  'messages.links': Permissions.embedLinks,
+  'messages.files': Permissions.attachFiles,
+  'messages.read.history': Permissions.readMessageHistory,
+  'messages.mention': Permissions.mentionEveryone,
+  'emojis.external': Permissions.externalEmojis,
+  'guild.insights': Permissions.viewGuildInsights,
+  'voice.connect': Permissions.voiceConnect,
+  'voice.speak': Permissions.voiceSpeak,
+  'voice.manage.mute': Permissions.voiceMuteMembers,
+  'voice.manage.deafen': Permissions.voiceDeafenMembers,
+  'voice.manage.move': Permissions.voiceMoveMembers,
+  'voice.vad': Permissions.voiceUseVAD,
+  'nicks.change': Permissions.changeNickname,
+  'nicks.manage': Permissions.manageNicknames,
+  'roles.manage': Permissions.manageRoles,
+  'webhooks.manage': Permissions.manageWebhooks,
+  'emojis.manage': Permissions.manageEmojis,
+  'guild.manage': Permissions.manageGuild,
+};
