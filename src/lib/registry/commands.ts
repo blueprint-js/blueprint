@@ -2,6 +2,7 @@ import {Member, Message, User} from 'eris';
 import {AutoRegistry} from '../class/registry';
 import {CommandMeta, Executor} from '../class/command';
 import {Blueprint} from '../class/client';
+import {BaseConfig} from '../util/config';
 
 type Command = {new (...args: Array<unknown>): unknown};
 
@@ -31,7 +32,12 @@ export class CommandRegistry extends AutoRegistry<Command> {
    * @param user The user to check groups of
    * @param ref The blueprint instance
    */
-  execute(cmd: string, msg: Message, user: User | Member, ref: Blueprint) {
+  execute<T extends BaseConfig>(
+    cmd: string,
+    msg: Message,
+    user: User | Member,
+    ref: Blueprint<T>
+  ) {
     for (const {value} of this.items) {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
       if (meta.aliases.includes(cmd) || meta.name === cmd) {

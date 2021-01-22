@@ -34,29 +34,30 @@ import {
 } from 'eris';
 
 import {Blueprint} from '../class/client';
+import {BaseConfig} from './config';
 
-interface EventListeners<T> {
-  (event: 'ready' | 'disconnect', listener: (ref: Blueprint) => void): T;
+interface EventListeners<T, C extends BaseConfig> {
+  (event: 'ready' | 'disconnect', listener: (ref: Blueprint<C>) => void): T;
 
   (
     event: 'callCreate' | 'callRing' | 'callDelete',
-    listener: (ref: Blueprint, call: Call) => void
+    listener: (ref: Blueprint<C>, call: Call) => void
   ): T;
 
   (
     event: 'callUpdate',
-    listener: (ref: Blueprint, call: Call, oldCall: OldCall) => void
+    listener: (ref: Blueprint<C>, call: Call, oldCall: OldCall) => void
   ): T;
 
   (
     event: 'channelCreate' | 'channelDelete',
-    listener: (ref: Blueprint, channel: AnyChannel) => void
+    listener: (ref: Blueprint<C>, channel: AnyChannel) => void
   ): T;
 
   (
     event: 'channelPinUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       channel: TextableChannel,
       timestamp: number,
       oldTimestamp: number
@@ -65,13 +66,13 @@ interface EventListeners<T> {
 
   (
     event: 'channelRecipientAdd' | 'channelRecipientRemove',
-    listener: (ref: Blueprint, channel: GroupChannel, user: User) => void
+    listener: (ref: Blueprint<C>, channel: GroupChannel, user: User) => void
   ): T;
 
   (
     event: 'channelUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       channel: AnyChannel,
       oldChannel: OldGuildChannel | OldGroupChannel
     ) => void
@@ -79,13 +80,13 @@ interface EventListeners<T> {
 
   (
     event: 'connect' | 'shardPreReady',
-    listener: (ref: Blueprint, id: number) => void
+    listener: (ref: Blueprint<C>, id: number) => void
   ): T;
 
   (
     event: 'friendSuggestionCreate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       user: User,
       reasons: FriendSuggestionReasons
     ) => void
@@ -93,28 +94,28 @@ interface EventListeners<T> {
 
   (
     event: 'friendSuggestionDelete',
-    listener: (ref: Blueprint, user: User) => void
+    listener: (ref: Blueprint<C>, user: User) => void
   ): T;
 
   (
     event: 'guildBanAdd' | 'guildBanRemove',
-    listener: (ref: Blueprint, guild: Guild, user: User) => void
+    listener: (ref: Blueprint<C>, guild: Guild, user: User) => void
   ): T;
 
   (
     event: 'guildAvailable' | 'guildCreate',
-    listener: (ref: Blueprint, guild: Guild) => void
+    listener: (ref: Blueprint<C>, guild: Guild) => void
   ): T;
 
   (
     event: 'guildDelete',
-    listener: (ref: Blueprint, guild: PossiblyUncachedGuild) => void
+    listener: (ref: Blueprint<C>, guild: PossiblyUncachedGuild) => void
   ): T;
 
   (
     event: 'guildEmojisUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       guild: Guild,
       emojis: Emoji[],
       oldEmojis: Emoji[]
@@ -123,18 +124,18 @@ interface EventListeners<T> {
 
   (
     event: 'guildMemberAdd',
-    listener: (ref: Blueprint, guild: Guild, member: Member) => void
+    listener: (ref: Blueprint<C>, guild: Guild, member: Member) => void
   ): T;
 
   (
     event: 'guildMemberChunk',
-    listener: (ref: Blueprint, guild: Guild, members: Member[]) => void
+    listener: (ref: Blueprint<C>, guild: Guild, members: Member[]) => void
   ): T;
 
   (
     event: 'guildMemberRemove',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       guild: Guild,
       member: Member | MemberPartial
     ) => void
@@ -143,7 +144,7 @@ interface EventListeners<T> {
   (
     event: 'guildMemberUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       guild: Guild,
       member: Member,
       oldMember: {nick?: string; premiumSince: number; roles: string[]} | null
@@ -152,13 +153,13 @@ interface EventListeners<T> {
 
   (
     event: 'guildRoleCreate' | 'guildRoleDelete',
-    listener: (ref: Blueprint, guild: Guild, role: Role) => void
+    listener: (ref: Blueprint<C>, guild: Guild, role: Role) => void
   ): T;
 
   (
     event: 'guildRoleUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       guild: Guild,
       role: Role,
       oldRole: OldRole
@@ -167,23 +168,23 @@ interface EventListeners<T> {
 
   (
     event: 'guildUnavailable' | 'unavailableGuildCreate',
-    listener: (ref: Blueprint, guild: UnavailableGuild) => void
+    listener: (ref: Blueprint<C>, guild: UnavailableGuild) => void
   ): T;
 
   (
     event: 'guildUpdate',
-    listener: (ref: Blueprint, guild: Guild, oldGuild: OldGuild) => void
+    listener: (ref: Blueprint<C>, guild: Guild, oldGuild: OldGuild) => void
   ): T;
 
   (
     event: 'hello',
-    listener: (ref: Blueprint, trace: string[], id: number) => void
+    listener: (ref: Blueprint<C>, trace: string[], id: number) => void
   ): T;
 
   (
     event: 'inviteCreate' | 'inviteDelete',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       guild: Guild,
       invite: Invite & InviteWithMetadata
     ) => void
@@ -191,18 +192,18 @@ interface EventListeners<T> {
 
   (
     event: 'messageCreate',
-    listener: (ref: Blueprint, message: Message) => void
+    listener: (ref: Blueprint<C>, message: Message) => void
   ): T;
 
   (
     event: 'messageDelete' | 'messageReactionRemoveAll',
-    listener: (ref: Blueprint, message: PossiblyUncachedMessage) => void
+    listener: (ref: Blueprint<C>, message: PossiblyUncachedMessage) => void
   ): T;
 
   (
     event: 'messageReactionRemoveEmoji',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       message: PossiblyUncachedMessage,
       emoji: PartialEmoji
     ) => void
@@ -210,13 +211,13 @@ interface EventListeners<T> {
 
   (
     event: 'messageDeleteBulk',
-    listener: (ref: Blueprint, messages: PossiblyUncachedMessage[]) => void
+    listener: (ref: Blueprint<C>, messages: PossiblyUncachedMessage[]) => void
   ): T;
 
   (
     event: 'messageReactionAdd',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       message: PossiblyUncachedMessage,
       emoji: Emoji,
       reactor: Member | {id: string}
@@ -226,7 +227,7 @@ interface EventListeners<T> {
   (
     event: 'messageReactionRemove',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       message: PossiblyUncachedMessage,
       emoji: PartialEmoji,
       userID: string
@@ -236,7 +237,7 @@ interface EventListeners<T> {
   (
     event: 'messageUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       message: Message,
       oldMessage: OldMessage | null
     ) => void
@@ -245,7 +246,7 @@ interface EventListeners<T> {
   (
     event: 'presenceUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       other: Member | Relationship,
       oldPresence: Presence | null
     ) => void
@@ -253,23 +254,23 @@ interface EventListeners<T> {
 
   (
     event: 'rawREST',
-    listener: (ref: Blueprint, request: RawRESTRequest) => void
+    listener: (ref: Blueprint<C>, request: RawRESTRequest) => void
   ): T;
 
   (
     event: 'rawWS' | 'unknown',
-    listener: (ref: Blueprint, packet: RawPacket, id: number) => void
+    listener: (ref: Blueprint<C>, packet: RawPacket, id: number) => void
   ): T;
 
   (
     event: 'relationshipAdd' | 'relationshipRemove',
-    listener: (ref: Blueprint, relationship: Relationship) => void
+    listener: (ref: Blueprint<C>, relationship: Relationship) => void
   ): T;
 
   (
     event: 'relationshipUpdate',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       relationship: Relationship,
       oldRelationship: {type: number}
     ) => void
@@ -278,7 +279,7 @@ interface EventListeners<T> {
   (
     event: 'typingStart',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       channel: TextableChannel | {id: string},
       user: User | {id: string}
     ) => void
@@ -286,23 +287,35 @@ interface EventListeners<T> {
 
   (
     event: 'userUpdate',
-    listener: (ref: Blueprint, user: User, oldUser: PartialUser | null) => void
+    listener: (
+      ref: Blueprint<C>,
+      user: User,
+      oldUser: PartialUser | null
+    ) => void
   ): T;
 
   (
     event: 'voiceChannelJoin',
-    listener: (ref: Blueprint, member: Member, newChannel: VoiceChannel) => void
+    listener: (
+      ref: Blueprint<C>,
+      member: Member,
+      newChannel: VoiceChannel
+    ) => void
   ): T;
 
   (
     event: 'voiceChannelLeave',
-    listener: (ref: Blueprint, member: Member, oldChannel: VoiceChannel) => void
+    listener: (
+      ref: Blueprint<C>,
+      member: Member,
+      oldChannel: VoiceChannel
+    ) => void
   ): T;
 
   (
     event: 'voiceChannelSwitch',
     listener: (
-      ref: Blueprint,
+      ref: Blueprint<C>,
       member: Member,
       newChannel: VoiceChannel,
       oldChannel: VoiceChannel
@@ -311,30 +324,35 @@ interface EventListeners<T> {
 
   (
     event: 'voiceStateUpdate',
-    listener: (ref: Blueprint, member: Member, oldState: OldVoiceState) => void
+    listener: (
+      ref: Blueprint<C>,
+      member: Member,
+      oldState: OldVoiceState
+    ) => void
   ): T;
 
   (
     event: 'warn' | 'debug',
-    listener: (ref: Blueprint, message: string, id: number) => void
+    listener: (ref: Blueprint<C>, message: string, id: number) => void
   ): T;
 
   (
     event: 'webhooksUpdate',
-    listener: (ref: Blueprint, data: WebhookData) => void
+    listener: (ref: Blueprint<C>, data: WebhookData) => void
   ): T;
 
-  (event: string, listener: (ref: Blueprint, ...args: unknown[]) => void): T;
+  (event: string, listener: (ref: Blueprint<C>, ...args: unknown[]) => void): T;
 }
 
-export interface ClientEvents<T> extends EventListeners<T> {
+export interface ClientEvents<T, C extends BaseConfig>
+  extends EventListeners<T, C> {
   (
     event: 'shardReady' | 'shardResume',
-    listener: (ref: Blueprint, id: number) => void
+    listener: (ref: Blueprint<C>, id: number) => void
   ): T;
 
   (
     event: 'shardDisconnect' | 'error',
-    listener: (ref: Blueprint, err: Error, id: number) => void
+    listener: (ref: Blueprint<C>, err: Error, id: number) => void
   ): T;
 }

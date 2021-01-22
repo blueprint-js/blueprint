@@ -1,13 +1,14 @@
 import {Registry} from '../class/registry';
 import {Blueprint} from '../class/client';
 import {ClientEvents} from '../util/types';
+import {BaseConfig} from '../util/config';
 
 type Callback = (...args: Array<unknown>) => void;
 
-export class EventRegistry extends Registry<Callback> {
-  private readonly ref: Blueprint;
+export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
+  private readonly ref: Blueprint<T>;
 
-  constructor(ref: Blueprint) {
+  constructor(ref: Blueprint<T>) {
     super();
     this.ref = ref;
     this.register.bind(this);
@@ -33,7 +34,7 @@ export class EventRegistry extends Registry<Callback> {
    * @param key The name of the event to listen to
    * @param value The callback to execute when the event is called
    */
-  register: ClientEvents<void> = (key: string, value: Function) => {
+  register: ClientEvents<void, T> = (key: string, value: Function) => {
     const callback = (...args: Array<unknown>) => value(this.ref, ...args);
     if (key !== 'messageCreate') {
       this.ref.core.client.on(key, callback);
