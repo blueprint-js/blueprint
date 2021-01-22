@@ -2,8 +2,9 @@ import {readFileSync} from 'fs';
 import {ClientOptions} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
 import {ConnectionOptions} from 'typeorm';
+export {LoggerOptions, ConnectionOptions, ClientOptions};
 
-interface BotOptions {
+export interface BotOptions {
   token: string;
   prefix: string;
   options?: ClientOptions;

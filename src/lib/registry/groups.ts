@@ -2,12 +2,12 @@ import {mapPermission, PermissionString} from '../util/permissions';
 import {Registry} from '../class/registry';
 import {Member, User} from 'eris';
 
-interface Override {
+export interface Override {
   type: 'user' | 'role';
   id: string;
 }
 
-interface Group {
+export interface Group {
   inherits?: Array<string>;
   permissions: Array<PermissionString>;
   overrides?: Array<Override>;
