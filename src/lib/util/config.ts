@@ -12,7 +12,7 @@ interface BotOptions {
 /**
  * The type interface for the bot configuration
  */
-export interface Config {
+export interface BaseConfig {
   bot: BotOptions;
   developers: Array<string>;
   logging?: LoggerOptions;
@@ -29,7 +29,10 @@ export interface ParserOptions {
  * @param path The path to a JSON configuration file
  * @param options Optional parser configuration
  */
-export function loadConfig(path: string, options?: ParserOptions): Config {
+export function loadConfig<T extends BaseConfig>(
+  path: string,
+  options?: ParserOptions
+): T {
   const data = readFileSync(path, {encoding: options?.encoding ?? 'utf-8'});
   return options?.parser?.(data) ?? JSON.parse(data);
 }

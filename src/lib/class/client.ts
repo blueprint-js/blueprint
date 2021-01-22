@@ -2,13 +2,13 @@ import {Client} from 'eris';
 import {configure, Log4js} from 'log4js';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
-import {Config, loadConfig, ParserOptions} from '../util/config';
+import {BaseConfig, loadConfig, ParserOptions} from '../util/config';
 import {CommandRegistry} from '../registry/commands';
 import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
 
-export interface Internals {
-  config: Config;
+export interface Internals<T> {
+  config: T;
   client: Client;
   logger?: Log4js;
   database?: TypeORM;
@@ -21,8 +21,8 @@ export interface Registries {
   data: {get: (key: string) => unknown};
 }
 
-export type Extension = (
-  core: Internals,
+export type Extension<T> = (
+  core: Internals<T>,
   registry: Registries,
   data: DataRegistry
 ) => void;
@@ -30,14 +30,14 @@ export type Extension = (
 /**
  * The core Blueprint client class to manage everything
  */
-export class Blueprint {
-  private readonly events: EventRegistry;
-  private readonly groups: GroupRegistry;
-  private readonly commands: CommandRegistry;
-  private readonly config: Config;
+export class Blueprint<T extends BaseConfig> {
+  private readonly config: T;
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
+  private readonly events: EventRegistry;
+  private readonly groups: GroupRegistry;
+  private readonly commands: CommandRegistry;
   private readonly data: DataRegistry;
 
   /**
@@ -47,7 +47,7 @@ export class Blueprint {
    */
   constructor(config: string, options?: ParserOptions) {
     this.inject.bind(this);
-    this.config = loadConfig(config, options);
+    this.config = loadConfig<T>(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
     if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
@@ -60,7 +60,7 @@ export class Blueprint {
   /**
    * Returns the internals of the Blueprint instance
    */
-  get core(): Internals {
+  get core(): Internals<T> {
     return {
       config: this.config,
       client: this.client,
@@ -85,7 +85,7 @@ export class Blueprint {
    * Injects code into the client, similar to middleware
    * @param injection The injection to inject into the client
    */
-  inject = (ext: Extension) => ext(this.core, this.registry, this.data);
+  inject = (ext: Extension<T>) => ext(this.core, this.registry, this.data);
 
   /**
    * Initializes everything and connects to Discord
