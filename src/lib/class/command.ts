@@ -1,5 +1,6 @@
 import {Message} from 'eris';
 import {Blueprint} from '../class/client';
+import {BaseConfig} from '../util/config';
 
 export interface CommandMeta {
   name: string;
@@ -22,5 +23,5 @@ export function Command(meta: CommandMeta) {
  * Interface used to enforce the callback signature of a command
  */
 export interface Executor {
-  callback(ctx: Message, ref: Blueprint): void;
+  callback<T extends BaseConfig>(ctx: Message, ref: Blueprint<T>): void;
 }

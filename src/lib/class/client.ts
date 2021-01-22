@@ -14,16 +14,16 @@ export interface Internals<T> {
   database?: TypeORM;
 }
 
-export interface Registries {
+export interface Registries<T extends BaseConfig> {
   commands: CommandRegistry;
-  events: EventRegistry;
+  events: EventRegistry<T>;
   groups: GroupRegistry;
   data: {get: (key: string) => unknown};
 }
 
-export type Extension<T> = (
+export type Extension<T extends BaseConfig> = (
   core: Internals<T>,
-  registry: Registries,
+  registry: Registries<T>,
   data: DataRegistry
 ) => void;
 
@@ -35,7 +35,7 @@ export class Blueprint<T extends BaseConfig> {
   private readonly client: Client;
   private readonly logger?: Log4js;
   private readonly database?: TypeORM;
-  private readonly events: EventRegistry;
+  private readonly events: EventRegistry<T>;
   private readonly groups: GroupRegistry;
   private readonly commands: CommandRegistry;
   private readonly data: DataRegistry;
@@ -72,7 +72,7 @@ export class Blueprint<T extends BaseConfig> {
   /**
    * Returns the registries of the client
    */
-  get registry(): Registries {
+  get registry(): Registries<T> {
     return {
       events: this.events,
       commands: this.commands,
