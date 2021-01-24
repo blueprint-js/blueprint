@@ -7,7 +7,7 @@ import {CommandRegistry} from '../registry/commands';
 import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
 
-export interface Internals<T> {
+export interface Internals<T extends BaseConfig> {
   config: T;
   client: Client;
   logger?: Log4js;
