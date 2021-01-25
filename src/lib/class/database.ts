@@ -3,21 +3,22 @@ import {
   createConnection,
   ConnectionOptions,
   EntitySchema,
+  getConnectionOptions,
 } from 'typeorm';
 
 export class TypeORM {
   private conn!: Connection;
-  private readonly config: ConnectionOptions;
+  private readonly config?: ConnectionOptions;
   private readonly entities: Array<EntitySchema>;
 
   /**
    * Creates a new Database instance
    * @param config The connection options to use
    */
-  constructor(config: ConnectionOptions) {
-    this.disconnect.bind(this);
-    this.config = config;
+  constructor(config: ConnectionOptions | 'external') {
     this.entities = [];
+    this.disconnect.bind(this);
+    if (config !== 'external') this.config = config;
   }
 
   /**
@@ -61,7 +62,9 @@ export class TypeORM {
   async connect() {
     this.conn = await createConnection({
       entities: this.entities,
-      ...this.config,
+      ...(this.config !== undefined
+        ? this.config
+        : await getConnectionOptions()),
     });
   }
 
