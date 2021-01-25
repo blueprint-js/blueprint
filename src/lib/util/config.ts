@@ -17,7 +17,7 @@ export interface BaseConfig {
   bot: BotOptions;
   developers: Array<string>;
   logging?: LoggerOptions;
-  database?: ConnectionOptions;
+  database?: ConnectionOptions | 'external';
 }
 
 export interface ParserOptions {
