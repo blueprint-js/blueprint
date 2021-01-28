@@ -29,7 +29,7 @@ can be seen below with an explanation of each field, and why they are required.
 The `Executor` interface is used to enforce the `callback` method of command classes, all
 commands **must** have the `callback` method in order to be a valid command, and must loosely follow
 the signature `callback(ctx: Message, args: string[], ref: Blueprint): void` in order to be functional. However, the
-`ref` of the signature is optional, and not always needed, as well as the `callback` method can be async.
+the method can be async.
 
 ## Creating Commands
 

@@ -2,7 +2,7 @@
 
 ![logo](https://i.imgur.com/R88zxRw.png)
 
-A modern, powerful, experimental, and modular Discord bot framework 
+A modern, powerful, experimental, and modular Discord bot framework
 
 ## Installation
 
