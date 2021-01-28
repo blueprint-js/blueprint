@@ -1,0 +1,51 @@
+site_name: Blueprint
+site_url: https://xpyxel.github.io/blueprint
+copyright: Blueprint is licensed under the <a href="https://github.com/xpyxel/blueprint/blob/main/LICENSE">Mozilla Public License v2</a>.
+site_description: A modern, powerful, experimental, and modular Discord bot framework.
+
+theme:
+  name: material
+  favicon: img/favicon.png
+  palette:
+    primary: black
+    accent: light blue
+  font:
+    text: Noto Sans
+    code: Fira Mono
+  icon:
+    logo: fontawesome/solid/layer-group
+  features:
+    - navigation.instant
+extra_css:
+  - css/extra.css
+
+nav:
+  - Home: index.md
+  - Configuration:
+    - Discord: config/discord.md
+    - Logging: config/logging.md
+    - Database: config/database.md
+    - Extending: config/extensions.md
+    - Parsers: config/parsers.md
+  - Registry:
+    - Groups: registry/groups.md
+    - Events: registry/events.md
+    - Commands: registry/commands.md
+    - Data: registry/data.md
+  - Commands: commands.md
+  - Extensions: extensions.md
+  - Permissions: permissions.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - toc:
+      permalink: '#'
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/xpyxel/blueprint
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/BEV79hWmkA
