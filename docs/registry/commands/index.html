@@ -501,8 +501,9 @@ command classes on its own internally, making it easier on users.</p>
 
 <span class="nx">bot</span><span class="p">.</span><span class="nx">registry</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="nx">PingCommand</span><span class="p">);</span>
 </code></pre></div>
-<p>Like the other registries, you can remove or unregister a command by using the <code>unregister()</code> method</p>
-<div class="highlight"><pre><span></span><code><span class="nx">bot</span><span class="p">.</span><span class="nx">registry</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s1">&#39;ping&#39;</span><span class="p">);</span>
+<p>Like the other registries, you can remove or unregister a command by using the <code>unregister()</code> method using the
+<code>name</code> property you set using the <code>Command</code> decorator.</p>
+<div class="highlight"><pre><span></span><code><span class="nx">bot</span><span class="p">.</span><span class="nx">registry</span><span class="p">.</span><span class="nx">commands</span><span class="p">.</span><span class="nx">unregister</span><span class="p">(</span><span class="s1">&#39;ping&#39;</span><span class="p">);</span>
 </code></pre></div>
                 
               
