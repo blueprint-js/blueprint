@@ -23,5 +23,9 @@ export function Command(meta: CommandMeta) {
  * Interface used to enforce the callback signature of a command
  */
 export interface Executor {
-  callback<T extends BaseConfig>(ctx: Message, ref: Blueprint<T>): void;
+  callback<T extends BaseConfig>(
+    ctx: Message,
+    args: Array<string>,
+    ref: Blueprint<T>
+  ): void;
 }
