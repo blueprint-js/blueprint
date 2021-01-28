@@ -28,7 +28,7 @@ can be seen below with an explanation of each field, and why they are required.
 
 The `Executor` interface is used to enforce the `callback` method of command classes, all
 commands **must** have the `callback` method in order to be a valid command, and must loosely follow
-the signature `callback(ctx: Message, ref: Blueprint): void` in order to be functional. However, the
+the signature `callback(ctx: Message, args: string[], ref: Blueprint): void` in order to be functional. However, the
 `ref` of the signature is optional, and not always needed, as well as the `callback` method can be async.
 
 ## Creating Commands
@@ -45,7 +45,7 @@ and `groups` which is an array of group names, that you have defined using the [
   groups: ['user'],
 })
 export class PingCommand implements Executor {
-  async callback(ctx: Message, ref: Blueprint) {
+  async callback(ctx: Message, args: string[], ref: Blueprint) {
     const startTime = Date.now();
     const msg = await ctx.channel.createMessage('loading...');
     msg.edit('The current ping is `' + (Date.now() - startTime) + 'ms`');
