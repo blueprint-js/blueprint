@@ -5,6 +5,7 @@ site_description: A modern, powerful, experimental, and modular Discord bot fram
 
 theme:
   name: material
+  custom_dir: overrides
   favicon: img/favicon.png
   palette:
     primary: black
@@ -13,7 +14,7 @@ theme:
     text: Noto Sans
     code: Fira Mono
   icon:
-    logo: fontawesome/solid/layer-group
+    logo: blueprint/blueprint
   features:
     - navigation.instant
 extra_css:
