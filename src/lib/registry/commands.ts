@@ -36,13 +36,14 @@ export class CommandRegistry extends AutoRegistry<Command> {
     cmd: string,
     msg: Message,
     user: User | Member,
+    args: Array<string>,
     ref: Blueprint<T>
   ) {
     for (const {value} of this.items) {
       const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
       if (meta.aliases.includes(cmd) || meta.name === cmd) {
         if (ref.registry.groups.validate(user, meta.groups))
-          (new value() as Executor).callback(msg, ref);
+          (new value() as Executor).callback(msg, args, ref);
       }
     }
   }

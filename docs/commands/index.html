@@ -535,7 +535,7 @@ can be seen below with an explanation of each field, and why they are required.<
 <h2 id="executor-interface"><code>Executor</code> Interface<a class="headerlink" href="#executor-interface" title="Permanent link">#</a></h2>
 <p>The <code>Executor</code> interface is used to enforce the <code>callback</code> method of command classes, all
 commands <strong>must</strong> have the <code>callback</code> method in order to be a valid command, and must loosely follow
-the signature <code>callback(ctx: Message, ref: Blueprint): void</code> in order to be functional. However, the
+the signature <code>callback(ctx: Message, args: string[], ref: Blueprint): void</code> in order to be functional. However, the
 <code>ref</code> of the signature is optional, and not always needed, as well as the <code>callback</code> method can be async.</p>
 <h2 id="creating-commands">Creating Commands<a class="headerlink" href="#creating-commands" title="Permanent link">#</a></h2>
 <p>Commands are classes implementing the <code>Executor</code> interface, and decorated by the <code>Command</code>
@@ -548,7 +548,7 @@ and <code>groups</code> which is an array of group names, that you have defined 
   <span class="nx">groups</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">],</span>
 <span class="p">})</span>
 <span class="k">export</span> <span class="kd">class</span> <span class="nx">PingCommand</span> <span class="k">implements</span> <span class="nx">Executor</span> <span class="p">{</span>
-  <span class="k">async</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">ctx</span>: <span class="kt">Message</span><span class="p">,</span> <span class="nx">ref</span>: <span class="kt">Blueprint</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">async</span> <span class="nx">callback</span><span class="p">(</span><span class="nx">ctx</span>: <span class="kt">Message</span><span class="p">,</span> </span><span class="nx">args</span>: <span class="kt">string[]</span><span class="p">,</span> <span class="nx">ref</span>: <span class="kt">Blueprint</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">const</span> <span class="nx">startTime</span> <span class="o">=</span> <span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
     <span class="kd">const</span> <span class="nx">msg</span> <span class="o">=</span> <span class="k">await</span> <span class="nx">ctx</span><span class="p">.</span><span class="nx">channel</span><span class="p">.</span><span class="nx">createMessage</span><span class="p">(</span><span class="s1">&#39;loading...&#39;</span><span class="p">);</span>
     <span class="nx">msg</span><span class="p">.</span><span class="nx">edit</span><span class="p">(</span><span class="s1">&#39;The current ping is `&#39;</span> <span class="o">+</span> <span class="p">(</span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">()</span> <span class="o">-</span> <span class="nx">startTime</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;ms`&#39;</span><span class="p">);</span>

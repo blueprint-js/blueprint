@@ -17,13 +17,15 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
       if (v) (v.value as Callback)(this.ref, msg);
       if (msg.author.bot) return;
       if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
+      const [commandName, ...args] = msg.content
+        .slice(this.ref.core.config.bot.prefix.length)
+        .trim()
+        .split(/\s+/);
       this.ref.registry.commands.execute(
-        msg.content
-          .replace(this.ref.core.config.bot.prefix, '')
-          .split(' ')
-          .shift() as string,
+        commandName,
         msg,
         msg.member ?? msg.author,
+        args,
         this.ref
       );
     });
