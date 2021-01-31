@@ -26,6 +26,16 @@ export class CommandRegistry extends AutoRegistry<Command> {
   }
 
   /**
+   * Returns the metadata of a command
+   * @param name The name of the command
+   */
+  getMeta(name: string): CommandMeta {
+    const item = this.items.find(i => i.key === name);
+    if (item) return Reflect.getMetadata('meta', item.value);
+    else throw new Error(`Unable to find command with name '${name}'`);
+  }
+
+  /**
    * Executes a command if the user has permissions to
    * @param cmd The name of the command
    * @param msg The message context
