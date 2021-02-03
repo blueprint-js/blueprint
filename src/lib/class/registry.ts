@@ -1,11 +1,8 @@
-import {Hookable} from '../util/hook';
-
 type RegistryValue<T> = {key: string; value: T};
 
-export abstract class Registry<T> extends Hookable {
+export abstract class Registry<T> {
   protected items: Array<RegistryValue<T>>;
   constructor() {
-    super();
     this.items = [];
   }
   item(key: string): T | undefined {
@@ -15,10 +12,9 @@ export abstract class Registry<T> extends Hookable {
   abstract unregister(key: string): void;
 }
 
-export abstract class AutoRegistry<T> extends Hookable {
+export abstract class AutoRegistry<T> {
   protected items: Array<RegistryValue<T>>;
   constructor() {
-    super();
     this.items = [];
   }
   item(key: string): T | undefined {
