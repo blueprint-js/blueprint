@@ -70,6 +70,16 @@ export class GroupRegistry extends Registry<Group> {
   }
 
   /**
+   * Gets a specified groups details
+   * @param key The permission group name
+   */
+  get(key: string): Group | undefined {
+    const vk = this.items.find(v => v.key === key);
+    if (vk) return vk?.value;
+    else throw new Error(`No groups exist by the name of ${key}`);
+  }
+
+  /**
    * Validates if a user has the required groups
    * @param user The user to check groups of
    * @param cmdGroups The command's groups
