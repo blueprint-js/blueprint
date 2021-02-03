@@ -13,7 +13,9 @@ export class CommandRegistry extends AutoRegistry<Command> {
    */
   register(value: Command): void {
     const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-    this.items.push({key: meta.name, value});
+    const commandData = {key: meta.name, value};
+    this.executeHook(`Registering command with data ${commandData}`);
+    this.items.push(commandData);
   }
 
   /**
@@ -22,7 +24,10 @@ export class CommandRegistry extends AutoRegistry<Command> {
    */
   unregister(key: string): void {
     const vk = this.items.findIndex(v => v.key === key);
-    if (vk > 0) this.items.splice(vk, 1);
+    if (vk > 0) {
+      this.executeHook(`Unregistering command with name ${this.items[vk].key}`);
+      this.items.splice(vk, 1);
+    }
   }
 
   /**
