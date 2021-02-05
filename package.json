@@ -39,7 +39,6 @@
   "dependencies": {
     "eris": "^0.14.0",
     "log4js": "^6.3.0",
-    "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "^0.13.7",
     "typeorm": "^0.2.29"
   }
