@@ -47,7 +47,7 @@ export class CommandRegistry<T extends BaseConfig> extends AutoRegistry<
       if (value.meta.aliases.includes(cmd) || value.meta.name === cmd) {
         if (
           ref.registry.groups.validate(user, value.meta.groups) &&
-          value.meta.guards?.every(g => g(msg, ref) === false)
+          value.meta.guards?.every(g => g(msg, ref) === true)
         ) {
           value.callback(msg, args, ref);
         }
