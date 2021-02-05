@@ -9,23 +9,15 @@ export interface CommandMeta {
 }
 
 /**
- * Decorator used to define the properties of a command
- * @param meta The metadata to use for the command
- * @constructor
- */
-export function Command(meta: CommandMeta) {
-  return function (target: Function) {
-    Reflect.defineMetadata('meta', meta, target.prototype);
-  };
-}
-
-/**
  * Interface used to enforce the callback signature of a command
  */
-export interface Executor {
-  callback<T extends BaseConfig>(
-    ctx: Message,
-    args: Array<string>,
-    ref: Blueprint<T>
-  ): void;
+export abstract class Command<T extends BaseConfig> {
+  public readonly meta: CommandMeta;
+  constructor(
+    name: string,
+    meta: {aliases: Array<string>; groups: Array<string>}
+  ) {
+    this.meta = {name, ...meta};
+  }
+  abstract callback(ctx: Message, args: Array<string>, ref: Blueprint<T>): void;
 }
