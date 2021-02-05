@@ -7,14 +7,15 @@ export type HookCallback = (res: HookResponse) => void;
 
 export class Hookable {
   private hookCallback?: HookCallback;
-  constructor() {
-    this.hook.bind(this);
-    this.unhook.bind(this);
-    this.executeHook.bind(this);
+  protected executeHook(res: HookResponse) {
+    if (this.hookCallback) this.hookCallback(res);
   }
-  protected executeHook = (res: HookResponse) => this.hookCallback?.(res);
-  hook = (callback: HookCallback) => (this.hookCallback = callback);
-  unhook = () => (this.hookCallback = undefined);
+  hook(callback: HookCallback) {
+    this.hookCallback = callback;
+  }
+  unhook() {
+    this.hookCallback = undefined;
+  }
 }
 
 export const bindHooks = (hooks: Hookable[], callback: HookCallback) =>
