@@ -8,6 +8,14 @@ export {
   ClientOptions,
   ConnectionOptions,
 } from './lib/util/config';
+
+export {
+  bindHooks,
+  unbindHooks,
+  HookCallback,
+  HookResponse,
+} from './lib/util/hook';
+
 export {Blueprint, Extension, Internals, Registries} from './lib/class/client';
 export {Command, Executor, CommandMeta} from './lib/class/command';
 export {PermissionString} from './lib/util/permissions';
