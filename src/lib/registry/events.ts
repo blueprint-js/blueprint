@@ -42,6 +42,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
       this.ref.core.client.on(key, callback);
       this.items.push({key, value: callback});
     } else this.items.push({key, value: value as Callback});
+    this.executeHook({message: 'Register Event', data: {key, value}});
   };
 
   /**
@@ -64,5 +65,6 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
         this.items.findIndex(v => v.key),
         1
       );
+    this.executeHook({message: 'Unregister Event', data: {key}});
   }
 }

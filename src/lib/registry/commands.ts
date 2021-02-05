@@ -14,6 +14,7 @@ export class CommandRegistry extends AutoRegistry<Command> {
   register(value: Command): void {
     const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
     const commandData = {key: meta.name, value};
+    this.executeHook({message: 'Register Command', data: commandData});
     this.items.push(commandData);
   }
 
@@ -25,6 +26,7 @@ export class CommandRegistry extends AutoRegistry<Command> {
     const vk = this.items.findIndex(v => v.key === key);
     if (vk > 0) {
       this.items.splice(vk, 1);
+      this.executeHook({message: 'Unregister Command', data: {index: vk}});
     }
   }
 
@@ -34,8 +36,10 @@ export class CommandRegistry extends AutoRegistry<Command> {
    */
   meta(name: string): CommandMeta {
     const item = this.items.find(i => i.key === name);
-    if (item) return Reflect.getMetadata('meta', item.value.prototype);
-    else throw new Error(`Unable to find command with name '${name}'`);
+    if (item) {
+      this.executeHook({message: 'Command Meta', data: item});
+      return Reflect.getMetadata('meta', item.value.prototype);
+    } else throw new Error(`Unable to find command with name '${name}'`);
   }
 
   /**
@@ -57,6 +61,18 @@ export class CommandRegistry extends AutoRegistry<Command> {
       if (meta.aliases.includes(cmd) || meta.name === cmd) {
         if (ref.registry.groups.validate(user, meta.groups))
           (new value() as Executor).callback(msg, args, ref);
+        this.executeHook({
+          message: 'Execute Command',
+          data: {
+            validated: ref.registry.groups.validate(user, meta.groups),
+            meta,
+            cmd,
+            msg,
+            user,
+            args,
+            ref,
+          },
+        });
       }
     }
   }

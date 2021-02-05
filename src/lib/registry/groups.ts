@@ -35,6 +35,10 @@ export class GroupRegistry extends Registry<Group> {
         overrides: developers.map(id => ({type: 'user', id})),
       },
     });
+    this.executeHook({
+      message: 'Group Initialization',
+      data: developers.map(id => ({type: 'user', id})),
+    });
   }
 
   /**
@@ -57,6 +61,7 @@ export class GroupRegistry extends Registry<Group> {
       }
       delete value.inherits;
     }
+    this.executeHook({message: 'Register Group', data: {key, value}});
     this.items.push({key, value});
   }
 
@@ -66,7 +71,10 @@ export class GroupRegistry extends Registry<Group> {
    */
   unregister(key: string): void {
     const vk = this.items.findIndex(v => v.key === key);
-    if (vk > 0) this.items.splice(vk, 1);
+    if (vk > 0) {
+      this.items.splice(vk, 1);
+      this.executeHook({message: 'Unregister Group', data: {index: vk}});
+    }
   }
 
   /**
@@ -91,6 +99,16 @@ export class GroupRegistry extends Registry<Group> {
       )
         groups.push(key);
     }
+    this.executeHook({
+      message: 'Validate User',
+      data: {
+        user,
+        userType: typeof user,
+        cmdGroups,
+        userPermissions,
+        groups,
+      },
+    });
     return cmdGroups.some(g => groups.includes(g));
   }
 }
