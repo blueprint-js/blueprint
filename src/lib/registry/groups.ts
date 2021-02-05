@@ -59,7 +59,6 @@ export class GroupRegistry extends Registry<Group> {
             value.overrides = value.overrides.concat(g.overrides);
         } else value.overrides = g.overrides;
       }
-      delete value.inherits;
     }
     this.executeHook({message: 'Register Group', data: {key, value}});
     this.items.push({key, value});
