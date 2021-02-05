@@ -15,7 +15,7 @@ export interface Internals<T extends BaseConfig> {
 }
 
 export interface Registries<T extends BaseConfig> {
-  commands: CommandRegistry;
+  commands: CommandRegistry<T>;
   events: EventRegistry<T>;
   groups: GroupRegistry;
   data: {get: (key: string) => unknown};
@@ -37,7 +37,7 @@ export class Blueprint<T extends BaseConfig> {
   private readonly database?: TypeORM;
   private readonly events: EventRegistry<T>;
   private readonly groups: GroupRegistry;
-  private readonly commands: CommandRegistry;
+  private readonly commands: CommandRegistry<T>;
   private readonly data: DataRegistry;
 
   /**
