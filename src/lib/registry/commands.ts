@@ -45,12 +45,9 @@ export class CommandRegistry<T extends BaseConfig> extends AutoRegistry<
   ) {
     for (const {value} of this.items) {
       if (value.meta.aliases.includes(cmd) || value.meta.name === cmd) {
-        if (
-          ref.registry.groups.validate(user, value.meta.groups) &&
-          value.meta.guards?.every(g => g(msg, ref) === true)
-        ) {
-          value.callback(msg, args, ref);
-        }
+        if (ref.registry.groups.validate(user, value.meta.groups))
+          if (value.meta.guards?.every(g => g(msg, ref) === true) ?? true)
+            value.callback(msg, args, ref);
         this.executeHook({
           message: 'Execute Command',
           data: {
