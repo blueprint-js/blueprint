@@ -18,8 +18,15 @@ export class Hookable {
   }
 }
 
-export const bindHooks = (hooks: Hookable[], callback: HookCallback) =>
-  hooks.forEach(h => h.hook(callback));
-
-export const unbindHooks = (hooks: Hookable[]) =>
-  hooks.forEach(h => h.unhook());
+export class Hook {
+  private callback: HookCallback;
+  constructor(callback: HookCallback) {
+    this.callback = callback;
+  }
+  bind(...hooks: Hookable[]) {
+    hooks.forEach(h => h.hook(this.callback));
+  }
+  unbind(...hooks: Hookable[]) {
+    hooks.forEach(h => h.unhook());
+  }
+}

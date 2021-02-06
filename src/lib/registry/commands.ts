@@ -1,19 +1,18 @@
 import {Member, Message, User} from 'eris';
 import {AutoRegistry} from '../class/registry';
-import {CommandMeta, Executor} from '../class/command';
+import {Command} from '../class/command';
 import {Blueprint} from '../class/client';
 import {BaseConfig} from '../util/config';
 
-type Command = {new (...args: Array<unknown>): unknown};
-
-export class CommandRegistry extends AutoRegistry<Command> {
+export class CommandRegistry<T extends BaseConfig> extends AutoRegistry<
+  Command<T>
+> {
   /**
    * Registers a new command
    * @param value The command class to register
    */
-  register(value: Command): void {
-    const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-    const commandData = {key: meta.name, value};
+  register(value: Command<T>): void {
+    const commandData = {key: value.meta.name, value};
     this.executeHook({message: 'Register Command', data: commandData});
     this.items.push(commandData);
   }
@@ -31,25 +30,13 @@ export class CommandRegistry extends AutoRegistry<Command> {
   }
 
   /**
-   * Returns the metadata of a command
-   * @param name The name of the command
-   */
-  meta(name: string): CommandMeta {
-    const item = this.items.find(i => i.key === name);
-    if (item) {
-      this.executeHook({message: 'Command Meta', data: item});
-      return Reflect.getMetadata('meta', item.value.prototype);
-    } else throw new Error(`Unable to find command with name '${name}'`);
-  }
-
-  /**
    * Executes a command if the user has permissions to
    * @param cmd The name of the command
    * @param msg The message context
    * @param user The user to check groups of
    * @param ref The blueprint instance
    */
-  execute<T extends BaseConfig>(
+  execute(
     cmd: string,
     msg: Message,
     user: User | Member,
@@ -57,15 +44,18 @@ export class CommandRegistry extends AutoRegistry<Command> {
     ref: Blueprint<T>
   ) {
     for (const {value} of this.items) {
-      const meta = Reflect.getMetadata('meta', value.prototype) as CommandMeta;
-      if (meta.aliases.includes(cmd) || meta.name === cmd) {
-        if (ref.registry.groups.validate(user, meta.groups))
-          (new value() as Executor).callback(msg, args, ref);
+      if (value.meta.aliases.includes(cmd) || value.meta.name === cmd) {
+        if (
+          ref.registry.groups.validate(user, value.meta.groups) &&
+          value.meta.guards?.every(g => g(msg, ref) === true)
+        ) {
+          value.callback(msg, args, ref);
+        }
         this.executeHook({
           message: 'Execute Command',
           data: {
-            validated: ref.registry.groups.validate(user, meta.groups),
-            meta,
+            validated: ref.registry.groups.validate(user, value.meta.groups),
+            meta: value.meta,
             cmd,
             msg,
             user,
