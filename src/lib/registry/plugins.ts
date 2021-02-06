@@ -43,11 +43,7 @@ export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
     args: Array<string>,
     ref: Blueprint<T>
   ) {
-    for (const {value} of this.items) {
-      if (value.has(cmd)) {
-        value.execute(cmd, msg, user, args, ref);
-        break;
-      }
-    }
+    const plugin = this.items.find(p => p.value.has(cmd));
+    if (plugin) plugin.value.execute(cmd, msg, user, args, ref);
   }
 }
