@@ -10,11 +10,6 @@ export interface BotOptions {
   options?: ClientOptions;
 }
 
-export interface GroupOptions {
-  advanced: boolean;
-  levels?: Array<{id: string; level: number}>;
-}
-
 /**
  * The type interface for the bot configuration
  */
@@ -23,7 +18,6 @@ export interface BaseConfig {
   developers: Array<string>;
   logging?: LoggerOptions;
   database?: ConnectionOptions | 'external';
-  groups?: GroupOptions;
 }
 
 export interface ParserOptions {
