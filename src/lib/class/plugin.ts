@@ -53,27 +53,29 @@ export class Plugin<T extends BaseConfig> extends AutoRegistry<Command<T>> {
     args: Array<string>,
     ref: Blueprint<T>
   ) {
-    for (const {value} of this.items) {
-      if (
-        (value.meta.aliases.includes(cmd) || value.meta.name === cmd) &&
-        ref.registry.groups.validate(user, value.meta.groups) &&
-        (value.meta.guards?.every(g => g(msg, ref) === true) ?? true)
-      ) {
-        value.callback(msg, args, ref);
-        this.executeHook({
-          message: 'Execute Command',
-          data: {
-            validated: ref.registry.groups.validate(user, value.meta.groups),
-            meta: value.meta,
-            cmd,
-            msg,
-            user,
-            args,
-            ref,
-          },
-        });
-      }
-    }
+    const command = this.items.find(
+      c => c.value.meta.aliases.includes(cmd) || c.value.meta.name === cmd
+    );
+    if (!command) return;
+    if (!ref.registry.groups.validate(user, command.value.meta.groups)) return;
+    if (!(command.value.meta.guards?.every(g => g(msg, ref) === true) ?? true))
+      return;
+    command.value.callback(msg, args, ref);
+    this.executeHook({
+      message: 'Execute Command',
+      data: {
+        validated: ref.registry.groups.validate(
+          user,
+          command.value.meta.groups
+        ),
+        meta: command.value.meta,
+        cmd,
+        msg,
+        user,
+        args,
+        ref,
+      },
+    });
   }
 
   /**
