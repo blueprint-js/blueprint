@@ -21,7 +21,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
         .slice(this.ref.core.config.bot.prefix.length)
         .trim()
         .split(/\s+/);
-      this.ref.registry.commands.execute(
+      this.ref.registry.plugins.execute(
         commandName,
         msg,
         msg.member ?? msg.author,
