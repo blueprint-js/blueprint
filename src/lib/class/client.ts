@@ -3,7 +3,7 @@ import {configure, Log4js} from 'log4js';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {BaseConfig, loadConfig, ParserOptions} from '../util/config';
-import {CommandRegistry} from '../registry/commands';
+import {PluginRegistry} from '../registry/plugins';
 import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
 
@@ -15,7 +15,7 @@ export interface Internals<T extends BaseConfig> {
 }
 
 export interface Registries<T extends BaseConfig> {
-  commands: CommandRegistry<T>;
+  plugins: PluginRegistry<T>;
   events: EventRegistry<T>;
   groups: GroupRegistry;
   data: {get: (key: string) => unknown};
@@ -37,7 +37,7 @@ export class Blueprint<T extends BaseConfig> {
   private readonly database?: TypeORM;
   private readonly events: EventRegistry<T>;
   private readonly groups: GroupRegistry;
-  private readonly commands: CommandRegistry<T>;
+  private readonly plugins: PluginRegistry<T>;
   private readonly data: DataRegistry;
 
   /**
@@ -52,7 +52,7 @@ export class Blueprint<T extends BaseConfig> {
     if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
-    this.commands = new CommandRegistry();
+    this.plugins = new PluginRegistry();
     this.events = new EventRegistry(this);
     this.data = new DataRegistry();
   }
@@ -75,7 +75,7 @@ export class Blueprint<T extends BaseConfig> {
   get registry(): Registries<T> {
     return {
       events: this.events,
-      commands: this.commands,
+      plugins: this.plugins,
       groups: this.groups,
       data: {get: key => this.data.item(key)},
     };
