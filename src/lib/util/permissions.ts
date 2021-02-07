@@ -79,7 +79,7 @@ const erisPermissionMap = {
   'invite.create': Permissions.createInstantInvite,
   'members.kick': Permissions.kickMembers,
   'members.ban': Permissions.banMembers,
-  'guild.administrator': Permissions.banMembers,
+  'guild.administrator': Permissions.administrator,
   'channels.manage': Permissions.manageChannels,
   'reactions.add': Permissions.addReactions,
   'auditlogs.view': Permissions.viewAuditLogs,
