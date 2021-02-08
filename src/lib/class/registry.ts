@@ -11,6 +11,9 @@ export abstract class Registry<T> extends Hookable {
   item(key: string): T | undefined {
     return this.items.find(v => v.key === key)?.value;
   }
+  all(): Array<RegistryValue<T>> {
+    return this.items;
+  }
   abstract register(key: string, value: T): void;
   abstract unregister(key: string): void;
 }
@@ -23,6 +26,9 @@ export abstract class AutoRegistry<T> extends Hookable {
   }
   item(key: string): T | undefined {
     return this.items.find(v => v.key === key)?.value;
+  }
+  all(): Array<RegistryValue<T>> {
+    return this.items;
   }
   abstract register(value: T): void;
   abstract unregister(key: string): void;

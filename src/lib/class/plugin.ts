@@ -77,19 +77,4 @@ export class Plugin<T extends BaseConfig> extends AutoRegistry<Command<T>> {
       },
     });
   }
-
-  /**
-   * Check if a command exists
-   * @param name The name of the command
-   */
-  has(name: string): boolean {
-    if (
-      this.items.find(
-        ({value}) =>
-          value.meta.name === name || value.meta.aliases.includes(name)
-      )
-    ) {
-      return true;
-    } else return false;
-  }
 }

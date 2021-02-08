@@ -4,6 +4,16 @@ import {BaseConfig} from '../util/config';
 import {Message, User, Member} from 'eris';
 import {Blueprint} from '../class/client';
 
+function hasCommand<T extends BaseConfig>(
+  name: string,
+  plugin: Plugin<T>
+): boolean {
+  const cmds = plugin.all();
+  if (cmds.find(c => c.key === name || c.value.meta.aliases.includes(name)))
+    return true;
+  else return false;
+}
+
 export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
   Plugin<T>
 > {
@@ -43,7 +53,7 @@ export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
     args: Array<string>,
     ref: Blueprint<T>
   ) {
-    const plugin = this.items.find(p => p.value.has(cmd));
+    const plugin = this.items.find(({value}) => hasCommand(cmd, value));
     if (plugin) plugin.value.execute(cmd, msg, user, args, ref);
   }
 }
