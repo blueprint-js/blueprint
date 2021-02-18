@@ -13,6 +13,11 @@ export class Plugin<T extends BaseConfig> {
   public readonly meta: PluginMeta<T>;
   constructor(meta: PluginMeta<T>) {
     this.meta = meta;
+    if (meta.groups) {
+      this.meta.commands.forEach(
+        c => (c.meta.groups = c.meta.groups.concat(meta.groups as string[]))
+      );
+    }
   }
 
   /**
