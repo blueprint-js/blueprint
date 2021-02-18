@@ -24,7 +24,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
       const v = this.items.find(v => v.key === 'messageCreate');
       if (v) (v.value as Callback)(this.ref, msg);
       if (msg.author.bot) return;
-      if (opts?.prefix?.enabled) {
+      if (opts?.prefix?.enabled && msg.member) {
         const cached = this.prefixCache.find(p => p.guild === msg.guildID);
         if (!cached && opts?.prefix?.load) {
           prefix = opts?.prefix?.load?.({message: msg, ref});
