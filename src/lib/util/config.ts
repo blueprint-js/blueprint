@@ -21,8 +21,7 @@ export interface BaseConfig {
 }
 
 export interface InstanceOptions {
-  parser?: Function;
-  encoding?: BufferEncoding;
+  config?: {parser?: Function; encoding?: BufferEncoding};
 }
 
 /**
@@ -34,6 +33,8 @@ export function loadConfig<T extends BaseConfig>(
   path: string,
   options?: InstanceOptions
 ): T {
-  const data = readFileSync(path, {encoding: options?.encoding ?? 'utf-8'});
-  return options?.parser?.(data) ?? JSON.parse(data);
+  const data = readFileSync(path, {
+    encoding: options?.config?.encoding ?? 'utf-8',
+  });
+  return options?.config?.parser?.(data) ?? JSON.parse(data);
 }
