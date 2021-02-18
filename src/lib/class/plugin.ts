@@ -58,8 +58,14 @@ export class Plugin<T extends BaseConfig> extends AutoRegistry<Command<T>> {
     );
     if (!command) return;
     if (!ref.registry.groups.validate(user, command.value.meta.groups)) return;
-    if (!(command.value.meta.guards?.every(g => g(msg, ref) === true) ?? true))
-      return;
+    const guards = command.value.meta.guards;
+    if (guards && guards.length > 0) {
+      const results = guards.map(g => g(msg, ref));
+      if (!results.every(r => r.passed === true)) {
+        command.value.meta.fail?.(results);
+        return;
+      }
+    }
     command.value.callback(msg, args, ref);
     this.executeHook({
       message: 'Execute Command',
