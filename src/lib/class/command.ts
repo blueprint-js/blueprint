@@ -15,10 +15,15 @@ interface PartialMeta<T extends BaseConfig> {
   guards?: Array<Guard<T>>;
 }
 
+export interface GuardResult {
+  passed: boolean;
+  message?: string;
+}
+
 export type Guard<T extends BaseConfig> = (
   ctx: Message,
   ref: Blueprint<T>
-) => boolean;
+) => GuardResult;
 
 /**
  * Interface used to enforce the callback signature of a command
