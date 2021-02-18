@@ -1,24 +1,28 @@
 import {Registry} from '../class/registry';
 import {Blueprint} from '../class/client';
 import {ClientEvents} from '../util/types';
-import {BaseConfig} from '../util/config';
+import {BaseConfig, InstanceOptions} from '../util/config';
 
 type Callback = (...args: Array<unknown>) => void;
 
 export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
   private readonly ref: Blueprint<T>;
+  private readonly cp?: string;
 
-  constructor(ref: Blueprint<T>) {
+  constructor(ref: Blueprint<T>, opts?: InstanceOptions<T>) {
     super();
     this.ref = ref;
     this.register.bind(this);
     this.ref.core.client.on('messageCreate', msg => {
+      let prefix = this.ref.core.config.bot.prefix;
       const v = this.items.find(v => v.key === 'messageCreate');
       if (v) (v.value as Callback)(this.ref, msg);
       if (msg.author.bot) return;
-      if (!msg.content.startsWith(this.ref.core.config.bot.prefix)) return;
+      if (opts?.prefix?.enabled)
+        prefix = opts?.prefix?.load?.({message: msg, ref}) ?? prefix;
+      if (!msg.content.startsWith(prefix)) return;
       const [commandName, ...args] = msg.content
-        .slice(this.ref.core.config.bot.prefix.length)
+        .slice(prefix.length)
         .trim()
         .split(/\s+/);
       this.ref.registry.plugins.execute(

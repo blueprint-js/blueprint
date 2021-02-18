@@ -27,7 +27,7 @@ export interface PrefixContext<T extends BaseConfig> {
 }
 
 export interface InstanceOptions<T extends BaseConfig> {
-  customPrefix?: {enabled: boolean; load?: (ctx: PrefixContext<T>) => string};
+  prefix?: {enabled: boolean; load?: (ctx: PrefixContext<T>) => string};
   config?: {parser?: Function; encoding?: BufferEncoding};
 }
 
