@@ -20,7 +20,7 @@ export interface BaseConfig {
   database?: ConnectionOptions | 'external';
 }
 
-export interface ParserOptions {
+export interface InstanceOptions {
   parser?: Function;
   encoding?: BufferEncoding;
 }
@@ -32,7 +32,7 @@ export interface ParserOptions {
  */
 export function loadConfig<T extends BaseConfig>(
   path: string,
-  options?: ParserOptions
+  options?: InstanceOptions
 ): T {
   const data = readFileSync(path, {encoding: options?.encoding ?? 'utf-8'});
   return options?.parser?.(data) ?? JSON.parse(data);

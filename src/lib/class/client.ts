@@ -2,7 +2,7 @@ import {Client} from 'eris';
 import {configure, Log4js} from 'log4js';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
-import {BaseConfig, loadConfig, ParserOptions} from '../util/config';
+import {BaseConfig, loadConfig, InstanceOptions} from '../util/config';
 import {PluginRegistry} from '../registry/plugins';
 import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
@@ -45,7 +45,7 @@ export class Blueprint<T extends BaseConfig> {
    * @param config A path to a Blueprint configuration file
    * @param options Optional parser configuration
    */
-  constructor(config: string, options?: ParserOptions) {
+  constructor(config: string, options?: InstanceOptions) {
     this.inject.bind(this);
     this.config = loadConfig<T>(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
