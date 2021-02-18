@@ -7,12 +7,14 @@ export interface CommandMeta<T extends BaseConfig> {
   aliases: Array<string>;
   groups: Array<string>;
   guards?: Array<Guard<T>>;
+  fail?: (results: GuardResult[]) => void;
 }
 
 interface PartialMeta<T extends BaseConfig> {
   aliases: Array<string>;
   groups: Array<string>;
   guards?: Array<Guard<T>>;
+  fail?: (results: GuardResult[]) => void;
 }
 
 export interface GuardResult {
