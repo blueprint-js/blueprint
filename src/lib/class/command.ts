@@ -1,6 +1,7 @@
 import {Message} from 'eris';
 import {Blueprint} from '../class/client';
 import {BaseConfig} from '../util/config';
+import {Guard, FailCallback} from './guard';
 
 export interface CommandMeta<T extends BaseConfig> {
   name: string;
@@ -22,21 +23,6 @@ export interface CommandContext<T extends BaseConfig> {
   args: Array<string>;
   ref: Blueprint<T>;
 }
-
-export interface GuardResult {
-  passed: boolean;
-  message?: string;
-}
-
-export type FailCallback<T extends BaseConfig> = (
-  results: GuardResult[],
-  ctx: {msg: Message; ref: Blueprint<T>}
-) => void;
-
-export type Guard<T extends BaseConfig> = (
-  ctx: Message,
-  ref: Blueprint<T>
-) => GuardResult;
 
 /**
  * Interface used to enforce the callback signature of a command
