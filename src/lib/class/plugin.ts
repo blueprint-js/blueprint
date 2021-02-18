@@ -62,7 +62,7 @@ export class Plugin<T extends BaseConfig> extends AutoRegistry<Command<T>> {
     if (guards && guards.length > 0) {
       const results = guards.map(g => g(msg, ref));
       if (!results.every(r => r.passed === true)) {
-        command.value.meta.fail?.(results);
+        command.value.meta.fail?.(results, {msg, ref});
         return;
       }
     }

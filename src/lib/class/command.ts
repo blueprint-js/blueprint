@@ -7,20 +7,25 @@ export interface CommandMeta<T extends BaseConfig> {
   aliases: Array<string>;
   groups: Array<string>;
   guards?: Array<Guard<T>>;
-  fail?: (results: GuardResult[]) => void;
+  fail?: FailCallback<T>;
 }
 
 interface PartialMeta<T extends BaseConfig> {
   aliases: Array<string>;
   groups: Array<string>;
   guards?: Array<Guard<T>>;
-  fail?: (results: GuardResult[]) => void;
+  fail?: FailCallback<T>;
 }
 
 export interface GuardResult {
   passed: boolean;
   message?: string;
 }
+
+export type FailCallback<T extends BaseConfig> = (
+  results: GuardResult[],
+  ctx: {msg: Message; ref: Blueprint<T>}
+) => void;
 
 export type Guard<T extends BaseConfig> = (
   ctx: Message,
