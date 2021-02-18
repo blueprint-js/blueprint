@@ -4,6 +4,8 @@ export {
   LoggerOptions,
   ClientOptions,
   ConnectionOptions,
+  PrefixContext,
+  InstanceOptions,
 } from './lib/util/config';
 
 export {Hook, HookCallback, HookResponse} from './lib/util/hook';
