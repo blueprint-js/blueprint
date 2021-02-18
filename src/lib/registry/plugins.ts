@@ -8,10 +8,11 @@ function hasCommand<T extends BaseConfig>(
   name: string,
   plugin: Plugin<T>
 ): boolean {
-  const cmds = plugin.all();
-  if (cmds.find(c => c.key === name || c.value.meta.aliases.includes(name)))
-    return true;
-  else return false;
+  return (
+    plugin.meta.commands.findIndex(
+      ({meta}) => meta.name === name || meta.aliases.includes(name)
+    ) >= 0
+  );
 }
 
 export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<

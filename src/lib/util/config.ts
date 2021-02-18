@@ -1,7 +1,8 @@
 import {readFileSync} from 'fs';
-import {ClientOptions} from 'eris';
+import {ClientOptions, Message} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
 import {ConnectionOptions} from 'typeorm';
+import {Blueprint} from '../class/client';
 export {LoggerOptions, ConnectionOptions, ClientOptions};
 
 export interface BotOptions {
@@ -20,9 +21,14 @@ export interface BaseConfig {
   database?: ConnectionOptions | 'external';
 }
 
-export interface ParserOptions {
-  parser?: Function;
-  encoding?: BufferEncoding;
+export interface PrefixContext<T extends BaseConfig> {
+  message: Message;
+  ref: Blueprint<T>;
+}
+
+export interface InstanceOptions<T extends BaseConfig> {
+  prefix?: {enabled: boolean; load?: (ctx: PrefixContext<T>) => string};
+  config?: {parser?: Function; encoding?: BufferEncoding};
 }
 
 /**
@@ -32,8 +38,10 @@ export interface ParserOptions {
  */
 export function loadConfig<T extends BaseConfig>(
   path: string,
-  options?: ParserOptions
+  options?: InstanceOptions<T>
 ): T {
-  const data = readFileSync(path, {encoding: options?.encoding ?? 'utf-8'});
-  return options?.parser?.(data) ?? JSON.parse(data);
+  const data = readFileSync(path, {
+    encoding: options?.config?.encoding ?? 'utf-8',
+  });
+  return options?.config?.parser?.(data) ?? JSON.parse(data);
 }
