@@ -17,6 +17,12 @@ interface PartialMeta<T extends BaseConfig> {
   fail?: FailCallback<T>;
 }
 
+export interface CommandContext<T extends BaseConfig> {
+  message: Message;
+  args: Array<string>;
+  ref: Blueprint<T>;
+}
+
 export interface GuardResult {
   passed: boolean;
   message?: string;
@@ -40,5 +46,5 @@ export abstract class Command<T extends BaseConfig> {
   constructor(name: string, meta: PartialMeta<T>) {
     this.meta = {name, ...meta};
   }
-  abstract callback(ctx: Message, args: Array<string>, ref: Blueprint<T>): void;
+  abstract callback(ctx: CommandContext<T>): void;
 }

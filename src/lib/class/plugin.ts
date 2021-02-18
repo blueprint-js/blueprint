@@ -66,7 +66,7 @@ export class Plugin<T extends BaseConfig> extends AutoRegistry<Command<T>> {
         return;
       }
     }
-    command.value.callback(msg, args, ref);
+    command.value.callback({message: msg, args, ref});
     this.executeHook({
       message: 'Execute Command',
       data: {
