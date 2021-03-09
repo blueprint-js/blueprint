@@ -20,7 +20,7 @@ export class DataRegistry extends Registry<unknown> {
     const index = this.items.findIndex(v => v.key === key);
     if (index >= 0) {
       this.items.splice(index, 1);
-      this.executeHook({message: 'Unregiste Data', data: {index}});
+      this.executeHook({message: 'Unregister Data', data: {index}});
     } else throw new Error('Can not delete an undefined item');
   }
 }
