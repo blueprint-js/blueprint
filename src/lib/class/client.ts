@@ -4,14 +4,12 @@ import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
 import {BaseConfig, loadConfig, InstanceOptions} from '../util/config';
 import {PluginRegistry} from '../registry/plugins';
-import {TypeORM} from '../class/database';
 import {DataRegistry} from '../registry/data';
 
 export interface Internals<T extends BaseConfig> {
   config: T;
   client: Client;
   logger?: Log4js;
-  database?: TypeORM;
 }
 
 export interface Registries<T extends BaseConfig> {
@@ -34,7 +32,6 @@ export class Blueprint<T extends BaseConfig> {
   private readonly config: T;
   private readonly client: Client;
   private readonly logger?: Log4js;
-  private readonly database?: TypeORM;
   private readonly events: EventRegistry<T>;
   private readonly groups: GroupRegistry;
   private readonly plugins: PluginRegistry<T>;
@@ -49,7 +46,6 @@ export class Blueprint<T extends BaseConfig> {
     this.inject.bind(this);
     this.config = loadConfig<T>(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
-    if (this.config.database) this.database = new TypeORM(this.config.database);
     this.client = new Client(this.config.bot.token, this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
     this.events = new EventRegistry(this, options);
@@ -65,7 +61,6 @@ export class Blueprint<T extends BaseConfig> {
       config: this.config,
       client: this.client,
       logger: this.logger,
-      database: this.database,
     };
   }
 
@@ -91,15 +86,13 @@ export class Blueprint<T extends BaseConfig> {
    * Initializes everything and connects to Discord
    */
   async start() {
-    await this.database?.connect();
     await this.client.connect();
   }
 
   /**
-   * Destroy the database and Discord connections
+   * Destroy the Discord connections
    */
   async destroy() {
-    await this.database?.disconnect();
     this.client.disconnect({reconnect: false});
   }
 }

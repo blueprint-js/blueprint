@@ -1,16 +1,13 @@
 import {readFileSync} from 'fs';
 import {ClientOptions, Message} from 'eris';
 import {Configuration as LoggerOptions} from 'log4js';
-import {ConnectionOptions} from 'typeorm';
 import {Blueprint} from '../class/client';
-export {LoggerOptions, ConnectionOptions, ClientOptions};
 
 export interface BotOptions {
   token: string;
   prefix: string;
   options?: ClientOptions;
 }
-
 /**
  * The type interface for the bot configuration
  */
@@ -18,7 +15,6 @@ export interface BaseConfig {
   bot: BotOptions;
   developers: Array<string>;
   logging?: LoggerOptions;
-  database?: ConnectionOptions | 'external';
 }
 
 export interface PrefixContext<T extends BaseConfig> {
