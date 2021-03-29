@@ -19,23 +19,27 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
     this.ref = ref;
     this.prefixCache = [];
     this.register.bind(this);
-    this.ref.core.client.on('messageCreate', msg => {
+    this.ref.core.client.on('message', msg => {
       let prefix = this.ref.core.config.bot.prefix;
-      const v = this.items.find(v => v.key === 'messageCreate');
+      const v = this.items.find(v => v.key === 'message');
       if (v) (v.value as Callback)(this.ref, msg);
       if (msg.author.bot) return;
+      if (!msg.guild) return;
+
       if (opts?.prefix?.enabled && msg.member) {
-        const cached = this.prefixCache.find(p => p.guild === msg.guildID);
+        const cached = this.prefixCache.find(p => p.guild === msg.guild!.id);
         if (!cached && opts?.prefix?.load) {
           prefix = opts?.prefix?.load?.({message: msg, ref});
-          this.prefixCache.push({guild: msg.guildID as string, prefix});
+          this.prefixCache.push({guild: msg.guild!.id as string, prefix});
         } else prefix = cached?.prefix ?? prefix;
       }
+
       if (!msg.content.startsWith(prefix)) return;
       const [commandName, ...args] = msg.content
         .slice(prefix.length)
         .trim()
         .split(/\s+/);
+
       this.ref.registry.plugins.execute(
         commandName,
         msg,
@@ -53,7 +57,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
    */
   register: ClientEvents<void, T> = (key: string, value: Function) => {
     const callback = (...args: Array<unknown>) => value(this.ref, ...args);
-    if (key !== 'messageCreate') {
+    if (key !== 'message') {
       this.ref.core.client.on(key, callback);
       this.items.push({key, value: callback});
     } else this.items.push({key, value: value as Callback});
@@ -66,7 +70,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
    */
   unregister(key: string): void {
     if (!this.items.find(v => v.key === key)) return;
-    if (key !== 'messageCreate') {
+    if (key !== 'message') {
       this.ref.core.client.off(
         key,
         this.items.find(v => v.key === key)?.value as Callback

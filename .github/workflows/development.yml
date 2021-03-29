@@ -1,4 +1,4 @@
-name: Node
+name: Node (Development)
 
 on:
   push:
@@ -15,18 +15,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 15.x
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.15
-      - name: Use pnpm storage cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store/v3
-          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+        run: yarn
       - name: Lint Source Files
-        run: npm run lint
+        run: yarn lint
   publish:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
@@ -37,16 +29,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 15.x
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.15
-      - name: Use pnpm storage cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.pnpm-store/v3
-          key: pnpm-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install Dependencies
-        run: pnpm i --frozen-lockfile
+        run: yarn
       - id: npmver
         name: NPM SemVer
         uses: odinr/action-npm-semver@v1

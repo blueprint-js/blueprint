@@ -1,4 +1,4 @@
-import {Message} from 'eris';
+import {Message} from 'discord.js-light';
 import {BaseConfig} from '../util/config';
 import {Blueprint} from './client';
 

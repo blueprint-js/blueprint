@@ -1,5 +1,5 @@
 import {readFileSync} from 'fs';
-import {ClientOptions, Message} from 'eris';
+import {ClientOptions, Message} from 'discord.js-light';
 import {Configuration as LoggerOptions} from 'log4js';
 import {Blueprint} from '../class/client';
 

@@ -1,6 +1,6 @@
 import {mapPermission, PermissionString} from '../util/permissions';
 import {Registry} from '../class/registry';
-import {Member, User} from 'eris';
+import {GuildMember, User} from 'discord.js-light';
 
 export interface Override {
   type: 'user' | 'role';
@@ -14,14 +14,14 @@ export interface Group {
 }
 
 function hasOverrides(
-  user: Member,
+  user: GuildMember,
   overrides: Array<Override> | undefined
 ): boolean {
   if (!overrides) return false;
   if (overrides.find(o => o.type === 'user' && o.id === user.id)) return true;
   else
     return !!overrides.find(
-      o => o.type === 'role' && user.roles.includes(o.id)
+      o => o.type === 'role' && user.roles.cache.has(o.id)
     );
 }
 
@@ -81,10 +81,12 @@ export class GroupRegistry extends Registry<Group> {
    * @param user The user to check groups of
    * @param cmdGroups The command's groups
    */
-  validate(user: User | Member, cmdGroups: Array<string>): boolean {
+  validate(user: User | GuildMember, cmdGroups: Array<string>): boolean {
     const groups: Array<string> = [];
     if (user instanceof User) return false;
-    const userPermissions = Object.entries((user as Member).permissions.json)
+    const userPermissions = Object.entries(
+      (user as GuildMember).permissions.serialize()
+    )
       .filter(p => p[1])
       .map(p => mapPermission(p[0]));
     for (const {

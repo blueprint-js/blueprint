@@ -1,6 +1,6 @@
 import {Command} from './command';
 import {BaseConfig} from '../util/config';
-import {Message, User, Member} from 'eris';
+import {Message, User, GuildMember} from 'discord.js-light';
 import {Blueprint} from './client';
 
 export interface PluginMeta<T extends BaseConfig> {
@@ -30,7 +30,7 @@ export class Plugin<T extends BaseConfig> {
   execute(
     cmd: string,
     msg: Message,
-    user: User | Member,
+    user: User | GuildMember,
     args: Array<string>,
     ref: Blueprint<T>
   ) {
