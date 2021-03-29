@@ -8,11 +8,19 @@ A modern, powerful, and modular Discord bot framework.
 
 ## Installation
 
-As of version 1.2.0 you can install blueprint using the NPM package registry:
+You can install any version after `4.0.0` using the below command:
+
+```bash
+npm i blueprint-framework
+```
+
+If you want to install a version below `4.0.0`, please install using the legacy repository:
 
 ```bash
 npm i @dxz/blueprint
 ```
+
+> Please note that any version **below** 4.0.0 will **not** recieve any security updates or bug fixes.
 
 ## Official Support
 
