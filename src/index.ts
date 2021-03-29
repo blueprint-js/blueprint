@@ -13,5 +13,4 @@ export {PermissionString} from './lib/util/permissions';
 export {Group, Override} from './lib/registry/groups';
 export {Plugin, PluginMeta} from './lib/class/plugin';
 export {ClientEvents} from './lib/util/types';
-export {Message, User, Member, ClientOptions} from 'eris';
 export {Configuration as LoggerOptions} from 'log4js';

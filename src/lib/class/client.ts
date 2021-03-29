@@ -1,4 +1,4 @@
-import {Client} from 'eris';
+import {Client} from 'discord.js-light';
 import {configure, Log4js} from 'log4js';
 import {EventRegistry} from '../registry/events';
 import {GroupRegistry} from '../registry/groups';
@@ -46,7 +46,7 @@ export class Blueprint<T extends BaseConfig> {
     this.inject.bind(this);
     this.config = loadConfig<T>(config, options);
     if (this.config.logging) this.logger = configure(this.config.logging);
-    this.client = new Client(this.config.bot.token, this.config.bot.options);
+    this.client = new Client(this.config.bot.options);
     this.groups = new GroupRegistry(this.config.developers);
     this.events = new EventRegistry(this, options);
     this.plugins = new PluginRegistry();
@@ -86,13 +86,13 @@ export class Blueprint<T extends BaseConfig> {
    * Initializes everything and connects to Discord
    */
   async start() {
-    await this.client.connect();
+    await this.client.login(this.config.bot.token);
   }
 
   /**
    * Destroy the Discord connections
    */
   async destroy() {
-    this.client.disconnect({reconnect: false});
+    this.client.destroy();
   }
 }

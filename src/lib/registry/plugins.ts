@@ -1,7 +1,7 @@
 import {AutoRegistry} from '../class/registry';
 import {Plugin} from '../class/plugin';
 import {BaseConfig} from '../util/config';
-import {Message, User, Member} from 'eris';
+import {Message, User, GuildMember} from 'discord.js-light';
 import {Blueprint} from '../class/client';
 
 function hasCommand<T extends BaseConfig>(
@@ -50,7 +50,7 @@ export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
   execute(
     cmd: string,
     msg: Message,
-    user: User | Member,
+    user: User | GuildMember,
     args: Array<string>,
     ref: Blueprint<T>
   ) {

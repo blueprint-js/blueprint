@@ -70,12 +70,12 @@ export type PermissionString =
   | 'guild.manage';
 
 export function mapPermission(key: string | PermissionString): Permissions {
-  if (Object.keys(erisPermissionMap).includes(key))
-    return erisPermissionMap[key as keyof typeof erisPermissionMap];
+  if (Object.keys(djsPermissionMap).includes(key))
+    return djsPermissionMap[key as keyof typeof djsPermissionMap];
   else return Permissions[key as keyof typeof Permissions];
 }
 
-const erisPermissionMap = {
+const djsPermissionMap = {
   'invite.create': Permissions.createInstantInvite,
   'members.kick': Permissions.kickMembers,
   'members.ban': Permissions.banMembers,

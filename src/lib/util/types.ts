@@ -1,100 +1,67 @@
 import {
-  Call,
-  OldCall,
-  TextableChannel,
-  GroupChannel,
+  Channel,
+  Collection,
+  DMChannel,
+  GuildChannel,
+  GuildEmoji,
+  GuildMember,
+  Snowflake,
+  Speaking,
+  TextChannel,
   User,
-  OldGuildChannel,
-  OldGroupChannel,
-  FriendSuggestionReasons,
   Guild,
-  PossiblyUncachedGuild,
-  Emoji,
-  Member,
-  MemberPartial,
-  Role,
-  OldRole,
-  UnavailableGuild,
-  OldGuild,
   Invite,
-  InviteWithMetadata,
   Message,
-  PossiblyUncachedMessage,
-  PartialEmoji,
-  OldMessage,
-  Relationship,
+  MessageReaction,
   Presence,
-  RawRESTRequest,
-  RawPacket,
-  PartialUser,
-  VoiceChannel,
-  OldVoiceState,
-  WebhookData,
-  AnyChannel,
-} from 'eris';
+  Role,
+  CloseEvent,
+  VoiceState,
+} from 'discord.js-light';
 
 import {Blueprint} from '../class/client';
 import {BaseConfig} from './config';
 
 interface EventListeners<T, C extends BaseConfig> {
-  (event: 'ready' | 'disconnect', listener: (ref: Blueprint<C>) => void): T;
-
-  (
-    event: 'callCreate' | 'callRing' | 'callDelete',
-    listener: (ref: Blueprint<C>, call: Call) => void
-  ): T;
-
-  (
-    event: 'callUpdate',
-    listener: (ref: Blueprint<C>, call: Call, oldCall: OldCall) => void
-  ): T;
+  (event: 'ready' | 'invalidated', listener: (ref: Blueprint<C>) => void): T;
 
   (
     event: 'channelCreate' | 'channelDelete',
-    listener: (ref: Blueprint<C>, channel: AnyChannel) => void
+    listener: (ref: Blueprint<C>, channel: DMChannel | GuildChannel) => void
   ): T;
 
   (
-    event: 'channelPinUpdate',
+    event: 'channelPinsUpdate',
     listener: (
       ref: Blueprint<C>,
-      channel: TextableChannel,
-      timestamp: number,
-      oldTimestamp: number
+      channel: DMChannel | TextChannel,
+      time: Date
     ) => void
-  ): T;
-
-  (
-    event: 'channelRecipientAdd' | 'channelRecipientRemove',
-    listener: (ref: Blueprint<C>, channel: GroupChannel, user: User) => void
   ): T;
 
   (
     event: 'channelUpdate',
     listener: (
       ref: Blueprint<C>,
-      channel: AnyChannel,
-      oldChannel: OldGuildChannel | OldGroupChannel
+      oldChannel: DMChannel | GuildChannel,
+      newChannel: DMChannel | GuildChannel
     ) => void
   ): T;
 
+  (event: 'debug', listener: (ref: Blueprint<C>, info: string) => void): T;
+
   (
-    event: 'connect' | 'shardPreReady',
-    listener: (ref: Blueprint<C>, id: number) => void
+    event: 'emojiCreate' | 'emojiDelete',
+    listener: (ref: Blueprint<C>, emoji: GuildEmoji) => void
   ): T;
 
   (
-    event: 'friendSuggestionCreate',
+    event: 'emojiUpdate',
     listener: (
       ref: Blueprint<C>,
-      user: User,
-      reasons: FriendSuggestionReasons
+      oldEmoji: GuildEmoji,
+      newEmoji: GuildEmoji
     ) => void
-  ): T;
-
-  (
-    event: 'friendSuggestionDelete',
-    listener: (ref: Blueprint<C>, user: User) => void
   ): T;
 
   (
@@ -103,143 +70,86 @@ interface EventListeners<T, C extends BaseConfig> {
   ): T;
 
   (
-    event: 'guildAvailable' | 'guildCreate',
+    event:
+      | 'guildCreate'
+      | 'guildDelete'
+      | 'guildIntegrationsUpdate'
+      | 'guildUnavailable',
     listener: (ref: Blueprint<C>, guild: Guild) => void
   ): T;
 
   (
-    event: 'guildDelete',
-    listener: (ref: Blueprint<C>, guild: PossiblyUncachedGuild) => void
+    event: 'guildMemberAdd' | 'guildMemberAvailable' | 'guildMemberRemove',
+    listener: (ref: Blueprint<C>, member: GuildMember) => void
   ): T;
 
   (
-    event: 'guildEmojisUpdate',
+    event: 'guildMembersChunk',
     listener: (
       ref: Blueprint<C>,
+      members: Collection<Snowflake, GuildMember>,
       guild: Guild,
-      emojis: Emoji[],
-      oldEmojis: Emoji[]
+      chunk: Object
     ) => void
   ): T;
 
   (
-    event: 'guildMemberAdd',
-    listener: (ref: Blueprint<C>, guild: Guild, member: Member) => void
-  ): T;
-
-  (
-    event: 'guildMemberChunk',
-    listener: (ref: Blueprint<C>, guild: Guild, members: Member[]) => void
-  ): T;
-
-  (
-    event: 'guildMemberRemove',
-    listener: (
-      ref: Blueprint<C>,
-      guild: Guild,
-      member: Member | MemberPartial
-    ) => void
+    event: 'guildMemberSpeaking',
+    listener: (ref: Blueprint<C>, speaking: Readonly<Speaking>) => void
   ): T;
 
   (
     event: 'guildMemberUpdate',
     listener: (
       ref: Blueprint<C>,
-      guild: Guild,
-      member: Member,
-      oldMember: {nick?: string; premiumSince: number; roles: string[]} | null
+      oldMember: GuildMember,
+      newMember: GuildMember
     ) => void
-  ): T;
-
-  (
-    event: 'guildRoleCreate' | 'guildRoleDelete',
-    listener: (ref: Blueprint<C>, guild: Guild, role: Role) => void
-  ): T;
-
-  (
-    event: 'guildRoleUpdate',
-    listener: (
-      ref: Blueprint<C>,
-      guild: Guild,
-      role: Role,
-      oldRole: OldRole
-    ) => void
-  ): T;
-
-  (
-    event: 'guildUnavailable' | 'unavailableGuildCreate',
-    listener: (ref: Blueprint<C>, guild: UnavailableGuild) => void
   ): T;
 
   (
     event: 'guildUpdate',
-    listener: (ref: Blueprint<C>, guild: Guild, oldGuild: OldGuild) => void
-  ): T;
-
-  (
-    event: 'hello',
-    listener: (ref: Blueprint<C>, trace: string[], id: number) => void
+    listener: (ref: Blueprint<C>, oldGuild: Guild, newGuild: Guild) => void
   ): T;
 
   (
     event: 'inviteCreate' | 'inviteDelete',
-    listener: (
-      ref: Blueprint<C>,
-      guild: Guild,
-      invite: Invite & InviteWithMetadata
-    ) => void
+    listener: (ref: Blueprint<C>, invite: Invite) => void
   ): T;
 
   (
-    event: 'messageCreate',
+    event: 'message' | 'messageDelete' | 'messageReactionRemoveAll',
     listener: (ref: Blueprint<C>, message: Message) => void
   ): T;
 
   (
-    event: 'messageDelete' | 'messageReactionRemoveAll',
-    listener: (ref: Blueprint<C>, message: PossiblyUncachedMessage) => void
+    event: 'messageDeleteBulk',
+    listener: (
+      ref: Blueprint<C>,
+      messages: Collection<Snowflake, Message>
+    ) => void
+  ): T;
+
+  (
+    event: 'messageReactionAdd' | 'messageReactionRemove',
+    listener: (
+      ref: Blueprint<C>,
+      messageReaction: MessageReaction,
+      user: User
+    ) => void
   ): T;
 
   (
     event: 'messageReactionRemoveEmoji',
-    listener: (
-      ref: Blueprint<C>,
-      message: PossiblyUncachedMessage,
-      emoji: PartialEmoji
-    ) => void
-  ): T;
-
-  (
-    event: 'messageDeleteBulk',
-    listener: (ref: Blueprint<C>, messages: PossiblyUncachedMessage[]) => void
-  ): T;
-
-  (
-    event: 'messageReactionAdd',
-    listener: (
-      ref: Blueprint<C>,
-      message: PossiblyUncachedMessage,
-      emoji: Emoji,
-      reactor: Member | {id: string}
-    ) => void
-  ): T;
-
-  (
-    event: 'messageReactionRemove',
-    listener: (
-      ref: Blueprint<C>,
-      message: PossiblyUncachedMessage,
-      emoji: PartialEmoji,
-      userID: string
-    ) => void
+    listener: (ref: Blueprint<C>, reaction: MessageReaction) => void
   ): T;
 
   (
     event: 'messageUpdate',
     listener: (
       ref: Blueprint<C>,
-      message: Message,
-      oldMessage: OldMessage | null
+      oldMessage: Message,
+      newMessage: Message
     ) => void
   ): T;
 
@@ -247,98 +157,50 @@ interface EventListeners<T, C extends BaseConfig> {
     event: 'presenceUpdate',
     listener: (
       ref: Blueprint<C>,
-      other: Member | Relationship,
-      oldPresence: Presence | null
+      oldPresence: Presence | null,
+      newPresence: Presence
     ) => void
   ): T;
 
   (
-    event: 'rawREST',
-    listener: (ref: Blueprint<C>, request: RawRESTRequest) => void
+    event: 'rateLimit',
+    listener: (ref: Blueprint<C>, rateLimitInfo: Object) => void
   ): T;
 
   (
-    event: 'rawWS' | 'unknown',
-    listener: (ref: Blueprint<C>, packet: RawPacket, id: number) => void
+    event: 'roleCreate' | 'roleDelete',
+    listener: (ref: Blueprint<C>, role: Role) => void
   ): T;
 
   (
-    event: 'relationshipAdd' | 'relationshipRemove',
-    listener: (ref: Blueprint<C>, relationship: Relationship) => void
-  ): T;
-
-  (
-    event: 'relationshipUpdate',
-    listener: (
-      ref: Blueprint<C>,
-      relationship: Relationship,
-      oldRelationship: {type: number}
-    ) => void
+    event: 'roleUpdate',
+    listener: (ref: Blueprint<C>, oldRole: Role, newRole: Role) => void
   ): T;
 
   (
     event: 'typingStart',
-    listener: (
-      ref: Blueprint<C>,
-      channel: TextableChannel | {id: string},
-      user: User | {id: string}
-    ) => void
+    listener: (ref: Blueprint<C>, channel: Channel, user: User) => void
   ): T;
 
   (
     event: 'userUpdate',
-    listener: (
-      ref: Blueprint<C>,
-      user: User,
-      oldUser: PartialUser | null
-    ) => void
-  ): T;
-
-  (
-    event: 'voiceChannelJoin',
-    listener: (
-      ref: Blueprint<C>,
-      member: Member,
-      newChannel: VoiceChannel
-    ) => void
-  ): T;
-
-  (
-    event: 'voiceChannelLeave',
-    listener: (
-      ref: Blueprint<C>,
-      member: Member,
-      oldChannel: VoiceChannel
-    ) => void
-  ): T;
-
-  (
-    event: 'voiceChannelSwitch',
-    listener: (
-      ref: Blueprint<C>,
-      member: Member,
-      newChannel: VoiceChannel,
-      oldChannel: VoiceChannel
-    ) => void
+    listener: (ref: Blueprint<C>, oldUser: User, newUser: User) => void
   ): T;
 
   (
     event: 'voiceStateUpdate',
     listener: (
       ref: Blueprint<C>,
-      member: Member,
-      oldState: OldVoiceState
+      oldState: VoiceState,
+      newState: VoiceState
     ) => void
   ): T;
 
-  (
-    event: 'warn' | 'debug',
-    listener: (ref: Blueprint<C>, message: string, id: number) => void
-  ): T;
+  (event: 'warn', listener: (ref: Blueprint<C>, info: string) => void): T;
 
   (
-    event: 'webhooksUpdate',
-    listener: (ref: Blueprint<C>, data: WebhookData) => void
+    event: 'webhookUpdate',
+    listener: (ref: Blueprint<C>, channel: TextChannel) => void
   ): T;
 
   (event: string, listener: (ref: Blueprint<C>, ...args: unknown[]) => void): T;
@@ -347,12 +209,31 @@ interface EventListeners<T, C extends BaseConfig> {
 export interface ClientEvents<T, C extends BaseConfig>
   extends EventListeners<T, C> {
   (
-    event: 'shardReady' | 'shardResume',
+    event: 'shardReady',
+    listener: (
+      ref: Blueprint<C>,
+      id: number,
+      unavailableGuilds: Set<string> | null
+    ) => void
+  ): T;
+
+  (
+    event: 'shardDisconnect',
+    listener: (ref: Blueprint<C>, event: CloseEvent, id: number) => void
+  ): T;
+
+  (
+    event: 'shardError',
+    listener: (ref: Blueprint<C>, error: Error, shardID: number) => void
+  ): T;
+
+  (
+    event: 'shardReconnecting',
     listener: (ref: Blueprint<C>, id: number) => void
   ): T;
 
   (
-    event: 'shardDisconnect' | 'error',
-    listener: (ref: Blueprint<C>, err: Error, id: number) => void
+    event: 'shardResume',
+    listener: (ref: Blueprint<C>, id: number, replayedEvents: number) => void
   ): T;
 }
