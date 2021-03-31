@@ -1,17 +1,19 @@
 import {AutoRegistry} from '../class/registry';
 import {Plugin} from '../class/plugin';
-import {BaseConfig} from '../util/config';
+import {BaseConfig, parseCommandName} from '../util/config';
 import {Message, User, GuildMember} from 'discord.js-light';
-import {Blueprint} from '../class/client';
+import {Blueprint, Internals} from '../class/client';
 
 function hasCommand<T extends BaseConfig>(
   name: string,
-  plugin: Plugin<T>
+  plugin: Plugin<T>,
+  int: Internals<T>
 ): boolean {
   return (
-    plugin.meta.commands.findIndex(
-      ({meta}) => meta.name === name || meta.aliases.includes(name)
-    ) >= 0
+    plugin.meta.commands.findIndex(({meta}) => {
+      const keys = parseCommandName<T>(name, meta.name, int);
+      keys.metaName === keys.name || meta.aliases.includes(keys.metaName);
+    }) >= 0
   );
 }
 
@@ -54,7 +56,9 @@ export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
     args: Array<string>,
     ref: Blueprint<T>
   ) {
-    const plugin = this.items.find(({value}) => hasCommand(cmd, value));
+    const plugin = this.items.find(({value}) =>
+      hasCommand(cmd, value, ref.core)
+    );
     if (plugin) plugin.value.execute(cmd, msg, user, args, ref);
   }
 }

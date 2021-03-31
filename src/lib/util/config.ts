@@ -1,11 +1,12 @@
 import {readFileSync} from 'fs';
 import {ClientOptions, Message} from 'discord.js-light';
 import {Configuration as LoggerOptions} from 'log4js';
-import {Blueprint} from '../class/client';
+import {Blueprint, Internals} from '../class/client';
 
 export interface BotOptions {
   token: string;
-  prefix: string;
+  prefix: string | Array<string>;
+  caseInsensitiveCommands?: boolean;
   options?: ClientOptions;
 }
 /**
@@ -23,8 +24,33 @@ export interface PrefixContext<T extends BaseConfig> {
 }
 
 export interface InstanceOptions<T extends BaseConfig> {
-  prefix?: {enabled: boolean; load?: (ctx: PrefixContext<T>) => string};
+  prefix?: {
+    enabled: boolean;
+    load?: (ctx: PrefixContext<T>) => string | Array<string>;
+  };
   config?: {parser?: Function; encoding?: BufferEncoding};
+}
+
+/**
+ * Checks if caseInsensitiveCommands option, and returns the parsed command name.
+ * @param key The requested command name.
+ * @param value The value provided by the meta.
+ */
+export function parseCommandName<T extends BaseConfig>(
+  name: string,
+  metaName: string,
+  int: Internals<T>
+) {
+  const isInsensitive = int.config.bot.caseInsensitiveCommands ?? true;
+  return isInsensitive
+    ? {
+        name: name.toLowerCase(),
+        metaName: metaName.toLowerCase(),
+      }
+    : {
+        name,
+        metaName,
+      };
 }
 
 /**
