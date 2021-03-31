@@ -2,7 +2,7 @@ name: Node (Development)
 
 on:
   push:
-    branches: [dev]
+    branches: [pr_**]
   pull_request:
     branches: [main]
 
