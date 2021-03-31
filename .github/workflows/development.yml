@@ -21,7 +21,6 @@ jobs:
         run: yarn lint
   publish:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/pr_**'
     needs: [lint]
     steps:
       - uses: actions/checkout@v2
