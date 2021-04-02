@@ -37,8 +37,9 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
       const providedPrefix =
         typeof prefix === 'string'
           ? prefix
-          : prefix.find(p => msg.content.startsWith(p))!;
-      console.log(providedPrefix);
+          : prefix.find(p => msg.content.startsWith(p));
+
+      if (!providedPrefix) return;
       if (!msg.content.startsWith(providedPrefix)) return;
       const [commandName, ...args] = msg.content
         .slice(providedPrefix.length)

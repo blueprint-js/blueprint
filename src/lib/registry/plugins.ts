@@ -12,7 +12,9 @@ function hasCommand<T extends BaseConfig>(
   return (
     plugin.meta.commands.findIndex(({meta}) => {
       const keys = parseCommandName<T>(name, meta.name, int);
-      keys.metaName === keys.name || meta.aliases.includes(keys.metaName);
+      return (
+        keys.metaName === keys.name || meta.aliases.includes(keys.metaName)
+      );
     }) >= 0
   );
 }
@@ -56,9 +58,12 @@ export class PluginRegistry<T extends BaseConfig> extends AutoRegistry<
     args: Array<string>,
     ref: Blueprint<T>
   ) {
+    const isInsensitive = ref.core.config.bot.caseInsensitiveCommands ?? true;
+    const name = isInsensitive ? cmd.toLowerCase() : cmd;
+
     const plugin = this.items.find(({value}) =>
-      hasCommand(cmd, value, ref.core)
+      hasCommand(name, value, ref.core)
     );
-    if (plugin) plugin.value.execute(cmd, msg, user, args, ref);
+    if (plugin) plugin.value.execute(name, msg, user, args, ref);
   }
 }

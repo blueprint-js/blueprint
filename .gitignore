@@ -106,3 +106,4 @@ dist
 # Development files
 build/
 .idea/
+test/
