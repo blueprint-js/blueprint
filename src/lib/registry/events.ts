@@ -7,7 +7,7 @@ type Callback = (...args: Array<unknown>) => void;
 
 interface PrefixCacheItem {
   guild: string;
-  prefix: string;
+  prefix: string | Array<string>;
 }
 
 export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
@@ -34,9 +34,15 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
         } else prefix = cached?.prefix ?? prefix;
       }
 
-      if (!msg.content.startsWith(prefix)) return;
+      const providedPrefix =
+        typeof prefix === 'string'
+          ? prefix
+          : prefix.find(p => msg.content.startsWith(p));
+
+      if (!providedPrefix) return;
+      if (!msg.content.startsWith(providedPrefix)) return;
       const [commandName, ...args] = msg.content
-        .slice(prefix.length)
+        .slice(providedPrefix.length)
         .trim()
         .split(/\s+/);
 

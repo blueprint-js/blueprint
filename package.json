@@ -1,6 +1,6 @@
 {
   "name": "blueprint-framework",
-  "version": "4.0.1",
+  "version": "4.0.2-nightly.2",
   "description": "A modern, powerful, and modular Discord bot framework",
   "main": "build/index.js",
   "repository": "https://github.com/blueprint-js/blueprint.git",
