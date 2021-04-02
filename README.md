@@ -33,7 +33,8 @@ const client = new Blueprint('./config.json');
 
 // Let's register a group so users can run the commands we add!
 client.registry.groups.register('user', {
-  permissions: ['messages.send'] // Makes it so only users with the sendMessages permission can run the ping command.
+  // Makes it so only users with the sendMessages permission can run the ping command.
+  permissions: ['messages.send']
 });
 
 // Now, to make a simple ping command, we can do this:
@@ -54,7 +55,8 @@ class Ping extends Command<BaseConfig> {
 client.registry.plugins.register(
   new Plugin({
     name: 'randomPlugin', // Name of the plugin, name it something besides this!
-    groups: ['user'], // Set's the user group globally throughout the plugin (so we don't need it on every command).
+    // Set's the user group globally throughout the plugin (so we don't need it on every command).
+    groups: ['user'],
     commands: [new Ping()], // We add commands to a plugin.
   })
 );
