@@ -26,7 +26,13 @@ npm i @dxz/blueprint
 
 Making a bot with Blueprint is meant to be simple, here's a quick example on how to make a small bot using it:
 ```ts
-import { Blueprint, Command, BaseConfig, Plugin } from 'blueprint-framework';
+import {
+  Blueprint,
+  Command,
+  BaseConfig,
+  Plugin,
+  CommandContext
+} from 'blueprint-framework';
 
 // This instantiates the Blueprint class, and tells Blueprint where our config file is!
 const client = new Blueprint('./config.json');
