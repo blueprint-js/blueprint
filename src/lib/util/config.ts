@@ -23,10 +23,13 @@ export interface PrefixContext<T extends BaseConfig> {
   ref: Blueprint<T>;
 }
 
+// TODO: Fix atrocious return type
+type TPrefixReturn = Promise<string | Array<string>> | string | Array<string>;
+
 export interface InstanceOptions<T extends BaseConfig> {
   prefix?: {
     enabled: boolean;
-    load?: (ctx: PrefixContext<T>) => string | Array<string>;
+    load?: (ctx: PrefixContext<T>) => TPrefixReturn;
   };
   config?: {parser?: Function; encoding?: BufferEncoding};
 }

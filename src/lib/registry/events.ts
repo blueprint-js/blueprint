@@ -19,7 +19,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
     this.ref = ref;
     this.prefixCache = [];
     this.register.bind(this);
-    this.ref.core.client.on('message', msg => {
+    this.ref.core.client.on('message', async msg => {
       let prefix = this.ref.core.config.bot.prefix;
       const v = this.items.find(v => v.key === 'message');
       if (v) (v.value as Callback)(this.ref, msg);
@@ -29,7 +29,7 @@ export class EventRegistry<T extends BaseConfig> extends Registry<Callback> {
       if (opts?.prefix?.enabled && msg.member) {
         const cached = this.prefixCache.find(p => p.guild === msg.guild!.id);
         if (!cached && opts?.prefix?.load) {
-          prefix = opts?.prefix?.load?.({message: msg, ref});
+          prefix = await opts?.prefix?.load?.({message: msg, ref});
           this.prefixCache.push({guild: msg.guild!.id as string, prefix});
         } else prefix = cached?.prefix ?? prefix;
       }
