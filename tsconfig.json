@@ -1,11 +1,15 @@
 {
-  "extends": "./node_modules/gts/tsconfig-google.json",
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "build",
+    "module": "CommonJS",
     "target": "ES2020",
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "outDir": "build",
+    "baseUrl": ".",
+    "sourceMap": true,
+    "strict": true,
+    "pretty": true,
+    "lib": ["ES2020"],
+    "noImplicitReturns": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*.ts", "test/**/*.ts"]
 }
