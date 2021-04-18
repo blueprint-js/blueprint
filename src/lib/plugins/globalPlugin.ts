@@ -1,10 +1,10 @@
 import { GlobalPluginData } from "./pluginTypes";
+import { BaseConfig } from "../client/clientTypes";
+
+const plugins = new Map<string, GlobalPluginData<BaseConfig<any>>>();
 
 export class GlobalPlugin<T> {
-    private readonly plugins: Map<string, GlobalPluginData<T>>;
-
-    constructor(blueprint: GlobalPluginData<T>) {
-        this.plugins = new Map<string, GlobalPluginData<T>>();
-        this.plugins.set(blueprint.name, blueprint);
-    }
+  constructor(blueprint: GlobalPluginData<T>) {
+    plugins.set(blueprint.name, blueprint);
+  }
 }

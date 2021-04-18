@@ -3,5 +3,5 @@ export { Blueprint } from "./lib/client/client";
 export {
   BasePluginData,
   GlobalPluginData,
-  GuildPluginData
+  GuildPluginData,
 } from "./lib/plugins/pluginTypes";
