@@ -1,12 +1,14 @@
 import { GuildPluginData, GlobalPluginData } from "../plugins/pluginTypes";
+import { AsyncOrSync } from "../typings";
 
 export interface BaseConfig<T> {
   guildPlugins: GuildPluginData<T>[];
   globalPlugins: GlobalPluginData<T>[];
 
-  options?: BlueprintOptions;
+  options: BlueprintOptions;
 }
 
 export interface BlueprintOptions {
-  canLoadGuild: () => boolean;
+  token: string;
+  canLoadGuild?: (guildId: string) => AsyncOrSync<boolean>;
 }

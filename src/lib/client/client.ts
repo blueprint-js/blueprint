@@ -16,8 +16,11 @@ export class Blueprint<
   protected guildPlugins = new Map<string, GuildPluginData<T>>();
   protected globalPlugins = new Map<string, GlobalPluginData<T>>();
 
-  protected options: BaseConfig<T>;
+  private loadInProgress = new Set<string>();
+
+  protected args: BaseConfig<T>;
   private pluginNames = new Set<string>();
+  protected loadedGuilds = new Set<string>();
 
   /**
    * Creates a new Blueprint instance.
@@ -27,16 +30,16 @@ export class Blueprint<
   constructor(client: Client, args: BaseConfig<T>) {
     super();
     this.client = client;
-    this.options = args;
+    this.args = args;
 
-    const validatePlugin = (data: AnyPluginData) => {
-        if (!data.name) {
-            throw new Error(`No plugin name provided!`);
-        }
+    for (var guildPlugin of args.guildPlugins) {
+      this.validatePlugin(guildPlugin);
+      this.guildPlugins.set(guildPlugin.name, guildPlugin);
+    }
 
-        if (this.pluginNames.has(data.name)) {
-            throw new Error(`Duplicate plugin name for plugin ${data.name}`);
-        }
+    for (var globalPlugin of args.globalPlugins) {
+      this.validatePlugin(globalPlugin);
+      this.globalPlugins.set(globalPlugin.name, globalPlugin);
     }
   }
 
@@ -44,10 +47,48 @@ export class Blueprint<
    * Starts the bot and connects to the gateway.
    */
   public async connect() {
-    await this.client.login("");
+    await this.client.login(this.args.options.token);
   }
 
+  /**
+   * Destroys the client and disconnects.
+   */
   public disconnect() {
     this.client.destroy();
+  }
+
+  private async loadArgs() {
+
+  }
+
+  private validatePlugin(data: AnyPluginData) {
+      if (!data.name) throw new Error("No plugin name provided!");
+
+      if (this.pluginNames.has(data.name)) {
+          throw new Error(`Duplicate plugin name for plugin ${data.name}`);
+      }
+
+      this.pluginNames.add(data.name);
+  }
+
+  protected async loadAllGuilds() {
+    for (var guild of this.client.guilds.cache.values()) {
+
+    }
+  }
+
+  private async loadGuild(id: string) {
+    if (this.loadedGuilds.has(id)) return;
+    if (!this.client.guilds.cache.has(id)) return;
+    if (this.loadInProgress.has((id))) return;
+
+    this.loadInProgress.add(id);
+
+    if (!(await this.args.options.canLoadGuild?.(id))) {
+      this.loadInProgress.delete(id);
+      return;
+    }
+
+
   }
 }
